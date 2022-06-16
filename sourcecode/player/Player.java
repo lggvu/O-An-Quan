@@ -74,4 +74,8 @@ public class Player {
     public boolean isInTurn() {
         return inTurn;
     }
+
+    public void setScore() {
+        this.score = this.gemsInHand.size();
+    }
 }

@@ -3,9 +3,9 @@ package sourcecode.board;
 import java.util.ArrayList;
 
 public class Cell {
-    protected int position;
-    protected int numberOfGems;
-    protected ArrayList<Gem> gemList = new ArrayList<Gem>();
+    private int position;
+    private int numberOfGems;
+    private ArrayList<Gem> gemList = new ArrayList<Gem>();
 
     public Cell(int position, int numberOfGems) {
         this.position = position;

@@ -57,6 +57,4 @@ public class Board {
         }
         return new Cell(cell.getPosition() - 1);
     }
-
-
 }
