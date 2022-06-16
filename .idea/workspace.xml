@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sourcecode/board/Cell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sourcecode/board/HalfCircle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sourcecode/board/Square.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sourcecode/player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/OOP.DSAI.20212.Team26.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/OOP.DSAI.20212.Team26.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/Cell.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/board/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/board/HalfCircle.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/HalfCircle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/board/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Square.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/test/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/test/BoardTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +48,20 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.BoardTest">
+    <configuration name="BoardTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sourcecode.test.BoardTest" />
+      <module name="OOP.DSAI.20212.Team26" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sourcecode.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Cell" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Cell" />
       <module name="OOP.DSAI.20212.Team26" />
@@ -59,6 +71,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.BoardTest" />
         <item itemvalue="Application.Cell" />
       </list>
     </recent_temporary>
@@ -79,7 +92,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature/board" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
