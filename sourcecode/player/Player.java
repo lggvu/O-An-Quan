@@ -16,6 +16,9 @@ public class Player {
     public void earnGem() {
 
     }
+    public String testCommit() {
+        System.out.println("This is a commit.");
+    }
 
 
 }

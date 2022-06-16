@@ -1,8 +1,11 @@
 package sourcecode.board;
 
+import java.util.ArrayList;
+
 public class Cell {
     protected int position;
     protected int numberOfGems;
+    protected ArrayList<Gem> gemList = new ArrayList<Gem>();
 
     public Cell(int position, int numberOfGems) {
         this.position = position;
@@ -19,6 +22,12 @@ public class Cell {
 
     public int getNumberOfGems() {
         return numberOfGems;
+    }
+
+    public void addGem(Gem gem) {
+        for(int i = 0; i < this.numberOfGems; i++) {
+            gemList.add(Gem gem);
+        }
     }
 
     public String toString() {
