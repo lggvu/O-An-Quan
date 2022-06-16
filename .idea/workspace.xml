@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="">
+    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="upate BoardTest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/Cell.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/board/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/board/HalfCircle.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/HalfCircle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/board/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Square.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sourcecode/test/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/test/BoardTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,6 +67,9 @@
       <list>
         <item itemvalue="Application.BoardTest" />
         <item itemvalue="Application.Cell" />
+        <item itemvalue="Application.Cell" />
+        <item itemvalue="Application.BoardTest" />
+        <item itemvalue="Application.Cell" />
       </list>
     </recent_temporary>
   </component>
@@ -85,6 +82,21 @@
       <option name="presentableId" value="Default" />
       <updated>1655198410651</updated>
     </task>
+    <task id="LOCAL-00001" summary="upload constructors for board and cells">
+      <created>1655366801447</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1655366801447</updated>
+    </task>
+    <task id="LOCAL-00002" summary="upate BoardTest">
+      <created>1655366916492</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1655366916492</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -109,5 +121,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="upload constructors for board and cells" />
+    <MESSAGE value="upate BoardTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="upate BoardTest" />
   </component>
 </project>
