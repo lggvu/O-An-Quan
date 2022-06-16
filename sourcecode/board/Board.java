@@ -5,6 +5,7 @@ public class Board {
     private static final int numHalfCircle = 2;  // even number
     private static final int numSmallGem = 50;
     private static final int numBigGem = 2;
+    private Cell[] board = new Cell[numHalfCircle + numSquare];
 
     public int getNumSquare() {
         return numSquare;
@@ -21,9 +22,6 @@ public class Board {
     public int getNumBigGem() {
         return numBigGem;
     }
-
-    private Cell[] board = new Cell[numHalfCircle + numSquare];
-
 
     public Board() {
         this.board[0] = new HalfCircle(0, numBigGem /2);
