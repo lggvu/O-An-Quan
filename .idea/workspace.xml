@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="upate BoardTest">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/board/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/player/Player.java" afterDir="false" />
-    </list>
+    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="update class diagram" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -114,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655377007650</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="update class diagram">
+      <created>1655400980752</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1655400980752</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -143,6 +145,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="upload constructors for board and cells" />
     <MESSAGE value="upate BoardTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="upate BoardTest" />
+    <MESSAGE value="update class diagram" />
+    <option name="LAST_COMMIT_MESSAGE" value="update class diagram" />
   </component>
 </project>
