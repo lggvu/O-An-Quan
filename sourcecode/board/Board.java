@@ -1,12 +1,29 @@
 package sourcecode.board;
 
 public class Board {
-    private final int numSquare = 10; // even number
-    private final int numHalfCircle = 2;  // even number
-    private final int numSmallGem = 50;
-    private final int numBigGem = 2;
+    private static final int numSquare = 10; // even number
+    private static final int numHalfCircle = 2;  // even number
+    private static final int numSmallGem = 50;
+    private static final int numBigGem = 2;
+
+    public int getNumSquare() {
+        return numSquare;
+    }
+
+    public int getNumHalfCircle() {
+        return numHalfCircle;
+    }
+
+    public int getNumSmallGem() {
+        return numSmallGem;
+    }
+
+    public int getNumBigGem() {
+        return numBigGem;
+    }
 
     private Cell[] board = new Cell[numHalfCircle + numSquare];
+
 
     public Board() {
         this.board[0] = new HalfCircle(0, numBigGem /2);
@@ -17,7 +34,7 @@ public class Board {
 
         for(int i = 1; i <= (numSquare /2); i++) {
             this.board[i] = new Square(i, numSmallGem / numSquare);
-            this.board[i].addGem();
+            this.board[i].addGem(new Gem());
         }
         for(int i = (numSquare /2)+2; i <= numSquare + numHalfCircle - 1; i++) {
             this.board[i] = new Square(i, numSmallGem / numSquare);
@@ -28,4 +45,20 @@ public class Board {
     public Cell[] getBoard() {
         return board;
     }
+
+    public static Cell getRightCell(Cell cell) {
+        if(cell.getPosition() == 0) {
+            return new Cell(numSquare + numHalfCircle - 1);
+        }
+        return new Cell(cell.getPosition() + 1);
+    }
+
+    public static Cell getLeftCell(Cell cell) {
+        if(cell.getPosition() == numSquare + numHalfCircle - 1) {
+            return new Cell(0);
+        }
+        return new Cell(cell.getPosition() - 1);
+    }
+
+
 }
