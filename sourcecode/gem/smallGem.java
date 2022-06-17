@@ -1,11 +1,15 @@
 package sourcecode.gem;
+
+import sourcecode.board.Cell;
+
 public class smallGem extends Gem{
-    String color;
-    public smallGem(int position, String color){
+	protected int VALUE = 1;
+    public smallGem(Cell position){
         super(position);
-        this.color = color;
     }
-    public String getColor(){
-        return color;
-    }
+	public int getVALUE() {
+		return VALUE;
+	}
+    
+    
 }
