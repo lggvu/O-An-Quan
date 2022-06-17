@@ -1,0 +1,424 @@
+Index: sourcecode/board/Cell.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sourcecode.board;\n\nimport java.util.ArrayList;\n\npublic class Cell {\n    private int position;\n    private int numberOfGems;\n    private ArrayList<Gem> gemList = new ArrayList<Gem>();\n\n    public Cell(int position, int numberOfGems) {\n        this.position = position;\n        this.numberOfGems = numberOfGems;\n    }\n\n    public Cell(int position) {\n        this.position = position;\n    }\n\n    public ArrayList<Gem> getGemList() {\n        return gemList;\n    }\n\n    public int getPosition() {\n        return position;\n    }\n\n    public int getNumberOfGems() {\n        return numberOfGems;\n    }\n\n    public void addGem(ArrayList<Gem> gem) {\n        for(int i = 0; i < this.numberOfGems; i++) {\n            gemList.add(Gem gem);\n        }\n    }\n\n    public String toString() {\n        return(\n                \"Cell \" + this.getClass().getSimpleName() +\n                        \"Position:\" + this.position +\n                        \", number of gems: \" + this.numberOfGems\n                );\n    }\n\n    public void emptyCell() {\n        this.gemList.removeAll(this.gemList);\n    }\n\n    public boolean isEmpty() {\n        if(this.numberOfGems == 0) {\n            return true;\n        }\n        return false;\n    }\n\n    public void setPosition(int position) {\n        this.position = position;\n    }\n\n    public boolean spreadable(int direction) { // check if THIS cell can be used to continue spreading\n        if(direction == 1) {\n            Cell nextCell = Board.getRightCell(this);\n            if(nextCell instanceof HalfCircle) {\n                return false;\n            }\n            else {\n                if(!nextCell.isEmpty()) {\n                    return true;\n                }\n            }\n        }\n\n        else if(direction == 0) {\n            Cell nextCell = Board.getLeftCell(this);\n            if(nextCell instanceof HalfCircle) {\n                return false;\n            }\n            else {\n                if(!nextCell.isEmpty()) {\n                    return true;\n                }\n            }\n        }\n        return false;\n    }\n\n    public boolean edible(int direction) { // check if the cell that is TWO cells away can be collected or not\n        if(direction == 1) {\n            Cell oneCellRight = Board.getRightCell(this);\n            Cell twoCellRight = Board.getRightCell(oneCellRight);\n            if(!(this.isEmpty()) && (oneCellRight.isEmpty()) && !(twoCellRight.isEmpty())) {\n                return true;\n            }\n        }\n        else if(direction == 0) {\n            Cell oneCellLeft = Board.getLeftCell(this);\n            Cell twoCellLeft = Board.getLeftCell(oneCellLeft);\n            if(!(this.isEmpty()) && (oneCellLeft.isEmpty()) && !(twoCellLeft.isEmpty())) {\n                return true;\n            }\n        }\n        return false;\n    }\n\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/sourcecode/board/Cell.java b/sourcecode/board/Cell.java
+--- a/sourcecode/board/Cell.java	(revision c2c0754c61f3c0e7278ca1e59a6f63646222a585)
++++ b/sourcecode/board/Cell.java	(date 1655458436647)
+@@ -1,5 +1,7 @@
+ package sourcecode.board;
+ 
++import sourcecode.gem.Gem;
++
+ import java.util.ArrayList;
+ 
+ public class Cell {
+@@ -16,6 +18,10 @@
+         this.position = position;
+     }
+ 
++    public Cell() {
++
++    }
++
+     public ArrayList<Gem> getGemList() {
+         return gemList;
+     }
+@@ -28,13 +34,11 @@
+         return numberOfGems;
+     }
+ 
+-    public void addGem(ArrayList<Gem> gem) {
+-        for(int i = 0; i < this.numberOfGems; i++) {
+-            gemList.add(Gem gem);
+-        }
++    public void addGem(Gem gem) {
++        this.gemList.add(gem);
+     }
+ 
+-    public String toString() {
++    public String seeDetails() {
+         return(
+                 "Cell " + this.getClass().getSimpleName() +
+                         "Position:" + this.position +
+@@ -42,6 +46,10 @@
+                 );
+     }
+ 
++    public String toString() {
++        return "Cell " + this.getClass().getSimpleName() + ", position: " + this.position;
++    }
++
+     public void emptyCell() {
+         this.gemList.removeAll(this.gemList);
+     }
+Index: sourcecode/player/Player.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sourcecode.player;\n\nimport sourcecode.board.*;\n\nimport java.util.ArrayList;\n\npublic class Player {\n    private boolean inTurn;\n    private int score;\n    private String name;\n    private int id;\n    private ArrayList<Gem> gemsInHand = new ArrayList<Gem>();\n\n    Hand hand = new Hand();\n    Cell handPosition = hand.getHandPosition();\n\n    public Player(String name) {\n        this.name = name;\n    }\n\n    public Player(String name, Cell position) {\n        this.name = name;\n    }\n\n    public void pickUpGemFrom(Cell cell) {\n        if(cell instanceof HalfCircle) {\n            System.out.println(\"Cannot pick gems from this cell.\");\n            // block click from user\n        }\n        else {\n            this.gemsInHand.addAll(cell.getGemList());\n            cell.emptyCell();\n        }\n    }\n\n    public void spreadGem(int handDirection) {\n        if(handDirection == 0) {  // clockwise\n            for (int i = 0; i < this.gemsInHand.size(); i++) {\n                handPosition = Board.getLeftCell(hand.getHandPosition());\n                dropGemInto(this.gemsInHand.get(i), handPosition);\n            }\n            if(handPosition.spreadable(handDirection)) {\n                pickUpGemFrom(handPosition);\n                spreadGem(handDirection);\n            }\n        } else if(handDirection == 1) { // anti-clockwise\n            for (int i = 0; i < this.gemsInHand.size(); i++) {\n                handPosition = Board.getLeftCell(hand.getHandPosition());\n                dropGemInto(this.gemsInHand.get(i), handPosition);\n            }\n            if(handPosition.spreadable(handDirection)) {\n                pickUpGemFrom(handPosition);\n                spreadGem(handDirection);\n            }\n        }\n    }\n\n    public void dropGemInto(Gem gem, Cell cell) {\n        if(this.gemsInHand.size() > 0) {\n            cell.addGem(Gem);\n            this.gemsInHand.remove(Gem);\n        }\n        // else skip\n    }\n\n    public void earnGemFrom(Cell cell, int handDirection) {\n        while(handPosition.edible(handDirection)) {\n            this.gemsInHand.addAll(handPosition.getGemList());\n            cell.emptyCell();\n            handPosition = cell;\n        }\n    }\n\n    public boolean isInTurn() {\n        return inTurn;\n    }\n\n    public void setScore() {\n        this.score = this.gemsInHand.size();\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/sourcecode/player/Player.java b/sourcecode/player/Player.java
+--- a/sourcecode/player/Player.java	(revision c2c0754c61f3c0e7278ca1e59a6f63646222a585)
++++ b/sourcecode/player/Player.java	(date 1655458464052)
+@@ -1,6 +1,7 @@
+ package sourcecode.player;
+ 
+ import sourcecode.board.*;
++import sourcecode.gem.Gem;
+ 
+ import java.util.ArrayList;
+ 
+@@ -57,8 +58,8 @@
+ 
+     public void dropGemInto(Gem gem, Cell cell) {
+         if(this.gemsInHand.size() > 0) {
+-            cell.addGem(Gem);
+-            this.gemsInHand.remove(Gem);
++            cell.addGem(gem);
++            this.gemsInHand.remove(gem);
+         }
+         // else skip
+     }
+Index: sourcecode/test/BoardTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sourcecode.test;\n\nimport sourcecode.board.Board;\nimport sourcecode.board.Cell;\n\npublic class BoardTest {\n    public static void main(String[] args) {\n        Board newBoard = new Board();\n        Cell[] board = newBoard.getBoard();\n\n        for(Cell cell:board) {\n            System.out.println(cell);\n        }\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/sourcecode/test/BoardTest.java b/sourcecode/test/BoardTest.java
+--- a/sourcecode/test/BoardTest.java	(revision c2c0754c61f3c0e7278ca1e59a6f63646222a585)
++++ b/sourcecode/test/BoardTest.java	(date 1655458408757)
+@@ -5,12 +5,13 @@
+ 
+ public class BoardTest {
+     public static void main(String[] args) {
+-        Board newBoard = new Board();
+-        Cell[] board = newBoard.getBoard();
++        Board board = new Board();
++
++        System.out.println(board);
+ 
+-        for(Cell cell:board) {
+-            System.out.println(cell);
++        Cell[] boardVis = board.getBoard();
++        for(Cell cell:boardVis) {
++            System.out.println(cell.seeDetails());
+         }
+     }
+-
+ }
+Index: sourcecode/board/Board.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sourcecode.board;\n\npublic class Board {\n    private static final int numSquare = 10; // even number\n    private static final int numHalfCircle = 2;  // even number\n    private static final int numSmallGem = 50;\n    private static final int numBigGem = 2;\n    private Cell[] board = new Cell[numHalfCircle + numSquare];\n\n    public int getNumSquare() {\n        return numSquare;\n    }\n\n    public int getNumHalfCircle() {\n        return numHalfCircle;\n    }\n\n    public int getNumSmallGem() {\n        return numSmallGem;\n    }\n\n    public int getNumBigGem() {\n        return numBigGem;\n    }\n\n    public Board() {\n        this.board[0] = new HalfCircle(0, numBigGem /2);\n        this.board[0].addGem(new Gem());\n\n        this.board[(numSquare + numHalfCircle)/2] = new HalfCircle((numSquare + numHalfCircle)/2, numBigGem /2);\n        this.board[(numSquare + numHalfCircle)/2].addGem(new Gem());\n\n        for(int i = 1; i <= (numSquare /2); i++) {\n            this.board[i] = new Square(i, numSmallGem / numSquare);\n            this.board[i].addGem(new Gem());\n        }\n        for(int i = (numSquare /2)+2; i <= numSquare + numHalfCircle - 1; i++) {\n            this.board[i] = new Square(i, numSmallGem / numSquare);\n            this.board[i].addGem(new Gem());\n        }\n    }\n\n    public Cell[] getBoard() {\n        return board;\n    }\n\n    public static Cell getRightCell(Cell cell) {\n        if(cell.getPosition() == 0) {\n            return new Cell(numSquare + numHalfCircle - 1);\n        }\n        return new Cell(cell.getPosition() + 1);\n    }\n\n    public static Cell getLeftCell(Cell cell) {\n        if(cell.getPosition() == numSquare + numHalfCircle - 1) {\n            return new Cell(0);\n        }\n        return new Cell(cell.getPosition() - 1);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/sourcecode/board/Board.java b/sourcecode/board/Board.java
+--- a/sourcecode/board/Board.java	(revision c2c0754c61f3c0e7278ca1e59a6f63646222a585)
++++ b/sourcecode/board/Board.java	(date 1655458283278)
+@@ -1,5 +1,7 @@
+ package sourcecode.board;
+ 
++import sourcecode.gem.*;
++
+ public class Board {
+     private static final int numSquare = 10; // even number
+     private static final int numHalfCircle = 2;  // even number
+@@ -25,18 +27,18 @@
+ 
+     public Board() {
+         this.board[0] = new HalfCircle(0, numBigGem /2);
+-        this.board[0].addGem(new Gem());
++        this.board[0].addGem(new bigGem(this.board[0]));
+ 
+         this.board[(numSquare + numHalfCircle)/2] = new HalfCircle((numSquare + numHalfCircle)/2, numBigGem /2);
+-        this.board[(numSquare + numHalfCircle)/2].addGem(new Gem());
++        this.board[(numSquare + numHalfCircle)/2].addGem(new bigGem(this.board[(numSquare + numHalfCircle)/2]));
+ 
+         for(int i = 1; i <= (numSquare /2); i++) {
+             this.board[i] = new Square(i, numSmallGem / numSquare);
+-            this.board[i].addGem(new Gem());
++            this.board[i].addGem(new smallGem(this.board[i]));
+         }
+         for(int i = (numSquare /2)+2; i <= numSquare + numHalfCircle - 1; i++) {
+             this.board[i] = new Square(i, numSmallGem / numSquare);
+-            this.board[i].addGem(new Gem());
++            this.board[i].addGem(new smallGem(this.board[i]));
+         }
+     }
+ 
+Index: out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"022fb2a9-0493-4d6a-9b29-9b6488214bb0\" name=\"Changes\" comment=\"upate BoardTest\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sourcecode/test/BoardTest.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sourcecode/test/BoardTest.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2AYta4JtKnDPVcHrcc1TChSNdZQ\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\n    <property name=\"settings.editor.selected.configurable\" value=\"project.propVCSSupport.Mappings\" />\n  </component>\n  <component name=\"RunManager\" selected=\"Application.BoardTest\">\n    <configuration name=\"BoardTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.BoardTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Cell\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"Cell\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.BoardTest\" />\n        <item itemvalue=\"Application.Cell\" />\n        <item itemvalue=\"Application.Cell\" />\n        <item itemvalue=\"Application.BoardTest\" />\n        <item itemvalue=\"Application.Cell\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"022fb2a9-0493-4d6a-9b29-9b6488214bb0\" name=\"Changes\" comment=\"\" />\n      <created>1655198410651</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1655198410651</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"upload constructors for board and cells\">\n      <created>1655366801447</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655366801447</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"upate BoardTest\">\n      <created>1655366916492</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655366916492</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"3\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"FILTERS\">\n                <map>\n                  <entry key=\"branch\">\n                    <value>\n                      <list>\n                        <option value=\"feature/board\" />\n                      </list>\n                    </value>\n                  </entry>\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"upload constructors for board and cells\" />\n    <MESSAGE value=\"upate BoardTest\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"upate BoardTest\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml b/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml
+--- a/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml	(revision c2c0754c61f3c0e7278ca1e59a6f63646222a585)
++++ b/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml	(date 1655458994105)
+@@ -2,7 +2,14 @@
+ <project version="4">
+   <component name="ChangeListManager">
+     <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="upate BoardTest">
++      <change afterPath="$PROJECT_DIR$/sourcecode/test/CellTest.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/HalfCircle.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Square.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/test/BoardTest.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/sourcecode/board/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Cell.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/sourcecode/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/player/Player.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/sourcecode/test/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/test/BoardTest.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -13,6 +20,7 @@
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+       <list>
++        <option value="Interface" />
+         <option value="Class" />
+       </list>
+     </option>
+@@ -20,10 +28,18 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="main" />
++        <entry key="$PROJECT_DIR$" value="topic/test/cell-test" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
++  <component name="GitSEFilterConfiguration">
++    <file-type-list>
++      <filtered-out-file-type name="LOCAL_BRANCH" />
++      <filtered-out-file-type name="REMOTE_BRANCH" />
++      <filtered-out-file-type name="TAG" />
++      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
++    </file-type-list>
+   </component>
+   <component name="MarkdownSettingsMigration">
+     <option name="stateVersion" value="1" />
+@@ -40,9 +56,9 @@
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
++    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.excludes" />
+   </component>
+-  <component name="RunManager" selected="Application.BoardTest">
++  <component name="RunManager" selected="Application.CellTest">
+     <configuration name="BoardTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="sourcecode.test.BoardTest" />
+       <module name="OOP.DSAI.20212.Team26" />
+@@ -63,11 +79,24 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
++    <configuration name="CellTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="sourcecode.test.CellTest" />
++      <module name="OOP.DSAI.20212.Team26" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="sourcecode.test.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.CellTest" />
++        <item itemvalue="Application.Cell" />
+         <item itemvalue="Application.BoardTest" />
+-        <item itemvalue="Application.Cell" />
+-        <item itemvalue="Application.Cell" />
+         <item itemvalue="Application.BoardTest" />
+         <item itemvalue="Application.Cell" />
+       </list>
+@@ -96,7 +125,21 @@
+       <option name="project" value="LOCAL" />
+       <updated>1655366916492</updated>
+     </task>
+-    <option name="localTasksCounter" value="3" />
++    <task id="LOCAL-00003" summary="upate BoardTest">
++      <created>1655377007650</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1655377007650</updated>
++    </task>
++    <task id="LOCAL-00004" summary="test board and gem">
++      <created>1655458057801</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1655458057802</updated>
++    </task>
++    <option name="localTasksCounter" value="5" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -110,7 +153,7 @@
+                   <entry key="branch">
+                     <value>
+                       <list>
+-                        <option value="feature/board" />
++                        <option value="feature/player" />
+                       </list>
+                     </value>
+                   </entry>
+@@ -125,6 +168,7 @@
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="upload constructors for board and cells" />
+     <MESSAGE value="upate BoardTest" />
+-    <option name="LAST_COMMIT_MESSAGE" value="upate BoardTest" />
++    <MESSAGE value="test board and gem" />
++    <option name="LAST_COMMIT_MESSAGE" value="test board and gem" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: sourcecode/test/CellTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/sourcecode/test/CellTest.java b/sourcecode/test/CellTest.java
+new file mode 100644
+--- /dev/null	(date 1655459016049)
++++ b/sourcecode/test/CellTest.java	(date 1655459016049)
+@@ -0,0 +1,17 @@
++package sourcecode.test;
++
++import sourcecode.board.Cell;
++import sourcecode.gem.Gem;
++import sourcecode.gem.bigGem;
++
++public class CellTest {
++    public static void main(String[] args) {
++        Cell cell = new Cell();
++        Gem gem1 = new bigGem(cell);
++        Gem gem2 = new Gem(cell);
++        cell.addGem(gem1);
++        cell.addGem(gem2);
++
++        System.out.println(cell);
++    }
++}
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"022fb2a9-0493-4d6a-9b29-9b6488214bb0\" name=\"Changes\" comment=\"upate BoardTest\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sourcecode/board/Board.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sourcecode/board/Board.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sourcecode/board/Cell.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sourcecode/board/Cell.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sourcecode/player/Player.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sourcecode/player/Player.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Interface\" />\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"feature/board\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitSEFilterConfiguration\">\n    <file-type-list>\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\n      <filtered-out-file-type name=\"TAG\" />\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\n    </file-type-list>\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2AYta4JtKnDPVcHrcc1TChSNdZQ\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\n    <property name=\"settings.editor.selected.configurable\" value=\"project.propVCSSupport.Mappings\" />\n  </component>\n  <component name=\"RunManager\" selected=\"Application.BoardTest\">\n    <configuration name=\"BoardTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.BoardTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Cell\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"Cell\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.BoardTest\" />\n        <item itemvalue=\"Application.Cell\" />\n        <item itemvalue=\"Application.BoardTest\" />\n        <item itemvalue=\"Application.Cell\" />\n        <item itemvalue=\"Application.BoardTest\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"022fb2a9-0493-4d6a-9b29-9b6488214bb0\" name=\"Changes\" comment=\"\" />\n      <created>1655198410651</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1655198410651</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"upload constructors for board and cells\">\n      <created>1655366801447</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655366801447</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"upate BoardTest\">\n      <created>1655366916492</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655366916492</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"upate BoardTest\">\n      <created>1655377007650</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655377007650</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"4\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"FILTERS\">\n                <map>\n                  <entry key=\"branch\">\n                    <value>\n                      <list>\n                        <option value=\"feature/player\" />\n                      </list>\n                    </value>\n                  </entry>\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"upload constructors for board and cells\" />\n    <MESSAGE value=\"upate BoardTest\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"upate BoardTest\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision c2c0754c61f3c0e7278ca1e59a6f63646222a585)
++++ b/.idea/workspace.xml	(date 1655458986788)
+@@ -2,10 +2,15 @@
+ <project version="4">
+   <component name="ChangeListManager">
+     <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="upate BoardTest">
++      <change afterPath="$PROJECT_DIR$/sourcecode/test/CellTest.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/HalfCircle.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Square.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/test/BoardTest.class" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/sourcecode/board/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Cell.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/sourcecode/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/player/Player.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/sourcecode/test/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/test/BoardTest.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -23,7 +28,7 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="feature/board" />
++        <entry key="$PROJECT_DIR$" value="topic/test/cell-test" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -51,9 +56,9 @@
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
++    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.excludes" />
+   </component>
+-  <component name="RunManager" selected="Application.BoardTest">
++  <component name="RunManager" selected="Application.CellTest">
+     <configuration name="BoardTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="sourcecode.test.BoardTest" />
+       <module name="OOP.DSAI.20212.Team26" />
+@@ -70,17 +75,30 @@
+     <configuration name="Cell" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="Cell" />
+       <module name="OOP.DSAI.20212.Team26" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="CellTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="sourcecode.test.CellTest" />
++      <module name="OOP.DSAI.20212.Team26" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="sourcecode.test.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Application.BoardTest" />
++        <item itemvalue="Application.CellTest" />
+         <item itemvalue="Application.Cell" />
+         <item itemvalue="Application.BoardTest" />
+-        <item itemvalue="Application.Cell" />
+         <item itemvalue="Application.BoardTest" />
++        <item itemvalue="Application.Cell" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -114,7 +132,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1655377007650</updated>
+     </task>
+-    <option name="localTasksCounter" value="4" />
++    <task id="LOCAL-00004" summary="test board and gem">
++      <created>1655458057801</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1655458057802</updated>
++    </task>
++    <option name="localTasksCounter" value="5" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -143,6 +168,7 @@
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="upload constructors for board and cells" />
+     <MESSAGE value="upate BoardTest" />
+-    <option name="LAST_COMMIT_MESSAGE" value="upate BoardTest" />
++    <MESSAGE value="test board and gem" />
++    <option name="LAST_COMMIT_MESSAGE" value="test board and gem" />
+   </component>
+ </project>
+\ No newline at end of file
