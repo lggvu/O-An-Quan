@@ -1,8 +1,9 @@
 package sourcecode.gem;
-import sourcecode.Cell.*;
+import sourcecode.board.Cell;
+import sourcecode.board.Cell.*;
 public class Gem {
 	protected Cell position;
-    public Cell(Cell position){
+    public Gem(Cell position){
         this.position = position;
     }
 	public Cell getPosition() {
