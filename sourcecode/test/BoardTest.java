@@ -5,12 +5,13 @@ import sourcecode.board.Cell;
 
 public class BoardTest {
     public static void main(String[] args) {
-        Board newBoard = new Board();
-        Cell[] board = newBoard.getBoard();
+        Board board = new Board();
 
-        for(Cell cell:board) {
-            System.out.println(cell);
+        System.out.println(board);
+
+        Cell[] boardVis = board.getBoard();
+        for(Cell cell:boardVis) {
+            System.out.println(cell.seeDetails());
         }
     }
-
 }

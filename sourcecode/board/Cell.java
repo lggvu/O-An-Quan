@@ -1,5 +1,7 @@
 package sourcecode.board;
 
+import sourcecode.gem.Gem;
+
 import java.util.ArrayList;
 
 public class Cell {
@@ -16,6 +18,10 @@ public class Cell {
         this.position = position;
     }
 
+    public Cell() {
+
+    }
+
     public ArrayList<Gem> getGemList() {
         return gemList;
     }
@@ -28,18 +34,26 @@ public class Cell {
         return numberOfGems;
     }
 
-    public void addGem(ArrayList<Gem> gem) {
-        for(int i = 0; i < this.numberOfGems; i++) {
-            gemList.add(Gem gem);
-        }
+    public void addGem(Gem gem) {
+        this.gemList.add(gem);
     }
 
-    public String toString() {
+    public String seeDetails() {
+        StringBuffer gemPrint =  new StringBuffer();
+        for(Gem gem:this.gemList) {
+            gemPrint.append(gem.toString());
+        }
+
         return(
                 "Cell " + this.getClass().getSimpleName() +
                         "Position:" + this.position +
-                        ", number of gems: " + this.numberOfGems
+                        ", number of gems: " + this.gemList.size() +
+                        ", gem list: " + gemPrint
                 );
+    }
+
+    public String toString() {
+        return "Cell " + this.getClass().getSimpleName() + ", position: " + this.position;
     }
 
     public void emptyCell() {
@@ -56,7 +70,7 @@ public class Cell {
     public void setPosition(int position) {
         this.position = position;
     }
-
+/*
     public boolean spreadable(int direction) { // check if THIS cell can be used to continue spreading
         if(direction == 1) {
             Cell nextCell = Board.getRightCell(this);
@@ -101,6 +115,11 @@ public class Cell {
         }
         return false;
     }
+
+
+
+ */
+
 
 
 }

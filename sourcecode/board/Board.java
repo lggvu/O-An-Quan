@@ -1,5 +1,7 @@
 package sourcecode.board;
 
+import sourcecode.gem.*;
+
 public class Board {
     private static final int numSquare = 10; // even number
     private static final int numHalfCircle = 2;  // even number
@@ -25,25 +27,29 @@ public class Board {
 
     public Board() {
         this.board[0] = new HalfCircle(0, numBigGem /2);
-        this.board[0].addGem(new Gem());
+        this.board[0].addGem(new bigGem(this.board[0]));
 
         this.board[(numSquare + numHalfCircle)/2] = new HalfCircle((numSquare + numHalfCircle)/2, numBigGem /2);
-        this.board[(numSquare + numHalfCircle)/2].addGem(new Gem());
+        this.board[(numSquare + numHalfCircle)/2].addGem(new bigGem(this.board[(numSquare + numHalfCircle)/2]));
 
-        for(int i = 1; i <= (numSquare /2); i++) {
+        for(int i = 1; i <= (numSquare / 2); i++) {
             this.board[i] = new Square(i, numSmallGem / numSquare);
-            this.board[i].addGem(new Gem());
+            for(int j = 0; j < this.board[i].getNumberOfGems(); j++) {
+                this.board[i].addGem(new smallGem(this.board[i]));
+            }
         }
         for(int i = (numSquare /2)+2; i <= numSquare + numHalfCircle - 1; i++) {
             this.board[i] = new Square(i, numSmallGem / numSquare);
-            this.board[i].addGem(new Gem());
+            for(int j = 0; j < this.board[i].getNumberOfGems(); j++) {
+                this.board[i].addGem(new smallGem(this.board[i]));
+            }
         }
     }
 
     public Cell[] getBoard() {
         return board;
     }
-
+/*
     public static Cell getRightCell(Cell cell) {
         if(cell.getPosition() == 0) {
             return new Cell(numSquare + numHalfCircle - 1);
@@ -57,4 +63,6 @@ public class Board {
         }
         return new Cell(cell.getPosition() - 1);
     }
+
+ */
 }

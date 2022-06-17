@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="upate BoardTest">
+      <change afterPath="$PROJECT_DIR$/sourcecode/test/CellTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/test/BoardTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/test/BoardTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sourcecode/board/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/player/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/player/Hand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/player/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/test/BoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/test/BoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/test/MoveTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,10 +30,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/board" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -38,6 +46,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2AYta4JtKnDPVcHrcc1TChSNdZQ" />
   <component name="ProjectLevelVcsManager">
@@ -74,13 +85,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CellTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sourcecode.test.CellTest" />
+      <module name="OOP.DSAI.20212.Team26" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sourcecode.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.BoardTest" />
+        <item itemvalue="Application.CellTest" />
         <item itemvalue="Application.Cell" />
         <item itemvalue="Application.BoardTest" />
         <item itemvalue="Application.Cell" />
-        <item itemvalue="Application.BoardTest" />
       </list>
     </recent_temporary>
   </component>
@@ -128,7 +152,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="feature/player" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
