@@ -1,5 +1,7 @@
 package sourcecode.board;
 
+import sourcecode.gem.Gem;
+
 import java.util.ArrayList;
 
 public class Cell {
@@ -10,6 +12,10 @@ public class Cell {
     public Cell(int position, int numberOfGems) {
         this.position = position;
         this.numberOfGems = numberOfGems;
+    }
+
+    public Cell() {
+
     }
 
     public Cell(int position) {
@@ -28,18 +34,25 @@ public class Cell {
         return numberOfGems;
     }
 
-    public void addGem(ArrayList<Gem> gem) {
-        for(int i = 0; i < this.numberOfGems; i++) {
-            gemList.add(Gem gem);
-        }
+    public void addGem(Gem gem) {
+        this.gemList.add(gem);
     }
 
-    public String toString() {
+    public String seeDetails() {
+        StringBuffer gemDetails = new StringBuffer();
+        for(Gem gem:this.gemList) {
+            gemDetails.append(gem);
+        }
         return(
                 "Cell " + this.getClass().getSimpleName() +
                         "Position:" + this.position +
-                        ", number of gems: " + this.numberOfGems
+                        ", number of gems: " + this.numberOfGems +
+                        ", gem list: " + gemDetails
                 );
+    }
+
+    public String toString() {
+        return "Cell " + this.getClass().getSimpleName() + ", position: " + this.position;
     }
 
     public void emptyCell() {

@@ -1,6 +1,7 @@
 package sourcecode.player;
 
 import sourcecode.board.*;
+import sourcecode.gem.Gem;
 
 import java.util.ArrayList;
 
@@ -57,8 +58,8 @@ public class Player {
 
     public void dropGemInto(Gem gem, Cell cell) {
         if(this.gemsInHand.size() > 0) {
-            cell.addGem(Gem);
-            this.gemsInHand.remove(Gem);
+            cell.addGem(gem);
+            this.gemsInHand.remove(gem);
         }
         // else skip
     }
