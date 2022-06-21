@@ -1,6 +1,7 @@
 package sourcecode.player;
 
 import sourcecode.board.*;
+import sourcecode.gem.Gem;
 import sourcecode.gem.bigGem;
 
 import java.util.ArrayList;
@@ -12,10 +13,11 @@ public class Player {
     private int id;
     private ArrayList<Gem> gemsInHand = new ArrayList<Gem>();
     private ArrayList<Gem> gemsCaptured = new ArrayList<Gem>();
-    private ArrayList<Cell> cellOnSide = new Arraylist<Cell>();
+    private ArrayList<Cell> cellOnSide = new ArrayList<Cell>();
 
     Hand hand = new Hand();
     Cell handPosition = hand.getHandPosition();
+	private ArrayList<Cell> cellsOnSides;
     
     public Player(String name) {
         this.name = name;
@@ -68,8 +70,8 @@ public class Player {
 
     public void dropGemInto(Gem gem, Cell cell) {
         if(this.gemsInHand.size() > 0) {
-            cell.addGem(Gem);
-            this.gemsInHand.remove(Gem);
+            cell.addGem(gem);
+            this.gemsInHand.remove(gem);
         }
         // else skip
     }
@@ -103,5 +105,10 @@ public class Player {
     public int getScore(){
         return this.score;
     }
+
+	public void setTurn(boolean turn) {
+		this.inTurn = turn;
+		
+	}
 
 }
