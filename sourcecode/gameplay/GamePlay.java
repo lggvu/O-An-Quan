@@ -11,12 +11,13 @@ public class GamePlay {
         Board board = new Board();
         Player Player1 = new Player("Player 1");
         Player Player2 = new Player("Player 2");
-        //Add Introduction and rules here
+
+        // TODO Add Introduction and rules here
         System.out.println("Introduction");
         Player1.setTurn(Math.random() < 0.5);
         if (Player1.isInTurn()){
             GameStart(Player1, Player2, board);
-        }else {
+        } else {
             GameStart(Player2, Player1, board);
         }
     }
@@ -25,12 +26,13 @@ public class GamePlay {
         int Player2NumOfBorrow = 0;
         ArrayList <Cell> Player1CellOnSide = new ArrayList<Cell>();
         ArrayList <Cell> Player2CellOnSide = new ArrayList<Cell>();
-        for (int i = 1; i < 6; i ++) {
+        for (int i = 1; i < 6; i ++) {  // TODO generalise these quantities
             Player1CellOnSide.add(new Cell(i));
         }
         for (int i = 8; i < 12; i ++) {
             Player2CellOnSide.add(new Cell(i));
         }
+
         while ((!(board.getNumBigGem() == 0 && board.getNumSmallGem() == 0)) || (!(board.getBoard()[0]).isEmpty() && board.getBoard()[board.getNumSquare() / 2 + board.getNumHalfCircle() / 2].isEmpty())) {
             if (!player1.isCellOnSideEmpty()) {
                 while(!player1.pickUpGemFrom(new Cell((int)(Math.random() * 11))) ){
@@ -39,7 +41,7 @@ public class GamePlay {
                 if(player1.pickUpGemFrom(new Cell((int)(Math.random() * 11)))) {
                     System.out.println("Choose Hand Direction");
                     int Player1HandDirection = sc.nextInt();
-                    player1.spreadGem(Player1HandDirection);
+                    player1.spreadGem(new Cell((int)(Math.random() * 11)), Player1HandDirection, board);
                     System.out.println("Player 2's turn");
                     if (!player2.isCellOnSideEmpty()) {
                         while(!player2.pickUpGemFrom(new Cell((int)(Math.random() * 11))) ){
@@ -48,21 +50,21 @@ public class GamePlay {
                         if(player2.pickUpGemFrom(new Cell((int)(Math.random() * 11)))){
                             System.out.println("Choose Hand Direction");
                             int Player2HandDirection = sc.nextInt();
-                            player2.spreadGem(Player2HandDirection);
+                            player2.spreadGem(new Cell((int)(Math.random() * 11)), Player2HandDirection, board);
                         }
-                    }else {
+                    } else {
                         player2.setBorrow(true);
                         Player2NumOfBorrow += 1;
                         player2.setNumBorrow(5 * Player2NumOfBorrow);
                         player2.setNumBorrow(5 * Player2NumOfBorrow);
-                        //How to add five small gems to gemInHand of player 2??
+                        // TODO add five small gems to gemInHand of player 2??
                         while(!player2.pickUpGemFrom(new Cell((int)(Math.random() * 11))) ){
                             System.out.println("Pick gem from another Cell");
                         }
                         if(player2.pickUpGemFrom(new Cell((int)(Math.random() * 11)))){
                             System.out.println("Choose Hand Direction");
                             int Player2HandDirection = sc.nextInt();
-                            player2.spreadGem(Player2HandDirection);
+                            player2.spreadGem(new Cell((int)(Math.random() * 11)), Player2HandDirection, board);
                         }
                     }
                 }
@@ -72,16 +74,16 @@ public class GamePlay {
                 player1.setBorrow(true);
                 Player1NumOfBorrow += 1;
                 player1.setNumBorrow(5 * Player1NumOfBorrow);
-                //How to add five small gems to gemsInHand of player 1??
+                // TODO add five small gems to gemsInHand of player 1??
                 GameStart(player1, player2, board);
-                //If GameStart(player1, player2, board) is used, can we preserve the number of gems in hand,... of 2 players?
+                // TODO If GameStart(player1, player2, board) is used, can we preserve the number of gems in hand,... of 2 players?
             }
         }
-        if (player1.CalculteScore() > player2.CalculteScore()) {
-            System.out.println("Player 1 wins.");
-        }else if (player1.CalculteScore() < player2.CalculteScore()) {
-            System.out.println("Player 2 wins");
-        }else {
+        if (player1.CalculateScore() > player2.CalculateScore()) {
+            System.out.println(player1 + " wins.");
+        } else if (player1.CalculateScore() < player2.CalculateScore()) {
+            System.out.println(player2 + " wins.");
+        } else {
             System.out.println("Draw");
         }
 

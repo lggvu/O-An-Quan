@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="test board and gem">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/Gem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/Gem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/bigGem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/bigGem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/smallGem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/smallGem.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/player/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/player/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/board/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/test/CellTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/test/CellTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/test/MoveTest.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sourcecode/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/player/Player.java" afterDir="false" />
     </list>
@@ -60,7 +60,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.excludes" />
   </component>
-  <component name="RunManager" selected="Application.PlayerTest">
+  <component name="RunManager" selected="Application.GamePlay">
     <configuration name="BoardTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sourcecode.test.BoardTest" />
       <module name="OOP.DSAI.20212.Team26" />
@@ -94,6 +94,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="GamePlay" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sourcecode.gameplay.GamePlay" />
+      <module name="OOP.DSAI.20212.Team26" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sourcecode.gameplay.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PlayerTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sourcecode.test.PlayerTest" />
       <module name="OOP.DSAI.20212.Team26" />
@@ -109,11 +122,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GamePlay" />
         <item itemvalue="Application.PlayerTest" />
         <item itemvalue="Application.CellTest" />
         <item itemvalue="Application.Cell" />
         <item itemvalue="Application.BoardTest" />
-        <item itemvalue="Application.CellTest" />
       </list>
     </recent_temporary>
   </component>
@@ -168,7 +181,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655459148349</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="update methods for Player">
+      <created>1656005332624</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1656005332624</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -182,7 +202,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="topic/test/player-test" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -204,6 +224,7 @@
     <MESSAGE value="upate BoardTest" />
     <MESSAGE value="update class diagram" />
     <MESSAGE value="test board and gem" />
-    <option name="LAST_COMMIT_MESSAGE" value="test board and gem" />
+    <MESSAGE value="update methods for Player" />
+    <option name="LAST_COMMIT_MESSAGE" value="update methods for Player" />
   </component>
 </project>

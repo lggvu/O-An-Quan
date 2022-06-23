@@ -15,6 +15,10 @@ public class Player {
     private ArrayList<Gem> gemsCaptured = new ArrayList<Gem>();
     private ArrayList<Cell> cellsOnSide = new ArrayList<Cell>();
     private Cell handPosition;
+    private int numGemsBorrowed;
+    public boolean borrow;
+
+    Board board = new Board();
 
     public ArrayList<Gem> getGemsInHand() {
         return gemsInHand;
@@ -41,11 +45,15 @@ public class Player {
         this.handPosition = position;
     }
 
-    public void pickUpGemFrom(Cell cell) {
+    public boolean pickUpGemFrom(Cell cell) {
         if(!(cell instanceof HalfCircle) && !(cell.isEmpty())) { // TODO add cells on side
 //            System.out.println("Picked up from cell " + cell.getPosition());
             this.gemsInHand.addAll(cell.getGemList());
             cell.emptyCell();
+            return true;
+        }
+        else {
+            return false;
         }
     }
 
@@ -118,10 +126,11 @@ public class Player {
         for(int i = 0; i < this.gemsCaptured.size(); i ++){
             if (gemsCaptured.get(i) instanceof bigGem){
                 score += 5;
-            }else{
+            } else{
                 score += 1;
             }
         }
+        score -= this.numGemsBorrowed;
         return score;
     }
     public void setCellsOnSides(ArrayList<Cell> CellsOnSide){
@@ -131,9 +140,26 @@ public class Player {
         return this.score;
     }
 
-	public void setTurn(boolean turn) {
-		this.inTurn = turn;
-		
-	}
+    public void setTurn(boolean turn) {
+        this.inTurn = turn;
+
+    }
+    public boolean isCellOnSideEmpty() {
+        int res = board.getNumSquare() / 2;
+        for (int i = 0; i < this.cellsOnSide.size(); i ++) {
+            if (this.cellsOnSide.get(i).isEmpty()) {
+                res -= 1;
+            }
+        }
+        return res == 0;
+    }
+
+    public void setNumBorrow(int numGemsBorrowed) {
+        this.numGemsBorrowed = numGemsBorrowed;
+    }
+    public void setBorrow(boolean isBorrow) {
+        this.borrow = isBorrow;
+    }
+
 
 }

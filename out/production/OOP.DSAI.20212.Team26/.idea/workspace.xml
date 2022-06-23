@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="test board and gem">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Cell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/bigGem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/smallGem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/player/Hand.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/player/Player.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/board/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/player/Player.java" afterDir="false" />
-    </list>
+    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="test board and gem" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655459148349</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="update methods for Player">
+      <created>1656005332624</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1656005332624</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -184,7 +177,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="topic/test/player-test" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -206,6 +199,7 @@
     <MESSAGE value="upate BoardTest" />
     <MESSAGE value="update class diagram" />
     <MESSAGE value="test board and gem" />
-    <option name="LAST_COMMIT_MESSAGE" value="test board and gem" />
+    <MESSAGE value="update methods for Player" />
+    <option name="LAST_COMMIT_MESSAGE" value="update methods for Player" />
   </component>
 </project>
