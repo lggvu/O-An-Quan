@@ -79,9 +79,9 @@ public class GamePlay {
                 // TODO If GameStart(player1, player2, board) is used, can we preserve the number of gems in hand,... of 2 players?
             }
         }
-        if (player1.CalculateScore() > player2.CalculateScore()) {
+        if (player1.calculateScore() > player2.calculateScore()) {
             System.out.println(player1 + " wins.");
-        } else if (player1.CalculateScore() < player2.CalculateScore()) {
+        } else if (player1.calculateScore() < player2.calculateScore()) {
             System.out.println(player2 + " wins.");
         } else {
             System.out.println("Draw");

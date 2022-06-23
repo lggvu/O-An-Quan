@@ -121,7 +121,7 @@ public class Player {
         return inTurn;
     }
 
-    public int CalculateScore() {
+    public int calculateScore() {
         int score = 0;
         for(int i = 0; i < this.gemsCaptured.size(); i ++){
             if (gemsCaptured.get(i) instanceof bigGem){
