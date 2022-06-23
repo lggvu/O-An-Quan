@@ -38,7 +38,7 @@ public class Board {
                 this.board[i].addGem(new smallGem(this.board[i]));
             }
         }
-        for(int i = (numSquare /2)+2; i <= numSquare + numHalfCircle - 1; i++) {
+        for(int i = (numSquare/2)+2; i <= numSquare + numHalfCircle - 1; i++) {
             this.board[i] = new Square(i, numSmallGem / numSquare);
             for(int j = 0; j < this.board[i].getNumberOfGems(); j++) {
                 this.board[i].addGem(new smallGem(this.board[i]));
@@ -50,17 +50,21 @@ public class Board {
         return board;
     }
 
-    public static Cell getRightCell(Cell cell) {
+    public Cell getNextCellCounterClockwise(Cell cell) {
         if(cell.getPosition() == 0) {
-            return new Cell(numSquare + numHalfCircle - 1);
+            return this.board[numSquare + numHalfCircle - 1];
         }
-        return new Cell(cell.getPosition() + 1);
+        else {
+            return this.board[cell.getPosition() - 1];
+        }
     }
 
-    public static Cell getLeftCell(Cell cell) {
+    public Cell getNextCellClockwise(Cell cell) {
         if(cell.getPosition() == numSquare + numHalfCircle - 1) {
-            return new Cell(0);
+            return this.board[0];
         }
-        return new Cell(cell.getPosition() - 1);
+        else {
+            return this.board[cell.getPosition() + 1];
+        }
     }
 }

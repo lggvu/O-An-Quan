@@ -12,7 +12,7 @@ public class CellTest {
         cell.addGem(gem2);
 
         for(Gem gem:cell.getGemList()) {
-            System.out.println(cell);
+            System.out.println(gem);
         }
     }
 }

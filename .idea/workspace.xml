@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="test board and gem">
-      <change afterPath="$PROJECT_DIR$/sourcecode/test/CellTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/player/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/player/Player.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sourcecode/board/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sourcecode/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/player/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/board" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -51,9 +58,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.excludes" />
   </component>
-  <component name="RunManager" selected="Application.BoardTest">
+  <component name="RunManager" selected="Application.PlayerTest">
     <configuration name="BoardTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sourcecode.test.BoardTest" />
       <module name="OOP.DSAI.20212.Team26" />
@@ -87,13 +94,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PlayerTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sourcecode.test.PlayerTest" />
+      <module name="OOP.DSAI.20212.Team26" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sourcecode.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BoardTest" />
+        <item itemvalue="Application.PlayerTest" />
         <item itemvalue="Application.CellTest" />
         <item itemvalue="Application.Cell" />
         <item itemvalue="Application.BoardTest" />
-        <item itemvalue="Application.Cell" />
+        <item itemvalue="Application.CellTest" />
       </list>
     </recent_temporary>
   </component>
@@ -162,10 +182,15 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="feature/player" />
+                        <option value="topic/test/player-test" />
                       </list>
                     </value>
                   </entry>
+                </map>
+              </option>
+              <option name="COLUMN_ID_WIDTH">
+                <map>
+                  <entry key="Table.Default.Author.ColumnIdWidth" value="-1" />
                 </map>
               </option>
             </State>
