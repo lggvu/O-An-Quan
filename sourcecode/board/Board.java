@@ -30,7 +30,7 @@ public class Board {
         this.board[0].addGem(new bigGem(this.board[0]));
 
         this.board[(numSquare + numHalfCircle)/2] = new HalfCircle((numSquare + numHalfCircle)/2, numBigGem /2);
-        this.board[(numSquare + numHalfCircle)/2].addGem(new smallGem(this.board[(numSquare + numHalfCircle)/2]));
+        this.board[(numSquare + numHalfCircle)/2].addGem(new bigGem(this.board[(numSquare + numHalfCircle)/2]));
 
         for(int i = 1; i <= (numSquare /2); i++) {
             this.board[i] = new Square(i, numSmallGem / numSquare);
