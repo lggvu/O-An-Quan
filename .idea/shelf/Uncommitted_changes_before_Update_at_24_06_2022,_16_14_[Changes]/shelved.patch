@@ -1,0 +1,297 @@
+Index: sourcecode/test/PlayerTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sourcecode.test;\n\nimport sourcecode.board.Board;\nimport sourcecode.board.Cell;\nimport sourcecode.player.Player;\n\nimport java.util.ArrayList;\n\npublic class PlayerTest {\n    public static void main(String[] args) {\n        Board board = new Board();\n        Cell[] boardList = board.getBoard();\n        Player player = new Player(\"lggvu\", boardList[1]);  // plays in the upper part\n\n        ArrayList<Cell> cellOnSide = new ArrayList<>();\n\n\n        for(int i=1; i < 6; i++) {\n            cellOnSide.add(boardList[i]);\n        }\n        player.setCellsOnSides(cellOnSide);\n\n        System.out.println(\"cells on side of player: \" + player.getCellsOnSide() );\n\n        // initial states\n        System.out.println(\"Initial board: \");\n        for(Cell cell:boardList) {\n            System.out.println(cell.seeDetails());\n        }\n        System.out.println(\"Initial player position: \" + player.getHandPosition());\n        System.out.println();\n\n        // test pickup\n        System.out.println(\"Test pickup\");\n        System.out.println(player.getGemsInHand().size());  // 0\n        player.pickUpGemFrom(boardList[5]);\n        System.out.println(player.getGemsInHand().size());\n        System.out.println(boardList[5].getGemList().size());  // should be 0 now\n\n        // test drop gem into\n        System.out.println();\n        System.out.println(\"Test drop\");\n        System.out.println(boardList[6].getGemList().size());  // 1\n        System.out.println(player.getGemsInHand().size()); // 5\n        player.dropGemInto(player.getGemsInHand().get(1), boardList[6]);\n        System.out.println(boardList[6].getGemList().size());  // should be 2 now\n        System.out.println(player.getGemsInHand().size());  // should be 4 now\n\n        // test spread gem\n        System.out.println();\n        System.out.println(\"Test spread\");\n        System.out.println(player.getGemsInHand().size());\n        player.pickUpGemFrom(boardList[2]);\n        player.spreadGem(boardList[2], 1, board); // anti-clockwise\n        System.out.println(player.getGemsInHand().size());\n        for(Cell cell:boardList) {\n            System.out.println(cell.seeDetails());\n        }\n\n        Board board2 = new Board();\n        Cell[] boardList2 = board2.getBoard();\n\n        ArrayList<Cell> cellOnSide2 = new ArrayList<>();\n\n\n        for(int i=1; i < 6; i++) {\n            cellOnSide2.add(boardList2[i]);\n        }\n        player.setCellsOnSides(cellOnSide2);\n\n        // TODO eat many cells in a row case\n\n\n\n\n\n\n\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/sourcecode/test/PlayerTest.java b/sourcecode/test/PlayerTest.java
+--- a/sourcecode/test/PlayerTest.java	(revision 7068d9e759a6e9f0507948a1cd59c92f83e5201c)
++++ b/sourcecode/test/PlayerTest.java	(date 1656058399658)
+@@ -53,26 +53,46 @@
+         player.pickUpGemFrom(boardList[2]);
+         player.spreadGem(boardList[2], 1, board); // anti-clockwise
+         System.out.println(player.getGemsInHand().size());
+-        for(Cell cell:boardList) {
+-            System.out.println(cell.seeDetails());
+-        }
++//        for(Cell cell:boardList) {
++//            System.out.println(cell.seeDetails());
++//        }
+ 
+         Board board2 = new Board();
++        board2.setGem();
+         Cell[] boardList2 = board2.getBoard();
+ 
+         ArrayList<Cell> cellOnSide2 = new ArrayList<>();
+ 
+ 
++        System.out.println("Board 2:");
+         for(int i=1; i < 6; i++) {
+             cellOnSide2.add(boardList2[i]);
+         }
+         player.setCellsOnSides(cellOnSide2);
+ 
++        for(Cell cell:boardList2) {
++            System.out.println(cell.seeDetails());
++        }
++
+         // TODO eat many cells in a row case
+-
++        player.setCellsOnSides(cellOnSide2);
++        System.out.println("*******************************");
++        System.out.println("Eat many cells");
++        System.out.println();
++        System.out.println("Test spread");
++        System.out.println(player.getGemsInHand().size());
++        player.pickUpGemFrom(boardList2[10]);
++        player.spreadGem(boardList2[10], 1, board2); // anti-clockwise
++        System.out.println(player.getGemsInHand().size());
++        for(Cell cell:boardList2) {
++            System.out.println(cell.seeDetails());
++        }
+ 
+ 
+-
++        System.out.println("Board 2 after spread: ");
++        for(Cell cell:boardList2) {
++            System.out.println(cell.seeDetails());
++        }
+ 
+ 
+ 
+Index: sourcecode/board/Board.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sourcecode.board;\n\nimport sourcecode.gem.*;\n\npublic class Board {\n    private static final int numSquare = 10; // even number\n    private static final int numHalfCircle = 2;  // even number\n    private static final int numSmallGem = 50;\n    private static final int numBigGem = 2;\n    private Cell[] board = new Cell[numHalfCircle + numSquare];\n\n    public int getNumSquare() {\n        return numSquare;\n    }\n\n    public int getNumHalfCircle() {\n        return numHalfCircle;\n    }\n\n    public int getNumSmallGem() {\n        return numSmallGem;\n    }\n\n    public int getNumBigGem() {\n        return numBigGem;\n    }\n\n    public Board() {\n        this.board[0] = new HalfCircle(0, numBigGem /2);\n        this.board[0].addGem(new bigGem(this.board[0]));\n\n        this.board[(numSquare + numHalfCircle)/2] = new HalfCircle((numSquare + numHalfCircle)/2, numBigGem /2);\n        this.board[(numSquare + numHalfCircle)/2].addGem(new smallGem(this.board[(numSquare + numHalfCircle)/2]));\n\n        for(int i = 1; i <= (numSquare /2); i++) {\n            this.board[i] = new Square(i, numSmallGem / numSquare);\n            for(int j = 0; j < this.board[i].getNumberOfGems(); j++) {\n                this.board[i].addGem(new smallGem(this.board[i]));\n            }\n        }\n        for(int i = (numSquare/2)+2; i <= numSquare + numHalfCircle - 1; i++) {\n            this.board[i] = new Square(i, numSmallGem / numSquare);\n            for(int j = 0; j < this.board[i].getNumberOfGems(); j++) {\n                this.board[i].addGem(new smallGem(this.board[i]));\n            }\n        }\n    }\n\n    public Cell[] getBoard() {\n        return board;\n    }\n\n    public Cell getNextCellCounterClockwise(Cell cell) {\n        if(cell.getPosition() == 0) {\n            return this.board[numSquare + numHalfCircle - 1];\n        }\n        else {\n            return this.board[cell.getPosition() - 1];\n        }\n    }\n\n    public Cell getNextCellClockwise(Cell cell) {\n        if(cell.getPosition() == numSquare + numHalfCircle - 1) {\n            return this.board[0];\n        }\n        else {\n            return this.board[cell.getPosition() + 1];\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/sourcecode/board/Board.java b/sourcecode/board/Board.java
+--- a/sourcecode/board/Board.java	(revision 7068d9e759a6e9f0507948a1cd59c92f83e5201c)
++++ b/sourcecode/board/Board.java	(date 1656057987631)
+@@ -67,4 +67,38 @@
+             return this.board[cell.getPosition() + 1];
+         }
+     }
++
++    public void setGem() {
++        this.board[0] = new HalfCircle(0, numBigGem /2);
++        this.board[(numSquare + numHalfCircle)/2] = new HalfCircle((numSquare + numHalfCircle)/2, numBigGem /2);
++        this.board[(numSquare + numHalfCircle)/2].addGem(new bigGem(this.board[(numSquare + numHalfCircle)/2]));
++        for (int i = 0; i < 5; i ++) {
++            this.board[(numSquare + numHalfCircle)/2].addGem(new smallGem(this.board[(numSquare + numHalfCircle)/2]));
++        }
++
++        for(int i = 1; i <= (numSquare /2); i++) {
++            this.board[i] = new Square(i, numSmallGem / numSquare);
++        }
++        for(int i = (numSquare/2)+2; i <= numSquare + numHalfCircle - 1; i++) {
++            this.board[i] = new Square(i, numSmallGem / numSquare);
++        }
++        for (int i = 0; i < 5; i ++) {
++            this.board[1].addGem(new smallGem(this.board[1]));
++        }
++        for (int i = 0; i < 4; i ++) {
++            this.board[3].addGem(new smallGem(this.board[3]));
++        }
++
++        this.board[5].addGem(new smallGem(this.board[5]));
++        for (int i = 7; i < 10; i ++) {
++            for (int j = 0; j < 5; j++) {
++                this.board[i].addGem(new smallGem(this.board[i]));
++            }
++        }
++        for (int i = 10; i < 12; i ++) {
++            for (int j = 0; j < 7; j ++) {
++                this.board[i].addGem(new smallGem(this.board[i]));
++            }
++        }
++    }
+ }
+Index: sourcecode/player/Player.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sourcecode.player;\n\nimport sourcecode.board.*;\nimport sourcecode.gem.Gem;\nimport sourcecode.gem.bigGem;\n\nimport java.util.ArrayList;\n\npublic class Player {\n    private boolean inTurn;\n    private int score;\n    private String name;\n    private int id;\n    private ArrayList<Gem> gemsInHand = new ArrayList<Gem>();\n    private ArrayList<Gem> gemsCaptured = new ArrayList<Gem>();\n    private ArrayList<Cell> cellsOnSide = new ArrayList<Cell>();\n    private Cell handPosition;\n    private int numGemsBorrowed;\n    public boolean borrow;\n\n    Board board = new Board();\n\n    public ArrayList<Gem> getGemsInHand() {\n        return gemsInHand;\n    }\n\n    public Cell getHandPosition() {\n        return handPosition;\n    }\n\n    public ArrayList<Cell> getCellsOnSide() {\n        return cellsOnSide;\n    }\n\n    public void setCellsOnSide(ArrayList<Cell> cellsOnSide) {\n        this.cellsOnSide = cellsOnSide;\n    }\n\n    public Player(String name) {\n        this.name = name;\n    }\n\n    public Player(String name, Cell position) {\n        this.name = name;\n        this.handPosition = position;\n    }\n\n    public boolean pickUpGemFrom(Cell cell) {\n        if(!(cell instanceof HalfCircle) && !(cell.isEmpty())) { // TODO add cells on side\n//            System.out.println(\"Picked up from cell \" + cell.getPosition());\n            this.gemsInHand.addAll(cell.getGemList());\n            cell.emptyCell();\n            return true;\n        }\n        else {\n            return false;\n        }\n    }\n\n    public void spreadGem(Cell initPosition, int handDirection, Board board) {\n        this.handPosition = initPosition;\n        if (handDirection == 0) {  // clockwise\n            ArrayList<Gem> tmpGemsInHand = new ArrayList<>(this.gemsInHand);\n            for (Gem gem : tmpGemsInHand) {\n                handPosition = board.getNextCellClockwise(handPosition);\n                dropGemInto(gem, handPosition);\n            }\n\n            // check turn continuity\n            Cell nextHandPosition = board.getNextCellClockwise(handPosition);\n            if(!nextHandPosition.isEmpty()) {\n                if(!(nextHandPosition instanceof HalfCircle)) {  // can continue spreading\n                    pickUpGemFrom(nextHandPosition);\n                    spreadGem(nextHandPosition, handDirection, board);\n                }\n            }\n            else {\n                if(!board.getNextCellClockwise(nextHandPosition).isEmpty()) {  // edible cell\n                    earnGemFrom(board.getNextCellClockwise(nextHandPosition));\n                }\n            }\n\n        } else if (handDirection == 1) { // anti-clockwise\n            ArrayList<Gem> tmpGemsInHand = new ArrayList<>(this.gemsInHand);\n            for (Gem gem : tmpGemsInHand) {\n                handPosition = board.getNextCellCounterClockwise(handPosition);\n                dropGemInto(gem, handPosition);\n            }\n             // check turn continuity\n            Cell nextHandPosition = board.getNextCellCounterClockwise(handPosition);\n            if(!nextHandPosition.isEmpty()) {\n                if(!(nextHandPosition instanceof HalfCircle)) {  // can continue spreading\n                    pickUpGemFrom(nextHandPosition);\n                    spreadGem(nextHandPosition, handDirection, board);\n                }\n            }\n            else {\n                if(!board.getNextCellCounterClockwise(nextHandPosition).isEmpty()) {  // edible cell\n                    earnGemFrom(board.getNextCellCounterClockwise(nextHandPosition));\n                }\n            }\n        }\n    }\n\n    public void dropGemInto(Gem gem, Cell cell) {\n        if(this.gemsInHand.size() > 0) {\n            cell.addGem(gem);\n            this.gemsInHand.remove(gem);\n//            System.out.println(\"Dropped gem into cell \" + cell.getPosition());\n        }\n        // else skip\n    }\n\n\n    public void earnGemFrom(Cell cell) {\n        this.gemsCaptured.addAll(cell.getGemList());\n        cell.emptyCell();\n//        System.out.println(\"Eat all gems at: \" + cell.getPosition());\n    }\n    public boolean isInTurn() {\n        return inTurn;\n    }\n\n    public int calculateScore() {\n        int score = 0;\n        for(int i = 0; i < this.gemsCaptured.size(); i ++){\n            if (gemsCaptured.get(i) instanceof bigGem){\n                score += 5;\n            } else{\n                score += 1;\n            }\n        }\n        score -= this.numGemsBorrowed;\n        return score;\n    }\n    public void setCellsOnSides(ArrayList<Cell> CellsOnSide){\n        this.cellsOnSide = CellsOnSide;\n    }\n    public int getScore(){\n        return this.score;\n    }\n\n    public void setTurn(boolean turn) {\n        this.inTurn = turn;\n\n    }\n    public boolean isCellOnSideEmpty() {\n        int res = board.getNumSquare() / 2;\n        for (int i = 0; i < this.cellsOnSide.size(); i ++) {\n            if (this.cellsOnSide.get(i).isEmpty()) {\n                res -= 1;\n            }\n        }\n        return res == 0;\n    }\n\n    public void setNumBorrow(int numGemsBorrowed) {\n        this.numGemsBorrowed = numGemsBorrowed;\n    }\n    public void setBorrow(boolean isBorrow) {\n        this.borrow = isBorrow;\n    }\n\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/sourcecode/player/Player.java b/sourcecode/player/Player.java
+--- a/sourcecode/player/Player.java	(revision 7068d9e759a6e9f0507948a1cd59c92f83e5201c)
++++ b/sourcecode/player/Player.java	(date 1656062073397)
+@@ -65,7 +65,6 @@
+                 handPosition = board.getNextCellClockwise(handPosition);
+                 dropGemInto(gem, handPosition);
+             }
+-
+             // check turn continuity
+             Cell nextHandPosition = board.getNextCellClockwise(handPosition);
+             if(!nextHandPosition.isEmpty()) {
+@@ -75,8 +74,9 @@
+                 }
+             }
+             else {
+-                if(!board.getNextCellClockwise(nextHandPosition).isEmpty()) {  // edible cell
++                while(nextHandPosition.isEmpty() && !(board.getNextCellClockwise(nextHandPosition).isEmpty())) {  // edible cell
+                     earnGemFrom(board.getNextCellClockwise(nextHandPosition));
++                    nextHandPosition = board.getNextCellClockwise(board.getNextCellClockwise(nextHandPosition));
+                 }
+             }
+ 
+@@ -95,8 +95,9 @@
+                 }
+             }
+             else {
+-                if(!board.getNextCellCounterClockwise(nextHandPosition).isEmpty()) {  // edible cell
++                while(nextHandPosition.isEmpty() && !(board.getNextCellCounterClockwise(nextHandPosition).isEmpty())) {  // edible cell
+                     earnGemFrom(board.getNextCellCounterClockwise(nextHandPosition));
++                    nextHandPosition = board.getNextCellCounterClockwise(board.getNextCellCounterClockwise(nextHandPosition));
+                 }
+             }
+         }
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"022fb2a9-0493-4d6a-9b29-9b6488214bb0\" name=\"Changes\" comment=\"upload PlayerTest\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sourcecode/board/HalfCircle.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sourcecode/board/HalfCircle.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sourcecode/board/Square.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sourcecode/board/Square.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sourcecode/player/Player.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sourcecode/player/Player.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Interface\" />\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitSEFilterConfiguration\">\n    <file-type-list>\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\n      <filtered-out-file-type name=\"TAG\" />\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\n    </file-type-list>\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2AYta4JtKnDPVcHrcc1TChSNdZQ\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\n    <property name=\"settings.editor.selected.configurable\" value=\"reference.projectsettings.compiler.excludes\" />\n  </component>\n  <component name=\"RunManager\" selected=\"Application.GamePlay\">\n    <configuration name=\"BoardTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.BoardTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Cell\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"Cell\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"CellTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.CellTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"GamePlay\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.gameplay.GamePlay\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.gameplay.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"PlayerTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.PlayerTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.GamePlay\" />\n        <item itemvalue=\"Application.PlayerTest\" />\n        <item itemvalue=\"Application.CellTest\" />\n        <item itemvalue=\"Application.Cell\" />\n        <item itemvalue=\"Application.BoardTest\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"022fb2a9-0493-4d6a-9b29-9b6488214bb0\" name=\"Changes\" comment=\"\" />\n      <created>1655198410651</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1655198410651</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"upload constructors for board and cells\">\n      <created>1655366801447</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655366801447</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"upate BoardTest\">\n      <created>1655366916492</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655366916492</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"upate BoardTest\">\n      <created>1655377007650</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655377007650</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"update class diagram\">\n      <created>1655400980752</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655400980752</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"update class diagram\">\n      <created>1655401039907</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655401039907</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"test board and gem\">\n      <created>1655459148349</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655459148349</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"update methods for Player\">\n      <created>1656005332624</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656005332624</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"merge GamePlay codes\">\n      <created>1656006932258</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656006932258</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"upload PlayerTest\">\n      <created>1656007212680</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656007212680</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"10\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"FILTERS\">\n                <map>\n                  <entry key=\"branch\">\n                    <value>\n                      <list>\n                        <option value=\"main\" />\n                      </list>\n                    </value>\n                  </entry>\n                </map>\n              </option>\n              <option name=\"COLUMN_ID_WIDTH\">\n                <map>\n                  <entry key=\"Table.Default.Author.ColumnIdWidth\" value=\"-1\" />\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"upload constructors for board and cells\" />\n    <MESSAGE value=\"upate BoardTest\" />\n    <MESSAGE value=\"update class diagram\" />\n    <MESSAGE value=\"test board and gem\" />\n    <MESSAGE value=\"update methods for Player\" />\n    <MESSAGE value=\"merge GamePlay codes\" />\n    <MESSAGE value=\"upload PlayerTest\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"upload PlayerTest\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 7068d9e759a6e9f0507948a1cd59c92f83e5201c)
++++ b/.idea/workspace.xml	(date 1656058612711)
+@@ -1,12 +1,12 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="upload PlayerTest">
++    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="update Class and Use Case Diagrams">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/sourcecode/board/HalfCircle.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/HalfCircle.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/sourcecode/board/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Square.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/sourcecode/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/player/Player.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/sourcecode/test/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/test/PlayerTest.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -54,7 +54,7 @@
+     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.excludes" />
+   </component>
+-  <component name="RunManager" selected="Application.GamePlay">
++  <component name="RunManager" selected="Application.PlayerTest">
+     <configuration name="BoardTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="sourcecode.test.BoardTest" />
+       <module name="OOP.DSAI.20212.Team26" />
+@@ -116,8 +116,8 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Application.GamePlay" />
+         <item itemvalue="Application.PlayerTest" />
++        <item itemvalue="Application.GamePlay" />
+         <item itemvalue="Application.CellTest" />
+         <item itemvalue="Application.Cell" />
+         <item itemvalue="Application.BoardTest" />
+@@ -196,7 +196,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1656007212680</updated>
+     </task>
+-    <option name="localTasksCounter" value="10" />
++    <task id="LOCAL-00010" summary="update Class and Use Case Diagrams">
++      <created>1656009059522</created>
++      <option name="number" value="00010" />
++      <option name="presentableId" value="LOCAL-00010" />
++      <option name="project" value="LOCAL" />
++      <updated>1656009059522</updated>
++    </task>
++    <option name="localTasksCounter" value="11" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -235,6 +242,7 @@
+     <MESSAGE value="update methods for Player" />
+     <MESSAGE value="merge GamePlay codes" />
+     <MESSAGE value="upload PlayerTest" />
+-    <option name="LAST_COMMIT_MESSAGE" value="upload PlayerTest" />
++    <MESSAGE value="update Class and Use Case Diagrams" />
++    <option name="LAST_COMMIT_MESSAGE" value="update Class and Use Case Diagrams" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"022fb2a9-0493-4d6a-9b29-9b6488214bb0\" name=\"Changes\" comment=\"merge GamePlay codes\" />\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Interface\" />\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitSEFilterConfiguration\">\n    <file-type-list>\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\n      <filtered-out-file-type name=\"TAG\" />\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\n    </file-type-list>\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2AYta4JtKnDPVcHrcc1TChSNdZQ\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\n    <property name=\"settings.editor.selected.configurable\" value=\"reference.projectsettings.compiler.excludes\" />\n  </component>\n  <component name=\"RunManager\" selected=\"Application.GamePlay\">\n    <configuration name=\"BoardTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.BoardTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Cell\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"Cell\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"CellTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.CellTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"GamePlay\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.gameplay.GamePlay\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.gameplay.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"PlayerTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.PlayerTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.GamePlay\" />\n        <item itemvalue=\"Application.PlayerTest\" />\n        <item itemvalue=\"Application.CellTest\" />\n        <item itemvalue=\"Application.Cell\" />\n        <item itemvalue=\"Application.BoardTest\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"022fb2a9-0493-4d6a-9b29-9b6488214bb0\" name=\"Changes\" comment=\"\" />\n      <created>1655198410651</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1655198410651</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"upload constructors for board and cells\">\n      <created>1655366801447</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655366801447</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"upate BoardTest\">\n      <created>1655366916492</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655366916492</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"upate BoardTest\">\n      <created>1655377007650</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655377007650</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"update class diagram\">\n      <created>1655400980752</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655400980752</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"update class diagram\">\n      <created>1655401039907</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655401039907</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"test board and gem\">\n      <created>1655459148349</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655459148349</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"update methods for Player\">\n      <created>1656005332624</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656005332624</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"merge GamePlay codes\">\n      <created>1656006932258</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656006932258</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"9\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"FILTERS\">\n                <map>\n                  <entry key=\"branch\">\n                    <value>\n                      <list>\n                        <option value=\"main\" />\n                      </list>\n                    </value>\n                  </entry>\n                </map>\n              </option>\n              <option name=\"COLUMN_ID_WIDTH\">\n                <map>\n                  <entry key=\"Table.Default.Author.ColumnIdWidth\" value=\"-1\" />\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"upload constructors for board and cells\" />\n    <MESSAGE value=\"upate BoardTest\" />\n    <MESSAGE value=\"update class diagram\" />\n    <MESSAGE value=\"test board and gem\" />\n    <MESSAGE value=\"update methods for Player\" />\n    <MESSAGE value=\"merge GamePlay codes\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"merge GamePlay codes\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml b/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml
+--- a/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml	(revision 7068d9e759a6e9f0507948a1cd59c92f83e5201c)
++++ b/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml	(date 1656058219875)
+@@ -1,7 +1,9 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="merge GamePlay codes" />
++    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="update Class and Use Case Diagrams">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -48,7 +50,7 @@
+     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.excludes" />
+   </component>
+-  <component name="RunManager" selected="Application.GamePlay">
++  <component name="RunManager" selected="Application.PlayerTest">
+     <configuration name="BoardTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="sourcecode.test.BoardTest" />
+       <module name="OOP.DSAI.20212.Team26" />
+@@ -110,8 +112,8 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Application.GamePlay" />
+         <item itemvalue="Application.PlayerTest" />
++        <item itemvalue="Application.GamePlay" />
+         <item itemvalue="Application.CellTest" />
+         <item itemvalue="Application.Cell" />
+         <item itemvalue="Application.BoardTest" />
+@@ -183,7 +185,21 @@
+       <option name="project" value="LOCAL" />
+       <updated>1656006932258</updated>
+     </task>
+-    <option name="localTasksCounter" value="9" />
++    <task id="LOCAL-00009" summary="upload PlayerTest">
++      <created>1656007212680</created>
++      <option name="number" value="00009" />
++      <option name="presentableId" value="LOCAL-00009" />
++      <option name="project" value="LOCAL" />
++      <updated>1656007212680</updated>
++    </task>
++    <task id="LOCAL-00010" summary="update Class and Use Case Diagrams">
++      <created>1656009059522</created>
++      <option name="number" value="00010" />
++      <option name="presentableId" value="LOCAL-00010" />
++      <option name="project" value="LOCAL" />
++      <updated>1656009059522</updated>
++    </task>
++    <option name="localTasksCounter" value="11" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -221,6 +237,8 @@
+     <MESSAGE value="test board and gem" />
+     <MESSAGE value="update methods for Player" />
+     <MESSAGE value="merge GamePlay codes" />
+-    <option name="LAST_COMMIT_MESSAGE" value="merge GamePlay codes" />
++    <MESSAGE value="upload PlayerTest" />
++    <MESSAGE value="update Class and Use Case Diagrams" />
++    <option name="LAST_COMMIT_MESSAGE" value="update Class and Use Case Diagrams" />
+   </component>
+ </project>
+\ No newline at end of file
