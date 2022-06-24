@@ -65,7 +65,6 @@ public class Player {
                 handPosition = board.getNextCellClockwise(handPosition);
                 dropGemInto(gem, handPosition);
             }
-
             // check turn continuity
             Cell nextHandPosition = board.getNextCellClockwise(handPosition);
             if(!nextHandPosition.isEmpty()) {
@@ -75,8 +74,9 @@ public class Player {
                 }
             }
             else {
-                if(!board.getNextCellClockwise(nextHandPosition).isEmpty()) {  // edible cell
+                while(nextHandPosition.isEmpty() && !(board.getNextCellClockwise(nextHandPosition).isEmpty())) {  // edible cell
                     earnGemFrom(board.getNextCellClockwise(nextHandPosition));
+                    nextHandPosition = board.getNextCellClockwise(board.getNextCellClockwise(nextHandPosition));
                 }
             }
 
@@ -95,8 +95,9 @@ public class Player {
                 }
             }
             else {
-                if(!board.getNextCellCounterClockwise(nextHandPosition).isEmpty()) {  // edible cell
+                while(nextHandPosition.isEmpty() && !(board.getNextCellCounterClockwise(nextHandPosition).isEmpty())) {  // edible cell
                     earnGemFrom(board.getNextCellCounterClockwise(nextHandPosition));
+                    nextHandPosition = board.getNextCellCounterClockwise(board.getNextCellCounterClockwise(nextHandPosition));
                 }
             }
         }

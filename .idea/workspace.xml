@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="upload PlayerTest">
+    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="update Class and Use Case Diagrams">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/board/HalfCircle.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/HalfCircle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/board/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Square.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sourcecode/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/player/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/test/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/test/PlayerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +54,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.excludes" />
   </component>
-  <component name="RunManager" selected="Application.GamePlay">
+  <component name="RunManager" selected="Application.PlayerTest">
     <configuration name="BoardTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sourcecode.test.BoardTest" />
       <module name="OOP.DSAI.20212.Team26" />
@@ -116,8 +116,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GamePlay" />
         <item itemvalue="Application.PlayerTest" />
+        <item itemvalue="Application.GamePlay" />
         <item itemvalue="Application.CellTest" />
         <item itemvalue="Application.Cell" />
         <item itemvalue="Application.BoardTest" />
@@ -196,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656007212680</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="update Class and Use Case Diagrams">
+      <created>1656009059522</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1656009059522</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -235,6 +242,7 @@
     <MESSAGE value="update methods for Player" />
     <MESSAGE value="merge GamePlay codes" />
     <MESSAGE value="upload PlayerTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="upload PlayerTest" />
+    <MESSAGE value="update Class and Use Case Diagrams" />
+    <option name="LAST_COMMIT_MESSAGE" value="update Class and Use Case Diagrams" />
   </component>
 </project>
