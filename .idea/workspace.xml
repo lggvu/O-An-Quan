@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="initial submission">
+    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="update Class and Use Case Diagrams">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/player/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/test/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/test/PlayerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,14 +203,7 @@
       <option name="project" value="LOCAL" />
       <updated>1656009059522</updated>
     </task>
-    <task id="LOCAL-00011" summary="initial submission">
-      <created>1656068880673</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1656068880673</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -246,7 +243,6 @@
     <MESSAGE value="merge GamePlay codes" />
     <MESSAGE value="upload PlayerTest" />
     <MESSAGE value="update Class and Use Case Diagrams" />
-    <MESSAGE value="initial submission" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial submission" />
+    <option name="LAST_COMMIT_MESSAGE" value="update Class and Use Case Diagrams" />
   </component>
 </project>
