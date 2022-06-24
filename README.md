@@ -1,2 +1,0 @@
-# OOP.DSAI.20212.26
-OOP Project 20212
