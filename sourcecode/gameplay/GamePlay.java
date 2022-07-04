@@ -74,7 +74,6 @@ public class GamePlay {
             while(!player2.pickUpGemFrom(boardList[cell_Num2] )){
                 System.out.println("The cell is invalid. Please choose another cell to pick!");
                 cell_Num2 = sc.nextInt();
-                sc.nextLine();
                 }
             player2.pickUpGemFrom(boardList[cell_Num2]);
             System.out.println("Choose Hand Direction");
