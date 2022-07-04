@@ -63,6 +63,7 @@ public class GamePlay {
             sc.nextLine();
             while (Player1HandDirection != 1 && Player1HandDirection != 0) {
                 System.out.println("Invalid Hand Direction. Please choose again!");
+                Player1HandDirection = sc.nextInt();
             }
             player1.spreadGem(boardList[cell_Num], Player1HandDirection, board);
             System.out.println("*****************************************");
@@ -72,6 +73,7 @@ public class GamePlay {
             sc.nextLine();
             while(!player2.pickUpGemFrom(boardList[cell_Num2] )){
                 System.out.println("The cell is invalid. Please choose another cell to pick!");
+                cell_Num2 = sc.nextInt();
                 sc.nextLine();
                 }
             player2.pickUpGemFrom(boardList[cell_Num2]);
@@ -79,6 +81,8 @@ public class GamePlay {
             int Player2HandDirection = sc.nextInt();
             while (Player2HandDirection != 1 && Player2HandDirection != 0) {
                 System.out.println("Invalid Hand Direction. Please choose again!");
+                Player2HandDirection = sc.nextInt();
+                sc.nextInt();
             }
             player2.spreadGem(boardList[cell_Num2], Player2HandDirection, board);
    
