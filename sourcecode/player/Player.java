@@ -86,7 +86,7 @@ public class Player {
                 handPosition = board.getNextCellCounterClockwise(handPosition);
                 dropGemInto(gem, handPosition);
             }
-             // check turn continuity
+            // check turn continuity
             Cell nextHandPosition = board.getNextCellCounterClockwise(handPosition);
             if(!nextHandPosition.isEmpty()) {
                 if(!(nextHandPosition instanceof HalfCircle)) {  // can continue spreading
@@ -112,6 +112,9 @@ public class Player {
         // else skip
     }
 
+    public String getName() {
+        return this.name;
+    }
 
     public void earnGemFrom(Cell cell) {
         this.gemsCaptured.addAll(cell.getGemList());
@@ -162,10 +165,6 @@ public class Player {
         this.borrow = isBorrow;
     }
 
-	public String getName() {
-		return this.name;
-	}
-	
 	public int numBigGemsInGemsCaptured() {
 		int res = 0;
 		for (int i = 0; i < gemsCaptured.size(); i++) {
@@ -175,6 +174,7 @@ public class Player {
 		}
 		return res;
 	}
+
 
 
 }
