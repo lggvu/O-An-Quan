@@ -27,6 +27,10 @@ public class GamePlay {
     	boolean res = false;
     	if (board.getNumBigGem() == 0) {
     		res = true;
+    	}else if (player1.isCellOnSideEmpty()) {
+    		res = true;
+    	}else if (player2.isCellOnSideEmpty()) {
+    		res = true;
     	}
     	return res;
     }
