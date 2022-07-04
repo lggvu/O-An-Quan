@@ -162,5 +162,19 @@ public class Player {
         this.borrow = isBorrow;
     }
 
+	public String getName() {
+		return this.name;
+	}
+	
+	public int numBigGemsInGemsCaptured() {
+		int res = 0;
+		for (int i = 0; i < gemsCaptured.size(); i++) {
+			if (gemsCaptured.get(i) instanceof bigGem) {
+				res += 1;
+			}
+		}
+		return res;
+	}
+
 
 }
