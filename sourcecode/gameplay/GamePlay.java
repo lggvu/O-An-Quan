@@ -25,7 +25,7 @@ public class GamePlay {
     }
     public static boolean isGameOver(Player player1, Player player2, Board board) {
     	boolean res = false;
-    	if (board.getNumBigGem() == 0) {
+    	if (board.getNumBigGem() - player1.numBigGemsInGemsCaptured() - player2.numBigGemsInGemsCaptured() == 0) {
     		res = true;
     	}else if (player1.isCellOnSideEmpty()) {
     		res = true;
@@ -48,8 +48,8 @@ public class GamePlay {
         player2.setCellsOnSide(Player2CellOnSide);
 
         while (!(isGameOver(player1, player2, board))) {
+        	System.out.println("********************************************");
         	System.out.println("Player 1's turn");
-        	System.out.println("*********************************************");
         	System.out.println("Player 1 chooses a cell to pick gems from: ");
         	int cell_Num = sc.nextInt();
         	sc.nextLine();
@@ -58,7 +58,7 @@ public class GamePlay {
                 cell_Num = sc.nextInt();
                 sc.nextLine();
             }
-            System.out.println("Choose Hand Direction");
+            System.out.println("Player 1 chooses Hand Direction");
             int Player1HandDirection = sc.nextInt();
             sc.nextLine();
             while (Player1HandDirection != 1 && Player1HandDirection != 0) {
@@ -76,7 +76,7 @@ public class GamePlay {
                 cell_Num2 = sc.nextInt();
                 }
             player2.pickUpGemFrom(boardList[cell_Num2]);
-            System.out.println("Choose Hand Direction");
+            System.out.println("Player 2 chooses Hand Direction");
             int Player2HandDirection = sc.nextInt();
             while (Player2HandDirection != 1 && Player2HandDirection != 0) {
                 System.out.println("Invalid Hand Direction. Please choose again!");
@@ -88,10 +88,15 @@ public class GamePlay {
         }
         if (player1.calculateScore() > player2.calculateScore()) {
             System.out.println(player1.getName() + " wins.");
+            System.out.println("Player 1's score is: " + player1.calculateScore());
+            System.out.println("Player 2's score is: " + player2.calculateScore());
         } else if (player1.calculateScore() < player2.calculateScore()) {
             System.out.println(player2.getName() + " wins.");
+            System.out.println("Player 1's score is: " + player1.calculateScore());
+            System.out.println("Player 2's score is: " + player2.calculateScore());
         } else {
             System.out.println("Draw");
+            System.out.println("The score of two players is: " + player1.calculateScore());
         }
         System.exit(0);
 
