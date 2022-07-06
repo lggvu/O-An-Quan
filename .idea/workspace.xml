@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="GUI test">
-      <change afterPath="$PROJECT_DIR$/sourcecode/screen/images/PlayScreen.fxml" afterDir="false" />
+    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="upload images">
+      <change afterPath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sourcecode/screen/view/PlayScreen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/PlayScreen.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/screen/GamePlayScreenController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/screen/images/PlayScreen.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +17,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -98,7 +100,7 @@
       <module name="OOP.DSAI.20212.Team26" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="sourcecode.screen.*" />
+          <option name="PATTERN" value="sourcecode.screen.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -229,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1656952412145</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="upload images">
+      <created>1657095009722</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1657095009722</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -271,7 +280,8 @@
     <MESSAGE value="update Class and Use Case Diagrams" />
     <MESSAGE value="initial submission" />
     <MESSAGE value="GUI test" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI test" />
+    <MESSAGE value="upload images" />
+    <option name="LAST_COMMIT_MESSAGE" value="upload images" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
