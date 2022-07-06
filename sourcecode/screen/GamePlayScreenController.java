@@ -55,5 +55,3 @@ public class GamePlayScreenController {
     }
 
 }
-
-//TODO t bí quá  :) cíu
