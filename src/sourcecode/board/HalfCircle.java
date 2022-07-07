@@ -1,5 +1,7 @@
 package sourcecode.board;
 
+import sourcecode.board.Cell;
+
 public class HalfCircle extends Cell {
     private boolean hasBigGem;
 

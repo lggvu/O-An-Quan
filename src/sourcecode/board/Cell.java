@@ -66,5 +66,4 @@ public class Cell {
     public void setPosition(int position) {
         this.position = position;
     }
-
 }
