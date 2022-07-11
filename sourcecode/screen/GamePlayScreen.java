@@ -19,7 +19,7 @@ public class GamePlayScreen extends Application {
 
     public void start(Stage primaryStage)
     {
-        final String STORE_FXML_FILE_PATH = "/sourcecode/screen/view/PlayScreen.fxml";
+        final String STORE_FXML_FILE_PATH = "/sourcecode/screen/view/PlayScreen.fxml";  // TODO change this name
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(STORE_FXML_FILE_PATH));
         GamePlayScreenController viewStoreController = new GamePlayScreenController(board, player1, player2);
         fxmlLoader.setController(viewStoreController);

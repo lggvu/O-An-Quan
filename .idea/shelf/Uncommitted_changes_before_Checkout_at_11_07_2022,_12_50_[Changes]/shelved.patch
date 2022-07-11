@@ -1,0 +1,340 @@
+Index: sourcecode/board/Board.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sourcecode.board;\n\nimport sourcecode.gem.*;\n\npublic class Board {\n    private static final int numSquare = 10; // even number\n    private static final int numHalfCircle = 2;  // even number\n    private static final int numSmallGem = 50;\n    private static final int numBigGem = 2;\n    private Cell[] board = new Cell[numHalfCircle + numSquare];\n\n    public int getNumSquare() {\n        return numSquare;\n    }\n\n    public int getNumHalfCircle() {\n        return numHalfCircle;\n    }\n\n    public int getNumSmallGem() {\n        return numSmallGem;\n    }\n\n    public int getNumBigGem() {\n        return numBigGem;\n    }\n\n    public Board() {\n        this.board[0] = new HalfCircle(0, numBigGem /2);\n        this.board[0].addGem(new bigGem(this.board[0]));\n\n        this.board[(numSquare + numHalfCircle)/2] = new HalfCircle((numSquare + numHalfCircle)/2, numBigGem /2);\n        this.board[(numSquare + numHalfCircle)/2].addGem(new bigGem(this.board[(numSquare + numHalfCircle)/2]));\n\n        for(int i = 1; i <= (numSquare /2); i++) {\n            this.board[i] = new Square(i, numSmallGem / numSquare);\n            for(int j = 0; j < this.board[i].getNumberOfGems(); j++) {\n                this.board[i].addGem(new smallGem(this.board[i]));\n            }\n        }\n        for(int i = (numSquare/2)+2; i <= numSquare + numHalfCircle - 1; i++) {\n            this.board[i] = new Square(i, numSmallGem / numSquare);\n            for(int j = 0; j < this.board[i].getNumberOfGems(); j++) {\n                this.board[i].addGem(new smallGem(this.board[i]));\n            }\n        }\n    }\n\n    public Cell[] getBoard() {\n        return board;\n    }\n\n    public Cell getNextCellCounterClockwise(Cell cell) {\n        if(cell.getPosition() == 0) {\n            return this.board[numSquare + numHalfCircle - 1];\n        }\n        else {\n            return this.board[cell.getPosition() - 1];\n        }\n    }\n\n    public Cell getNextCellClockwise(Cell cell) {\n        if(cell.getPosition() == numSquare + numHalfCircle - 1) {\n            return this.board[0];\n        }\n        else {\n            return this.board[cell.getPosition() + 1];\n        }\n    }\n\n    public void setGem() {\n        this.board[0] = new HalfCircle(0, numBigGem /2);\n        this.board[(numSquare + numHalfCircle)/2] = new HalfCircle((numSquare + numHalfCircle)/2, numBigGem /2);\n        this.board[(numSquare + numHalfCircle)/2].addGem(new bigGem(this.board[(numSquare + numHalfCircle)/2]));\n        for (int i = 0; i < 5; i ++) {\n            this.board[(numSquare + numHalfCircle)/2].addGem(new smallGem(this.board[(numSquare + numHalfCircle)/2]));\n        }\n\n        for(int i = 1; i <= (numSquare /2); i++) {\n            this.board[i] = new Square(i, numSmallGem / numSquare);\n        }\n        for(int i = (numSquare/2)+2; i <= numSquare + numHalfCircle - 1; i++) {\n            this.board[i] = new Square(i, numSmallGem / numSquare);\n        }\n        for (int i = 0; i < 5; i ++) {\n            this.board[1].addGem(new smallGem(this.board[1]));\n        }\n        for (int i = 0; i < 4; i ++) {\n            this.board[3].addGem(new smallGem(this.board[3]));\n        }\n\n        this.board[5].addGem(new smallGem(this.board[5]));\n        for (int i = 7; i < 10; i ++) {\n            for (int j = 0; j < 5; j++) {\n                this.board[i].addGem(new smallGem(this.board[i]));\n            }\n        }\n        for (int i = 10; i < 12; i ++) {\n            for (int j = 0; j < 7; j ++) {\n                this.board[i].addGem(new smallGem(this.board[i]));\n            }\n        }\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/sourcecode/board/Board.java b/sourcecode/board/Board.java
+--- a/sourcecode/board/Board.java	(revision 413958c9515c27651d2ab29a4e37b0ed969dd61b)
++++ b/sourcecode/board/Board.java	(date 1657194230504)
+@@ -68,7 +68,7 @@
+         }
+     }
+ 
+-    public void setGem() {
++/*    public void setGem() {
+         this.board[0] = new HalfCircle(0, numBigGem /2);
+         this.board[(numSquare + numHalfCircle)/2] = new HalfCircle((numSquare + numHalfCircle)/2, numBigGem /2);
+         this.board[(numSquare + numHalfCircle)/2].addGem(new bigGem(this.board[(numSquare + numHalfCircle)/2]));
+@@ -100,5 +100,5 @@
+                 this.board[i].addGem(new smallGem(this.board[i]));
+             }
+         }
+-    }
++    }*/
+ }
+Index: sourcecode/screen/GamePlayScreen.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sourcecode.screen;\n\nimport javafx.application.Application;\nimport javafx.fxml.FXMLLoader;\nimport javafx.scene.Parent;\nimport javafx.scene.Scene;\nimport javafx.stage.Stage;\nimport sourcecode.board.Board;\nimport sourcecode.player.Player;\nimport sourcecode.screen.controller.GamePlayScreenController;\n\nimport java.io.IOException;\n\n\npublic class GamePlayScreen extends Application {\n    private static Board board;\n    private static Player player1;\n    private static Player player2;\n\n    public void start(Stage primaryStage)\n    {\n        final String STORE_FXML_FILE_PATH = \"/sourcecode/screen/view/PlayScreen.fxml\";\n        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(STORE_FXML_FILE_PATH));\n        GamePlayScreenController viewStoreController = new GamePlayScreenController(board, player1, player2);\n        fxmlLoader.setController(viewStoreController);\n        Parent root = null;\n        try {\n            root = fxmlLoader.load();\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n\n        primaryStage.setTitle(\"O An Quan\");\n        primaryStage.setScene(new Scene(root));\n        primaryStage.show();\n    }\n    public static void main(String[] args) {\n        board = new Board();\n        player1 = new Player(\"Player 1\");\n        player2 = new Player(\"Player 2\");\n\n        launch(args);\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/sourcecode/screen/GamePlayScreen.java b/sourcecode/screen/GamePlayScreen.java
+--- a/sourcecode/screen/GamePlayScreen.java	(revision 413958c9515c27651d2ab29a4e37b0ed969dd61b)
++++ b/sourcecode/screen/GamePlayScreen.java	(date 1657270948758)
+@@ -19,7 +19,7 @@
+ 
+     public void start(Stage primaryStage)
+     {
+-        final String STORE_FXML_FILE_PATH = "/sourcecode/screen/view/PlayScreen.fxml";
++        final String STORE_FXML_FILE_PATH = "/sourcecode/screen/view/PlayScreen.fxml";  // TODO change this name
+         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(STORE_FXML_FILE_PATH));
+         GamePlayScreenController viewStoreController = new GamePlayScreenController(board, player1, player2);
+         fxmlLoader.setController(viewStoreController);
+Index: out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"022fb2a9-0493-4d6a-9b29-9b6488214bb0\" name=\"Changes\" comment=\"update gui\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sourcecode/screen/GamePlayScreen.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sourcecode/screen/GamePlayScreen.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Interface\" />\n        <option value=\"FxmlFile\" />\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitSEFilterConfiguration\">\n    <file-type-list>\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\n      <filtered-out-file-type name=\"TAG\" />\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\n    </file-type-list>\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2AYta4JtKnDPVcHrcc1TChSNdZQ\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\n    <property name=\"settings.editor.selected.configurable\" value=\"reference.projectsettings.compiler.excludes\" />\n  </component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/sourcecode/screen/view\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"Application.GamePlayScreen\">\n    <configuration name=\"BoardTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.BoardTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"CellTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.CellTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"GamePlay\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.gameplay.GamePlay\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.gameplay.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"GamePlayScreen\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.screen.GamePlayScreen\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.screen.controller.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"PlayerTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.PlayerTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.GamePlayScreen\" />\n        <item itemvalue=\"Application.GamePlay\" />\n        <item itemvalue=\"Application.PlayerTest\" />\n        <item itemvalue=\"Application.BoardTest\" />\n        <item itemvalue=\"Application.CellTest\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"022fb2a9-0493-4d6a-9b29-9b6488214bb0\" name=\"Changes\" comment=\"\" />\n      <created>1655198410651</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1655198410651</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"upload constructors for board and cells\">\n      <created>1655366801447</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655366801447</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"upate BoardTest\">\n      <created>1655366916492</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655366916492</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"upate BoardTest\">\n      <created>1655377007650</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655377007650</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"update class diagram\">\n      <created>1655400980752</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655400980752</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"update class diagram\">\n      <created>1655401039907</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655401039907</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"test board and gem\">\n      <created>1655459148349</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655459148349</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"update methods for Player\">\n      <created>1656005332624</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656005332624</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"merge GamePlay codes\">\n      <created>1656006932258</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656006932258</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"upload PlayerTest\">\n      <created>1656007212680</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656007212680</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"update Class and Use Case Diagrams\">\n      <created>1656009059522</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656009059522</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"initial submission\">\n      <created>1656070586403</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656070586403</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"GUI test\">\n      <created>1656946993988</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656946993988</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"GUI test\">\n      <created>1656952412145</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656952412145</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"upload images\">\n      <created>1657095009722</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657095009722</updated>\n    </task>\n    <task id=\"LOCAL-00015\" summary=\"update gui\">\n      <created>1657098807355</created>\n      <option name=\"number\" value=\"00015\" />\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657098807355</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"16\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"FILTERS\">\n                <map>\n                  <entry key=\"branch\">\n                    <value>\n                      <list>\n                        <option value=\"main\" />\n                      </list>\n                    </value>\n                  </entry>\n                </map>\n              </option>\n              <option name=\"COLUMN_ID_WIDTH\">\n                <map>\n                  <entry key=\"Table.Default.Author.ColumnIdWidth\" value=\"-1\" />\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"upload constructors for board and cells\" />\n    <MESSAGE value=\"upate BoardTest\" />\n    <MESSAGE value=\"update class diagram\" />\n    <MESSAGE value=\"test board and gem\" />\n    <MESSAGE value=\"update methods for Player\" />\n    <MESSAGE value=\"merge GamePlay codes\" />\n    <MESSAGE value=\"upload PlayerTest\" />\n    <MESSAGE value=\"update Class and Use Case Diagrams\" />\n    <MESSAGE value=\"initial submission\" />\n    <MESSAGE value=\"GUI test\" />\n    <MESSAGE value=\"upload images\" />\n    <MESSAGE value=\"update gui\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"update gui\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\n          <url>file://$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java</url>\n          <line>88</line>\n          <option name=\"timeStamp\" value=\"4\" />\n        </line-breakpoint>\n      </breakpoints>\n    </breakpoint-manager>\n    <watches-manager>\n      <configuration name=\"Application\">\n        <watch expression=\"boardList\" language=\"JAVA\" />\n      </configuration>\n    </watches-manager>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml b/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml
+--- a/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml	(revision 413958c9515c27651d2ab29a4e37b0ed969dd61b)
++++ b/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml	(date 1657271380575)
+@@ -1,8 +1,9 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="update gui">
++    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="upload report">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/sourcecode/screen/GamePlayScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/GamePlayScreen.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -247,7 +248,28 @@
+       <option name="project" value="LOCAL" />
+       <updated>1657098807355</updated>
+     </task>
+-    <option name="localTasksCounter" value="16" />
++    <task id="LOCAL-00016" summary="change gui structure">
++      <created>1657185559046</created>
++      <option name="number" value="00016" />
++      <option name="presentableId" value="LOCAL-00016" />
++      <option name="project" value="LOCAL" />
++      <updated>1657185559047</updated>
++    </task>
++    <task id="LOCAL-00017" summary="change gui structure">
++      <created>1657185566717</created>
++      <option name="number" value="00017" />
++      <option name="presentableId" value="LOCAL-00017" />
++      <option name="project" value="LOCAL" />
++      <updated>1657185566717</updated>
++    </task>
++    <task id="LOCAL-00018" summary="update fxml">
++      <created>1657185750912</created>
++      <option name="number" value="00018" />
++      <option name="presentableId" value="LOCAL-00018" />
++      <option name="project" value="LOCAL" />
++      <updated>1657185750912</updated>
++    </task>
++    <option name="localTasksCounter" value="19" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -291,7 +313,9 @@
+     <MESSAGE value="GUI test" />
+     <MESSAGE value="upload images" />
+     <MESSAGE value="update gui" />
+-    <option name="LAST_COMMIT_MESSAGE" value="update gui" />
++    <MESSAGE value="change gui structure" />
++    <MESSAGE value="update fxml" />
++    <option name="LAST_COMMIT_MESSAGE" value="update fxml" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"022fb2a9-0493-4d6a-9b29-9b6488214bb0\" name=\"Changes\" comment=\"update gui\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sourcecode/screen/GamePlayScreen.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sourcecode/screen/GamePlayScreen.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sourcecode/screen/view/PlayScreen.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sourcecode/screen/view/PlayScreen.fxml\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Interface\" />\n        <option value=\"FxmlFile\" />\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitSEFilterConfiguration\">\n    <file-type-list>\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\n      <filtered-out-file-type name=\"TAG\" />\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\n    </file-type-list>\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2AYta4JtKnDPVcHrcc1TChSNdZQ\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\n    <property name=\"settings.editor.selected.configurable\" value=\"reference.projectsettings.compiler.excludes\" />\n  </component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/sourcecode/screen/view\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"Application.GamePlayScreen\">\n    <configuration name=\"BoardTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.BoardTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"CellTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.CellTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"GamePlay\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.gameplay.GamePlay\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.gameplay.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"GamePlayScreen\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.screen.GamePlayScreen\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.screen.controller.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"PlayerTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.PlayerTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.GamePlayScreen\" />\n        <item itemvalue=\"Application.GamePlay\" />\n        <item itemvalue=\"Application.PlayerTest\" />\n        <item itemvalue=\"Application.BoardTest\" />\n        <item itemvalue=\"Application.CellTest\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"022fb2a9-0493-4d6a-9b29-9b6488214bb0\" name=\"Changes\" comment=\"\" />\n      <created>1655198410651</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1655198410651</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"upload constructors for board and cells\">\n      <created>1655366801447</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655366801447</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"upate BoardTest\">\n      <created>1655366916492</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655366916492</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"upate BoardTest\">\n      <created>1655377007650</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655377007650</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"update class diagram\">\n      <created>1655400980752</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655400980752</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"update class diagram\">\n      <created>1655401039907</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655401039907</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"test board and gem\">\n      <created>1655459148349</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655459148349</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"update methods for Player\">\n      <created>1656005332624</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656005332624</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"merge GamePlay codes\">\n      <created>1656006932258</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656006932258</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"upload PlayerTest\">\n      <created>1656007212680</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656007212680</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"update Class and Use Case Diagrams\">\n      <created>1656009059522</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656009059522</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"initial submission\">\n      <created>1656070586403</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656070586403</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"GUI test\">\n      <created>1656946993988</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656946993988</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"GUI test\">\n      <created>1656952412145</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656952412145</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"upload images\">\n      <created>1657095009722</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657095009722</updated>\n    </task>\n    <task id=\"LOCAL-00015\" summary=\"update gui\">\n      <created>1657098807355</created>\n      <option name=\"number\" value=\"00015\" />\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657098807355</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"16\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"FILTERS\">\n                <map>\n                  <entry key=\"branch\">\n                    <value>\n                      <list>\n                        <option value=\"main\" />\n                      </list>\n                    </value>\n                  </entry>\n                </map>\n              </option>\n              <option name=\"COLUMN_ID_WIDTH\">\n                <map>\n                  <entry key=\"Table.Default.Author.ColumnIdWidth\" value=\"-1\" />\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"upload constructors for board and cells\" />\n    <MESSAGE value=\"upate BoardTest\" />\n    <MESSAGE value=\"update class diagram\" />\n    <MESSAGE value=\"test board and gem\" />\n    <MESSAGE value=\"update methods for Player\" />\n    <MESSAGE value=\"merge GamePlay codes\" />\n    <MESSAGE value=\"upload PlayerTest\" />\n    <MESSAGE value=\"update Class and Use Case Diagrams\" />\n    <MESSAGE value=\"initial submission\" />\n    <MESSAGE value=\"GUI test\" />\n    <MESSAGE value=\"upload images\" />\n    <MESSAGE value=\"update gui\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"update gui\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\n          <url>file://$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java</url>\n          <line>88</line>\n          <option name=\"timeStamp\" value=\"4\" />\n        </line-breakpoint>\n      </breakpoints>\n    </breakpoint-manager>\n    <watches-manager>\n      <configuration name=\"Application\">\n        <watch expression=\"boardList\" language=\"JAVA\" />\n      </configuration>\n    </watches-manager>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 413958c9515c27651d2ab29a4e37b0ed969dd61b)
++++ b/.idea/workspace.xml	(date 1657514322195)
+@@ -1,12 +1,14 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="update gui">
++    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="upload report">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/sourcecode/screen/GamePlayScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/GamePlayScreen.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/view/PlayScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/view/PlayScreen.fxml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -250,7 +252,28 @@
+       <option name="project" value="LOCAL" />
+       <updated>1657098807355</updated>
+     </task>
+-    <option name="localTasksCounter" value="16" />
++    <task id="LOCAL-00016" summary="change gui structure">
++      <created>1657185559046</created>
++      <option name="number" value="00016" />
++      <option name="presentableId" value="LOCAL-00016" />
++      <option name="project" value="LOCAL" />
++      <updated>1657185559047</updated>
++    </task>
++    <task id="LOCAL-00017" summary="change gui structure">
++      <created>1657185566717</created>
++      <option name="number" value="00017" />
++      <option name="presentableId" value="LOCAL-00017" />
++      <option name="project" value="LOCAL" />
++      <updated>1657185566717</updated>
++    </task>
++    <task id="LOCAL-00018" summary="update fxml">
++      <created>1657185750912</created>
++      <option name="number" value="00018" />
++      <option name="presentableId" value="LOCAL-00018" />
++      <option name="project" value="LOCAL" />
++      <updated>1657185750912</updated>
++    </task>
++    <option name="localTasksCounter" value="19" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -294,7 +317,9 @@
+     <MESSAGE value="GUI test" />
+     <MESSAGE value="upload images" />
+     <MESSAGE value="update gui" />
+-    <option name="LAST_COMMIT_MESSAGE" value="update gui" />
++    <MESSAGE value="change gui structure" />
++    <MESSAGE value="update fxml" />
++    <option name="LAST_COMMIT_MESSAGE" value="update fxml" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+Index: out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<?import javafx.scene.control.Label?>\n<?import javafx.scene.image.Image?>\n<?import javafx.scene.image.ImageView?>\n<?import javafx.scene.layout.AnchorPane?>\n<?import javafx.scene.layout.Pane?>\n<?import javafx.scene.text.Font?>\n\n<AnchorPane prefHeight=\"768.0\" prefWidth=\"1024.0\" xmlns=\"http://javafx.com/javafx/8.0.171\" xmlns:fx=\"http://javafx.com/fxml/1\">\n   <children>\n      <Label fx:id=\"Player1Score\" alignment=\"CENTER\" contentDisplay=\"CENTER\" layoutX=\"161.0\" layoutY=\"111.0\" text=\"67\" textAlignment=\"CENTER\" textFill=\"WHITE\">\n         <font>\n            <Font size=\"40.0\" />\n         </font>\n      </Label>\n      <Label fx:id=\"Player2Score\" alignment=\"CENTER\" contentDisplay=\"CENTER\" layoutX=\"820.0\" layoutY=\"606.0\" text=\"67\" textAlignment=\"CENTER\" textFill=\"WHITE\">\n         <font>\n            <Font size=\"40.0\" />\n         </font>\n      </Label>\n      <ImageView fitHeight=\"768.0\" fitWidth=\"1024.0\">\n         <image>\n            <Image url=\"@../images/play-screen.png\" />\n         </image>\n      </ImageView>\n      <Pane fx:id=\"cell1\" layoutX=\"251.0\" layoutY=\"280.0\" onMouseClicked=\"#cellChosen\" prefHeight=\"92.0\" prefWidth=\"101.0\">\n         <children>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"-60.0\" layoutY=\"25.0\" onMouseClicked=\"#leftDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/left-arrow.png\" />\n               </image>\n            </ImageView>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"106.0\" layoutY=\"25.0\" onMouseClicked=\"#rightDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/right-arrow.png\" />\n               </image>\n            </ImageView>\n            <Label fx:id=\"numOfGems1\" layoutX=\"28.0\" layoutY=\"36.0\" text=\"Label\" textFill=\"WHITE\">\n               <font>\n                  <Font size=\"20.0\" />\n               </font>\n            </Label>\n         </children>\n      </Pane>\n      <Pane fx:id=\"cell3\" layoutX=\"462.0\" layoutY=\"286.0\" onMouseClicked=\"#cellChosen\" prefHeight=\"92.0\" prefWidth=\"101.0\">\n         <children>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"-60.0\" layoutY=\"25.0\" onMouseClicked=\"#leftDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/left-arrow.png\" />\n               </image>\n            </ImageView>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"106.0\" layoutY=\"25.0\" onMouseClicked=\"#rightDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/right-arrow.png\" />\n               </image>\n            </ImageView>\n            <Label fx:id=\"numOfGems3\" layoutX=\"28.0\" layoutY=\"33.0\" text=\"Label\" textFill=\"WHITE\">\n               <font>\n                  <Font size=\"20.0\" />\n               </font>\n            </Label>\n         </children>\n      </Pane>\n      <Pane fx:id=\"cell4\" layoutX=\"569.0\" layoutY=\"280.0\" onMouseClicked=\"#cellChosen\" prefHeight=\"92.0\" prefWidth=\"101.0\">\n         <children>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"-60.0\" layoutY=\"25.0\" onMouseClicked=\"#leftDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/left-arrow.png\" />\n               </image>\n            </ImageView>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"106.0\" layoutY=\"25.0\" onMouseClicked=\"#rightDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/right-arrow.png\" />\n               </image>\n            </ImageView>\n            <Label fx:id=\"numOfGems4\" layoutX=\"28.0\" layoutY=\"36.0\" text=\"Label\" textFill=\"WHITE\">\n               <font>\n                  <Font size=\"20.0\" />\n               </font>\n            </Label>\n         </children>\n      </Pane>\n      <Pane fx:id=\"cell5\" layoutX=\"677.0\" layoutY=\"286.0\" onMouseClicked=\"#cellChosen\" prefHeight=\"92.0\" prefWidth=\"101.0\">\n         <children>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"-60.0\" layoutY=\"25.0\" onMouseClicked=\"#leftDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/left-arrow.png\" />\n               </image>\n            </ImageView>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"106.0\" layoutY=\"25.0\" onMouseClicked=\"#rightDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/right-arrow.png\" />\n               </image>\n            </ImageView>\n            <Label fx:id=\"numOfGems5\" layoutX=\"30.0\" layoutY=\"32.0\" text=\"Label\" textFill=\"WHITE\">\n               <font>\n                  <Font size=\"20.0\" />\n               </font>\n            </Label>\n         </children>\n      </Pane>\n      <Pane fx:id=\"cell7\" layoutX=\"677.0\" layoutY=\"384.0\" onMouseClicked=\"#cellChosen\" prefHeight=\"92.0\" prefWidth=\"101.0\">\n         <children>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"-60.0\" layoutY=\"25.0\" onMouseClicked=\"#leftDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/left-arrow.png\" />\n               </image>\n            </ImageView>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"106.0\" layoutY=\"25.0\" onMouseClicked=\"#rightDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/right-arrow.png\" />\n               </image>\n            </ImageView>\n            <Label fx:id=\"numOfGems7\" layoutX=\"28.0\" layoutY=\"32.0\" text=\"Label\" textFill=\"WHITE\">\n               <font>\n                  <Font size=\"20.0\" />\n               </font>\n            </Label>\n         </children>\n      </Pane>\n      <Pane fx:id=\"cell8\" layoutX=\"569.0\" layoutY=\"391.0\" onMouseClicked=\"#cellChosen\" prefHeight=\"92.0\" prefWidth=\"101.0\">\n         <children>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"-60.0\" layoutY=\"25.0\" onMouseClicked=\"#leftDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/left-arrow.png\" />\n               </image>\n            </ImageView>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"106.0\" layoutY=\"25.0\" onMouseClicked=\"#rightDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/right-arrow.png\" />\n               </image>\n            </ImageView>\n            <Label fx:id=\"numOfGems8\" layoutX=\"30.0\" layoutY=\"36.0\" text=\"Label\" textFill=\"WHITE\">\n               <font>\n                  <Font size=\"20.0\" />\n               </font>\n            </Label>\n         </children>\n      </Pane>\n      <Pane fx:id=\"cell9\" layoutX=\"462.0\" layoutY=\"391.0\" onMouseClicked=\"#cellChosen\" prefHeight=\"92.0\" prefWidth=\"101.0\">\n         <children>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"-60.0\" layoutY=\"25.0\" onMouseClicked=\"#leftDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/left-arrow.png\" />\n               </image>\n            </ImageView>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"106.0\" layoutY=\"25.0\" onMouseClicked=\"#rightDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/right-arrow.png\" />\n               </image>\n            </ImageView>\n            <Label fx:id=\"numOfGems9\" layoutX=\"29.0\" layoutY=\"30.0\" text=\"Label\" textFill=\"WHITE\">\n               <font>\n                  <Font size=\"20.0\" />\n               </font>\n            </Label>\n         </children>\n      </Pane>\n      <Pane fx:id=\"cell10\" layoutX=\"359.0\" layoutY=\"391.0\" onMouseClicked=\"#cellChosen\" prefHeight=\"92.0\" prefWidth=\"101.0\">\n         <children>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"-60.0\" layoutY=\"25.0\" onMouseClicked=\"#leftDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/left-arrow.png\" />\n               </image>\n            </ImageView>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"106.0\" layoutY=\"25.0\" onMouseClicked=\"#rightDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/right-arrow.png\" />\n               </image>\n            </ImageView>\n            <Label fx:id=\"numOfGems10\" layoutX=\"35.0\" layoutY=\"30.0\" text=\"Label\" textFill=\"WHITE\">\n               <font>\n                  <Font size=\"20.0\" />\n               </font>\n            </Label>\n         </children>\n      </Pane>\n      <Pane fx:id=\"cell11\" layoutX=\"251.0\" layoutY=\"391.0\" onMouseClicked=\"#cellChosen\" prefHeight=\"92.0\" prefWidth=\"101.0\">\n         <children>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"-60.0\" layoutY=\"25.0\" onMouseClicked=\"#leftDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/left-arrow.png\" />\n               </image>\n            </ImageView>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"106.0\" layoutY=\"25.0\" onMouseClicked=\"#rightDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/right-arrow.png\" />\n               </image>\n            </ImageView>\n            <Label fx:id=\"numOfGems11\" layoutX=\"27.0\" layoutY=\"30.0\" text=\"Label\" textFill=\"WHITE\">\n               <font>\n                  <Font size=\"20.0\" />\n               </font>\n            </Label>\n         </children>\n      </Pane>\n      <Pane fx:id=\"cell2\" layoutX=\"359.0\" layoutY=\"286.0\" onMouseClicked=\"#cellChosen\" prefHeight=\"92.0\" prefWidth=\"101.0\">\n         <children>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"-60.0\" layoutY=\"25.0\" onMouseClicked=\"#leftDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/left-arrow.png\" />\n               </image>\n            </ImageView>\n            <ImageView fitHeight=\"47.0\" fitWidth=\"56.0\" layoutX=\"106.0\" layoutY=\"25.0\" onMouseClicked=\"#rightDirectionChosen\" visible=\"false\">\n               <image>\n                  <Image url=\"@../images/right-arrow.png\" />\n               </image>\n            </ImageView>\n            <Label fx:id=\"numOfGems2\" layoutX=\"28.0\" layoutY=\"33.0\" text=\"Label\" textFill=\"WHITE\">\n               <font>\n                  <Font size=\"20.0\" />\n               </font>\n            </Label>\n         </children>\n      </Pane>\n      <Label fx:id=\"numOfGems0\" layoutX=\"185.0\" layoutY=\"365.0\" rotate=\"270.0\" text=\"Label\" textFill=\"WHITE\">\n         <font>\n            <Font size=\"20.0\" />\n         </font>\n      </Label>\n      <Label fx:id=\"numofGems6\" layoutX=\"797.0\" layoutY=\"371.0\" rotate=\"90.0\" text=\"Label\" textFill=\"WHITE\">\n         <font>\n            <Font size=\"20.0\" />\n         </font>\n      </Label>\n      <Label fx:id=\"player1Name\" layoutX=\"472.0\" layoutY=\"22.0\" text=\"Player 1\" textFill=\"WHITE\">\n         <font>\n            <Font size=\"25.0\" />\n         </font>\n      </Label>\n      <Label fx:id=\"player2Name\" layoutX=\"472.0\" layoutY=\"517.0\" text=\"Player 2\" textFill=\"WHITE\">\n         <font>\n            <Font size=\"25.0\" />\n         </font>\n      </Label>\n   </children>\n</AnchorPane>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml b/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml
+--- a/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml	(revision 413958c9515c27651d2ab29a4e37b0ed969dd61b)
++++ b/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml	(date 1657271380574)
+@@ -43,7 +43,7 @@
+             </Label>
+          </children>
+       </Pane>
+-      <Pane fx:id="cell3" layoutX="462.0" layoutY="286.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
++      <Pane fx:id="cell2" layoutX="359.0" layoutY="286.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
+          <children>
+             <ImageView fitHeight="47.0" fitWidth="56.0" layoutX="-60.0" layoutY="25.0" onMouseClicked="#leftDirectionChosen" visible="false">
+                <image>
+@@ -55,14 +55,14 @@
+                   <Image url="@../images/right-arrow.png" />
+                </image>
+             </ImageView>
+-            <Label fx:id="numOfGems3" layoutX="28.0" layoutY="33.0" text="Label" textFill="WHITE">
++            <Label fx:id="numOfGems2" layoutX="28.0" layoutY="33.0" text="Label" textFill="WHITE">
+                <font>
+                   <Font size="20.0" />
+                </font>
+             </Label>
+          </children>
+       </Pane>
+-      <Pane fx:id="cell4" layoutX="569.0" layoutY="280.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
++      <Pane fx:id="cell3" layoutX="462.0" layoutY="286.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
+          <children>
+             <ImageView fitHeight="47.0" fitWidth="56.0" layoutX="-60.0" layoutY="25.0" onMouseClicked="#leftDirectionChosen" visible="false">
+                <image>
+@@ -74,14 +74,14 @@
+                   <Image url="@../images/right-arrow.png" />
+                </image>
+             </ImageView>
+-            <Label fx:id="numOfGems4" layoutX="28.0" layoutY="36.0" text="Label" textFill="WHITE">
++            <Label fx:id="numOfGems3" layoutX="28.0" layoutY="33.0" text="Label" textFill="WHITE">
+                <font>
+                   <Font size="20.0" />
+                </font>
+             </Label>
+          </children>
+       </Pane>
+-      <Pane fx:id="cell5" layoutX="677.0" layoutY="286.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
++      <Pane fx:id="cell4" layoutX="569.0" layoutY="280.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
+          <children>
+             <ImageView fitHeight="47.0" fitWidth="56.0" layoutX="-60.0" layoutY="25.0" onMouseClicked="#leftDirectionChosen" visible="false">
+                <image>
+@@ -93,14 +93,14 @@
+                   <Image url="@../images/right-arrow.png" />
+                </image>
+             </ImageView>
+-            <Label fx:id="numOfGems5" layoutX="30.0" layoutY="32.0" text="Label" textFill="WHITE">
++            <Label fx:id="numOfGems4" layoutX="28.0" layoutY="36.0" text="Label" textFill="WHITE">
+                <font>
+                   <Font size="20.0" />
+                </font>
+             </Label>
+          </children>
+       </Pane>
+-      <Pane fx:id="cell7" layoutX="677.0" layoutY="384.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
++      <Pane fx:id="cell5" layoutX="677.0" layoutY="286.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
+          <children>
+             <ImageView fitHeight="47.0" fitWidth="56.0" layoutX="-60.0" layoutY="25.0" onMouseClicked="#leftDirectionChosen" visible="false">
+                <image>
+@@ -112,14 +112,14 @@
+                   <Image url="@../images/right-arrow.png" />
+                </image>
+             </ImageView>
+-            <Label fx:id="numOfGems7" layoutX="28.0" layoutY="32.0" text="Label" textFill="WHITE">
++            <Label fx:id="numOfGems5" layoutX="30.0" layoutY="32.0" text="Label" textFill="WHITE">
+                <font>
+                   <Font size="20.0" />
+                </font>
+             </Label>
+          </children>
+       </Pane>
+-      <Pane fx:id="cell8" layoutX="569.0" layoutY="391.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
++      <Pane fx:id="cell7" layoutX="677.0" layoutY="384.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
+          <children>
+             <ImageView fitHeight="47.0" fitWidth="56.0" layoutX="-60.0" layoutY="25.0" onMouseClicked="#leftDirectionChosen" visible="false">
+                <image>
+@@ -131,14 +131,14 @@
+                   <Image url="@../images/right-arrow.png" />
+                </image>
+             </ImageView>
+-            <Label fx:id="numOfGems8" layoutX="30.0" layoutY="36.0" text="Label" textFill="WHITE">
++            <Label fx:id="numOfGems7" layoutX="28.0" layoutY="32.0" text="Label" textFill="WHITE">
+                <font>
+                   <Font size="20.0" />
+                </font>
+             </Label>
+          </children>
+       </Pane>
+-      <Pane fx:id="cell9" layoutX="462.0" layoutY="391.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
++      <Pane fx:id="cell8" layoutX="569.0" layoutY="391.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
+          <children>
+             <ImageView fitHeight="47.0" fitWidth="56.0" layoutX="-60.0" layoutY="25.0" onMouseClicked="#leftDirectionChosen" visible="false">
+                <image>
+@@ -150,14 +150,14 @@
+                   <Image url="@../images/right-arrow.png" />
+                </image>
+             </ImageView>
+-            <Label fx:id="numOfGems9" layoutX="29.0" layoutY="30.0" text="Label" textFill="WHITE">
++            <Label fx:id="numOfGems8" layoutX="30.0" layoutY="36.0" text="Label" textFill="WHITE">
+                <font>
+                   <Font size="20.0" />
+                </font>
+             </Label>
+          </children>
+       </Pane>
+-      <Pane fx:id="cell10" layoutX="359.0" layoutY="391.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
++      <Pane fx:id="cell9" layoutX="462.0" layoutY="391.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
+          <children>
+             <ImageView fitHeight="47.0" fitWidth="56.0" layoutX="-60.0" layoutY="25.0" onMouseClicked="#leftDirectionChosen" visible="false">
+                <image>
+@@ -169,14 +169,14 @@
+                   <Image url="@../images/right-arrow.png" />
+                </image>
+             </ImageView>
+-            <Label fx:id="numOfGems10" layoutX="35.0" layoutY="30.0" text="Label" textFill="WHITE">
++            <Label fx:id="numOfGems9" layoutX="29.0" layoutY="30.0" text="Label" textFill="WHITE">
+                <font>
+                   <Font size="20.0" />
+                </font>
+             </Label>
+          </children>
+       </Pane>
+-      <Pane fx:id="cell11" layoutX="251.0" layoutY="391.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
++      <Pane fx:id="cell10" layoutX="359.0" layoutY="391.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
+          <children>
+             <ImageView fitHeight="47.0" fitWidth="56.0" layoutX="-60.0" layoutY="25.0" onMouseClicked="#leftDirectionChosen" visible="false">
+                <image>
+@@ -188,14 +188,14 @@
+                   <Image url="@../images/right-arrow.png" />
+                </image>
+             </ImageView>
+-            <Label fx:id="numOfGems11" layoutX="27.0" layoutY="30.0" text="Label" textFill="WHITE">
++            <Label fx:id="numOfGems10" layoutX="35.0" layoutY="30.0" text="Label" textFill="WHITE">
+                <font>
+                   <Font size="20.0" />
+                </font>
+             </Label>
+          </children>
+       </Pane>
+-      <Pane fx:id="cell2" layoutX="359.0" layoutY="286.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
++      <Pane fx:id="cell11" layoutX="251.0" layoutY="391.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
+          <children>
+             <ImageView fitHeight="47.0" fitWidth="56.0" layoutX="-60.0" layoutY="25.0" onMouseClicked="#leftDirectionChosen" visible="false">
+                <image>
+@@ -207,7 +207,7 @@
+                   <Image url="@../images/right-arrow.png" />
+                </image>
+             </ImageView>
+-            <Label fx:id="numOfGems2" layoutX="28.0" layoutY="33.0" text="Label" textFill="WHITE">
++            <Label fx:id="numOfGems11" layoutX="27.0" layoutY="30.0" text="Label" textFill="WHITE">
+                <font>
+                   <Font size="20.0" />
+                </font>

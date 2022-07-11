@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="768.0" fitWidth="1024.0">
          <image>
@@ -16,19 +16,19 @@
       </ImageView>
       <Pane fx:id="cell1" layoutX="251.0" layoutY="280.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
          <children>
-            <ImageView fx:id="leftArrowCell1" fitHeight="47.0" fitWidth="56.0" layoutX="-60.0" layoutY="25.0" onMouseClicked="#leftDirectionChosen" visible="false">
+            <ImageView fx:id="leftArrowCell1" fitHeight="47.0" fitWidth="56.0" layoutX="-39.0" layoutY="27.0" onMouseClicked="#leftDirectionChosen">
                <image>
                   <Image url="@../images/left-arrow.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="rightArrowCell1" fitHeight="47.0" fitWidth="56.0" layoutX="106.0" layoutY="25.0" onMouseClicked="#rightDirectionChosen" visible="false">
+            <ImageView fx:id="rightArrowCell1" fitHeight="47.0" fitWidth="56.0" layoutX="106.0" layoutY="25.0" onMouseClicked="#rightDirectionChosen">
                <image>
                   <Image url="@../images/right-arrow.png" />
                </image>
             </ImageView>
-            <Label fx:id="numOfGems1" layoutX="28.0" layoutY="36.0" text="5" textFill="WHITE">
+            <Label fx:id="numOfGems1" layoutX="45.0" layoutY="36.0" text="5" textFill="WHITE">
                <font>
-                  <Font size="20.0" />
+                  <Font size="24.0" />
                </font>
             </Label>
          </children>
@@ -45,9 +45,9 @@
                   <Image url="@../images/right-arrow.png" />
                </image>
             </ImageView>
-            <Label fx:id="numOfGems2" layoutX="28.0" layoutY="33.0" text="5" textFill="WHITE">
+            <Label fx:id="numOfGems2" layoutX="45.0" layoutY="30.0" text="5" textFill="WHITE">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Label>
          </children>
@@ -204,9 +204,9 @@
             </Label>
          </children>
       </Pane>
-      <Label fx:id="numOfGems0" layoutX="185.0" layoutY="365.0" rotate="270.0" text="1" textFill="WHITE">
+      <Label fx:id="numOfGems0" layoutX="209.0" layoutY="371.0" rotate="270.0" text="1" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font size="24.0" />
          </font>
       </Label>
       <Label fx:id="numofGems6" layoutX="797.0" layoutY="371.0" rotate="90.0" text="1" textFill="WHITE">
@@ -214,7 +214,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="player1Name" layoutX="472.0" layoutY="22.0" text="Player 1" textFill="WHITE">
+      <Label fx:id="player1Name" layoutX="474.0" layoutY="21.0" text="Player 1" textFill="WHITE">
          <font>
             <Font size="25.0" />
          </font>
@@ -224,12 +224,12 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Label layoutX="139.0" layoutY="94.0" prefHeight="71.0" prefWidth="96.0" text="10" textFill="WHITE">
+      <Label fx:id="player1Score" alignment="CENTER" contentDisplay="CENTER" layoutX="117.0" layoutY="102.0" prefHeight="71.0" prefWidth="96.0" text="10" textFill="WHITE">
          <font>
             <Font size="40.0" />
          </font>
       </Label>
-      <Label layoutX="807.0" layoutY="589.0" prefHeight="71.0" prefWidth="96.0" text="10" textFill="WHITE">
+      <Label fx:id="player2Score" alignment="CENTER" layoutX="789.0" layoutY="593.0" prefHeight="71.0" prefWidth="96.0" text="10" textFill="WHITE">
          <font>
             <Font size="40.0" />
          </font>

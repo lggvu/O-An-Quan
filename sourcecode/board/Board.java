@@ -68,7 +68,7 @@ public class Board {
         }
     }
 
-    public void setGem() {
+/*    public void setGem() {
         this.board[0] = new HalfCircle(0, numBigGem /2);
         this.board[(numSquare + numHalfCircle)/2] = new HalfCircle((numSquare + numHalfCircle)/2, numBigGem /2);
         this.board[(numSquare + numHalfCircle)/2].addGem(new bigGem(this.board[(numSquare + numHalfCircle)/2]));
@@ -100,5 +100,5 @@ public class Board {
                 this.board[i].addGem(new smallGem(this.board[i]));
             }
         }
-    }
+    }*/
 }
