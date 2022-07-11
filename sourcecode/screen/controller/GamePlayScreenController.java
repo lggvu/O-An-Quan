@@ -4,9 +4,7 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.event.EventTarget;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -19,6 +17,7 @@ import javafx.scene.image.ImageView;
 public class GamePlayScreenController implements Initializable {
 	private Player player1, player2, currentPlayer;
 	private Board board;
+//	private Cell[] boardList = this.board.getBoard();
 
     public GamePlayScreenController(Board board, Player player1, Player player2) {
         this.player1 = player1;
@@ -150,7 +149,7 @@ public class GamePlayScreenController implements Initializable {
 	private Label numOfGems0;
 
 	@FXML
-	private Label numofGems6;
+	private Label numOfGems6;
 
 	@FXML
 	private Label player1Name;
@@ -164,21 +163,7 @@ public class GamePlayScreenController implements Initializable {
 	@FXML
 	private Label player2Score;
 
-	@FXML
-//	void cellChosen(MouseEvent event) {
-//
-//	}
-//
-//	@FXML
-//	void leftDirectionChosen(MouseEvent event) {
-//
-//	}
-//
-//	@FXML
-//	void rightDirectionChosen(MouseEvent event) {
-//
-//	}
-    
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO
@@ -188,8 +173,11 @@ public class GamePlayScreenController implements Initializable {
     @FXML
     void cellChosen(MouseEvent event) {
         String paneChosen = event.getPickResult().getIntersectedNode().getId();
-        //Set Imageview (Let rightArrow and leftArrow visible after clicked this Pane)
-        if (paneChosen.equals("cell1")) {
+		System.out.println(paneChosen);
+        // Set Imageview (Let rightArrow and leftArrow visible after clicked this Pane)
+		// TODO clean this up
+
+		if (paneChosen.contains("cell1")) {
         	leftArrowCell1.setVisible(true);
         	rightArrowCell1.setVisible(true);
         	leftArrowCell2.setVisible(false);
@@ -405,17 +393,29 @@ public class GamePlayScreenController implements Initializable {
     @FXML
     void leftDirectionChosen(MouseEvent event) {
         String leftDirectionChosen = event.getPickResult().getIntersectedNode().getId();
+		System.out.println(leftDirectionChosen);
         Cell[] boardList = this.board.getBoard();
         if (player1.isInTurn()) {
         	this.currentPlayer = this.player1;
         }else {
         	this.currentPlayer = this.player2;
         }
-        for (int i = 1; i <= 11; i ++) {
+
+		for(int i = 1; i <= 5; i++) {
+			String leftArrowName = "leftArrowCell" + i;
+			if(leftDirectionChosen.equals(leftArrowName)) {
+				currentPlayer.pickUpGemFrom(boardList[i]);
+				currentPlayer.spreadGem(boardList[i], 1, this.board);
+				setNumGems(boardList);
+				setScore();
+			}
+		}
+
+        for (int i = 7; i <= 11; i++) {
         	String leftArrowName = "leftArrowCell" + i;
         	if (leftDirectionChosen.equals(leftArrowName)){ 
         		currentPlayer.pickUpGemFrom(boardList[i]);
-        		currentPlayer.spreadGem(boardList[i], 1, this.board);
+        		currentPlayer.spreadGem(boardList[i], 0, this.board);
         		setNumGems(boardList);
         		setScore();
         	}
@@ -426,21 +426,33 @@ public class GamePlayScreenController implements Initializable {
     @FXML
     void rightDirectionChosen(MouseEvent event) {
         String rightDirectionChosen = event.getPickResult().getIntersectedNode().getId();
+		System.out.println(rightDirectionChosen);
         Cell[] boardList = this.board.getBoard();
         if (player1.isInTurn()) {
         	this.currentPlayer = this.player1;
         }else {
         	this.currentPlayer = this.player2;
         }
-        for (int i = 1; i <= 11; i ++) {
-        	String rightArrowName = "rightArrowCell" + i;
-        	if (rightDirectionChosen.equals(rightArrowName)){
-           		currentPlayer.pickUpGemFrom(boardList[i]);
-        		currentPlayer.spreadGem(boardList[i], 0, this.board);
-        		setNumGems(boardList);
-        		//setScore();
-        	}
-        }
+
+		for(int i = 1; i <= 5; i++) {
+			String rightArrowName = "rightArrowCell" + i;
+			if(rightDirectionChosen.equals(rightArrowName)) {
+				currentPlayer.pickUpGemFrom(boardList[i]);
+				currentPlayer.spreadGem(boardList[i], 0, this.board);
+				setNumGems(boardList);
+				setScore();
+			}
+		}
+
+		for (int i = 7; i <= 11; i++) {
+			String rightArrowName = "rightArrowCell" + i;
+			if (rightDirectionChosen.equals(rightArrowName)){
+				currentPlayer.pickUpGemFrom(boardList[i]);
+				currentPlayer.spreadGem(boardList[i], 1, this.board);
+				setNumGems(boardList);
+				setScore();
+			}
+		}
 
     }
     
@@ -451,7 +463,7 @@ public class GamePlayScreenController implements Initializable {
     	numOfGems3.setText("" + boardList[3].getGemList().size());
     	numOfGems4.setText("" + boardList[4].getGemList().size());
     	numOfGems5.setText("" + boardList[5].getGemList().size());
-    	numofGems6.setText("" + boardList[6].getGemList().size());
+    	numOfGems6.setText("" + boardList[6].getGemList().size());
     	numOfGems7.setText("" + boardList[7].getGemList().size());
     	numOfGems8.setText("" + boardList[8].getGemList().size());
     	numOfGems9.setText("" + boardList[9].getGemList().size());
@@ -464,4 +476,10 @@ public class GamePlayScreenController implements Initializable {
     	player1Score.setText("" + this.player1.calculateScore());
     	player2Score.setText("" + this.player2.calculateScore());
     }
+
+//	public void setPlayerName() {
+//		player1Name.setText(this.player1.getName());
+//		player2Name.setText(this.player2.getName());
+//	}
+
 }
