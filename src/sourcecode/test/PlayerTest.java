@@ -40,7 +40,7 @@ public class PlayerTest {
         for(Cell cell:boardList) {
             System.out.println(cell.seeDetails());
         }
-
+/*
         Board board2 = new Board();
         board2.setGem();
         Cell[] boardList2 = board2.getBoard();
@@ -63,5 +63,9 @@ public class PlayerTest {
         for(Cell cell:boardList2) {
             System.out.println(cell.seeDetails());
         }
-     }
+
+ */
+    }
+
+
 }

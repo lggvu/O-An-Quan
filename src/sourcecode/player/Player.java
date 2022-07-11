@@ -12,6 +12,11 @@ public class Player {
     private String name;
     private int id;
     private ArrayList<Gem> gemsInHand = new ArrayList<Gem>();
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     private ArrayList<Gem> gemsCaptured = new ArrayList<Gem>();
     private ArrayList<Cell> cellsOnSide = new ArrayList<Cell>();
     private Cell handPosition;
@@ -40,12 +45,19 @@ public class Player {
         this.name = name;
     }
 
+    public Player() {
+
+    }
+
     public Player(String name, Cell position) {
         this.name = name;
         this.handPosition = position;
     }
 
     public boolean pickUpGemFrom(Cell cell) {
+        /*
+        Action: Pick up gem from cell `cell`
+         */
         if(!(cell instanceof HalfCircle) && !(cell.isEmpty())) { // TODO add cells on side
 //            System.out.println("Picked up from cell " + cell.getPosition());
             this.gemsInHand.addAll(cell.getGemList());
@@ -58,6 +70,10 @@ public class Player {
     }
 
     public void spreadGem(Cell initPosition, int handDirection, Board board) {
+        /*
+        Suppose already picked up gem from initPosition
+        Actions: move to the cell nearby, drop gem into it, continue moving to the cells nearby
+         */
         this.handPosition = initPosition;
         if (handDirection == 0) {  // clockwise
             ArrayList<Gem> tmpGemsInHand = new ArrayList<>(this.gemsInHand);
@@ -86,7 +102,7 @@ public class Player {
                 handPosition = board.getNextCellCounterClockwise(handPosition);
                 dropGemInto(gem, handPosition);
             }
-             // check turn continuity
+            // check turn continuity
             Cell nextHandPosition = board.getNextCellCounterClockwise(handPosition);
             if(!nextHandPosition.isEmpty()) {
                 if(!(nextHandPosition instanceof HalfCircle)) {  // can continue spreading
@@ -104,6 +120,9 @@ public class Player {
     }
 
     public void dropGemInto(Gem gem, Cell cell) {
+        /*
+        Action: Drop the gem `gem` into cell `cell`
+         */
         if(this.gemsInHand.size() > 0) {
             cell.addGem(gem);
             this.gemsInHand.remove(gem);
@@ -112,8 +131,14 @@ public class Player {
         // else skip
     }
 
+    public String getName() {
+        return this.name;
+    }
 
     public void earnGemFrom(Cell cell) {
+        /*
+        Action: earn gem from cell `cell`
+         */
         this.gemsCaptured.addAll(cell.getGemList());
         cell.emptyCell();
 //        System.out.println("Eat all gems at: " + cell.getPosition());
@@ -162,10 +187,6 @@ public class Player {
         this.borrow = isBorrow;
     }
 
-	public String getName() {
-		return this.name;
-	}
-	
 	public int numBigGemsInGemsCaptured() {
 		int res = 0;
 		for (int i = 0; i < gemsCaptured.size(); i++) {
@@ -175,6 +196,7 @@ public class Player {
 		}
 		return res;
 	}
+
 
 
 }

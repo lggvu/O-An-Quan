@@ -1,0 +1,24 @@
+<changelist name="Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]" date="1656925082367" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 04/07/2022, 15:57 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/player/Player.class" />
+    <option name="AFTER_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/player/Player.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/Player.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/test/PlayerTest.class" />
+    <option name="AFTER_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/test/PlayerTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/PlayerTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/test/BoardTest.class" />
+    <option name="AFTER_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/test/BoardTest.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/BoardTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" />
+    <option name="AFTER_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/Board.class" />
+  </binary>
+</changelist>
