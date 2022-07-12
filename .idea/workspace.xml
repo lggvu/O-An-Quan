@@ -4,7 +4,6 @@
     <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="update intro screen gui">
       <change afterPath="$PROJECT_DIR$/sourcecode/screen/application/HelpScreen.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/sourcecode/screen/application/IntroScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_41_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_16_33_[Changes]/shelved.patch" beforeDir="false" />
@@ -13,7 +12,6 @@
       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__15_57__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__16_33__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__18_12__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/HalfCircle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/HalfCircle.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Square.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Square.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gameplay/GamePlay.class" beforeDir="false" />
@@ -23,9 +21,6 @@
       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/GamePlayScreen.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/sourcecode/screen/GamePlayScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/application/GamePlayScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sourcecode/screen/controller/HelpScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/HelpScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/controller/IntroScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/IntroScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/view/HelpScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/view/HelpScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/view/IntroScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/view/IntroScreen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +39,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="topic/gui/intro-screen" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
