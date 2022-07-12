@@ -6,7 +6,7 @@ public class Board {
     private static final int numSquare = 10; // even number
     private static final int numHalfCircle = 2;  // even number
     private static final int numSmallGem = 50;
-    private static final int numBigGem = 10;
+    private static final int numBigGem = 2;
     private Cell[] board = new Cell[numHalfCircle + numSquare];
 
     public int getNumSquare() {
@@ -67,8 +67,8 @@ public class Board {
             return this.board[cell.getPosition() + 1];
         }
     }
-    
-    public void setGem() {
+
+/*    public void setGem() {
         this.board[0] = new HalfCircle(0, numBigGem /2);
         this.board[(numSquare + numHalfCircle)/2] = new HalfCircle((numSquare + numHalfCircle)/2, numBigGem /2);
         this.board[(numSquare + numHalfCircle)/2].addGem(new bigGem(this.board[(numSquare + numHalfCircle)/2]));
@@ -83,22 +83,22 @@ public class Board {
             this.board[i] = new Square(i, numSmallGem / numSquare);
         }
         for (int i = 0; i < 5; i ++) {
-        	this.board[1].addGem(new smallGem(this.board[1]));
+            this.board[1].addGem(new smallGem(this.board[1]));
         }
         for (int i = 0; i < 4; i ++) {
-        	this.board[3].addGem(new smallGem(this.board[3]));
+            this.board[3].addGem(new smallGem(this.board[3]));
         }
-        
+
         this.board[5].addGem(new smallGem(this.board[5]));
         for (int i = 7; i < 10; i ++) {
-        	for (int j = 0; j < 5; j++) {
-        		this.board[i].addGem(new smallGem(this.board[i]));
-        	}
+            for (int j = 0; j < 5; j++) {
+                this.board[i].addGem(new smallGem(this.board[i]));
+            }
         }
         for (int i = 10; i < 12; i ++) {
-        	for (int j = 0; j < 7; j ++) {
-        		this.board[i].addGem(new smallGem(this.board[i]));
-        	}
+            for (int j = 0; j < 7; j ++) {
+                this.board[i].addGem(new smallGem(this.board[i]));
+            }
         }
-    }
+    }*/
 }

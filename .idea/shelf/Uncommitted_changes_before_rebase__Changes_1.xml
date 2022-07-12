@@ -1,0 +1,9 @@
+<changelist name="Uncommitted_changes_before_rebase_[Changes]1" date="1657562635795" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before rebase [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/screen/GamePlayScreen.class" />
+    <option name="AFTER_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/screen/GamePlayScreen.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/GamePlayScreen.class" />
+  </binary>
+</changelist>
