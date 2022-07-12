@@ -50,7 +50,7 @@ public class GamePlayScreen extends Application {
         );
 
          */
-        music();
+//        music();
 
         final String PLAY_SCREEN_FXML_FILE_PATH = "/sourcecode/screen/view/PlayScreen.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(PLAY_SCREEN_FXML_FILE_PATH));

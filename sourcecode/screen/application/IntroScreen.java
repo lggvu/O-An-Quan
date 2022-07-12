@@ -21,7 +21,7 @@ public class IntroScreen extends Application {
     private static Player player1, player2;
 
     public void start(Stage primaryStage) {
-        music();
+//        music();
 
         final String INTRO_SCREEN_FXML_FILE_PATH = "/sourcecode/screen/view/IntroScreen.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(INTRO_SCREEN_FXML_FILE_PATH));
