@@ -3,7 +3,7 @@ package sourcecode.gem;
 import sourcecode.board.Cell;
 
 public class bigGem extends Gem{
-	protected int VALUE = 5;
+	protected int VALUE = 1;
     public bigGem(Cell position){
         super(position);
     }

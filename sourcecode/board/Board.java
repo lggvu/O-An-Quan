@@ -6,7 +6,7 @@ public class Board {
     private static final int numSquare = 10; // even number
     private static final int numHalfCircle = 2;  // even number
     private static final int numSmallGem = 50;
-    private static final int numBigGem = 2;
+    private static final int numBigGem = 10;
     private Cell[] board = new Cell[numHalfCircle + numSquare];
 
     public int getNumSquare() {
@@ -27,10 +27,14 @@ public class Board {
 
     public Board() {
         this.board[0] = new HalfCircle(0, numBigGem /2);
-        this.board[0].addGem(new bigGem(this.board[0]));
+        for(int i = 1; i <= 5; i++) {
+            this.board[0].addGem(new bigGem(this.board[0]));
+        }
 
         this.board[(numSquare + numHalfCircle)/2] = new HalfCircle((numSquare + numHalfCircle)/2, numBigGem /2);
-        this.board[(numSquare + numHalfCircle)/2].addGem(new bigGem(this.board[(numSquare + numHalfCircle)/2]));
+        for(int i = 1; i <= 5; i++) {
+            this.board[(numSquare + numHalfCircle) / 2].addGem(new bigGem(this.board[(numSquare + numHalfCircle) / 2]));
+        }
 
         for(int i = 1; i <= (numSquare /2); i++) {
             this.board[i] = new Square(i, numSmallGem / numSquare);
