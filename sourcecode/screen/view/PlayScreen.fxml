@@ -16,25 +16,21 @@
       </ImageView>
       <Pane fx:id="cell1" layoutX="251.0" layoutY="285.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
          <children>
-            <ImageView fx:id="leftArrowCell1" fitHeight="47.0" fitWidth="56.0" layoutX="-60.0" layoutY="27.0" onMouseClicked="#leftDirectionChosen" visible="false">
+            <Label fx:id="numOfGems1" layoutX="43.0" layoutY="29.0" text="5" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="leftArrowCell1" fitHeight="47.0" fitWidth="56.0" layoutX="11.0" layoutY="27.0" onMouseClicked="#leftDirectionChosen" x="-70.0" y="-5.0">
                <image>
                   <Image url="@../images/left-arrow.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="rightArrowCell1" fitHeight="47.0" fitWidth="56.0" layoutX="106.0" layoutY="25.0" onMouseClicked="#rightDirectionChosen" visible="false">
+            <ImageView fx:id="rightArrowCell1" fitHeight="47.0" fitWidth="56.0" layoutX="61.0" layoutY="15.0" onMouseClicked="#rightDirectionChosen" x="43.0" y="9.0">
                <image>
                   <Image url="@../images/right-arrow.png" />
                </image>
             </ImageView>
-            <Pane layoutX="43.0" layoutY="30.0" onMouseClicked="#cellChosen">
-               <children>
-                  <Label fx:id="numOfGems1" text="5" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
          </children>
       </Pane>
       <Pane fx:id="cell2" layoutX="359.0" layoutY="286.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
@@ -49,15 +45,11 @@
                   <Image url="@../images/right-arrow.png" />
                </image>
             </ImageView>
-            <Pane layoutX="43.0" layoutY="29.0">
-               <children>
-                  <Label fx:id="numOfGems2" text="5" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
+            <Label fx:id="numOfGems2" layoutX="43.0" layoutY="29.0" text="5" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane fx:id="cell3" layoutX="462.0" layoutY="286.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
@@ -91,7 +83,7 @@
                   <Image url="@../images/right-arrow.png" />
                </image>
             </ImageView>
-            <Label fx:id="numOfGems4" layoutX="41.0" layoutY="28.0" text="5" textFill="WHITE">
+            <Label fx:id="numOfGems4" layoutX="41.0" layoutY="29.0" text="5" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
@@ -129,7 +121,7 @@
                   <Image url="@../images/right-arrow.png" />
                </image>
             </ImageView>
-            <Label fx:id="numOfGems7" layoutX="45.0" layoutY="32.0" text="5" textFill="WHITE">
+            <Label fx:id="numOfGems7" layoutX="45.0" layoutY="34.0" text="5" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
@@ -186,7 +178,7 @@
                   <Image url="@../images/right-arrow.png" />
                </image>
             </ImageView>
-            <Label fx:id="numOfGems10" layoutX="43.0" layoutY="33.0" text="5" textFill="WHITE">
+            <Label fx:id="numOfGems10" layoutX="43.0" layoutY="34.0" text="5" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font>
@@ -200,7 +192,7 @@
                   <Image url="@../images/left-arrow.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="rightArrowCell11" fitHeight="47.0" fitWidth="56.0" layoutX="106.0" layoutY="25.0" onMouseClicked="#rightDirectionChosen" visible="false">
+            <ImageView fx:id="rightArrowCell11" fitHeight="47.0" fitWidth="56.0" layoutX="106.0" layoutY="25.0" onMouseClicked="#rightDirectionChosen">
                <image>
                   <Image url="@../images/right-arrow.png" />
                </image>
@@ -242,5 +234,15 @@
             <Font size="40.0" />
          </font>
       </Label>
+      <ImageView fx:id="player1Badge" layoutX="544.0" layoutY="-7.0" visible="false">
+         <image>
+            <Image url="@../images/paw-player-1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="player2Badge" layoutX="335.0" layoutY="460.0" visible="false">
+         <image>
+            <Image url="@../images/paw-player-2.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

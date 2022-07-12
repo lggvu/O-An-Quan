@@ -6,12 +6,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import sourcecode.board.Board;
 import sourcecode.player.Player;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class IntroScreenController {
     private final Board board;
@@ -56,8 +59,20 @@ public class IntroScreenController {
 
     @FXML
     void btnExitGameClicked(ActionEvent event) {
-        Stage stage = (Stage) btnExitGame.getScene().getWindow();
-        stage.close();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Exit Confirmation");
+        alert.setHeaderText("Exit Game");
+        alert.setContentText("Are you sure you want to exit?");
+        Optional<ButtonType> res = alert.showAndWait();
+        if(res.get() == ButtonType.OK) {
+            // quit game
+            Stage stage = (Stage) btnExitGame.getScene().getWindow();
+            stage.close();
+        } else {
+            // close dialog
+            alert.close();
+        }
+
     }
 
     @FXML

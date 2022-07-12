@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="build intro and help screen">
-      <change afterPath="$PROJECT_DIR$/sourcecode/screen/view/EndGameScreen.fxml" afterDir="false" />
+    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="allow switching between 3 screens">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/HelpScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/HelpScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/view/HelpScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/view/HelpScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/view/IntroScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/view/IntroScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/IntroScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/IntroScreenController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/screen/controller/IntroScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/IntroScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/screen/images/play-screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/images/play-screen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/screen/view/PlayScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/view/PlayScreen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -287,7 +285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657594963563</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="allow switching between 3 screens">
+      <created>1657619699759</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1657619699759</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -334,7 +339,8 @@
     <MESSAGE value="change gui structure" />
     <MESSAGE value="update fxml" />
     <MESSAGE value="update intro screen gui" />
-    <option name="LAST_COMMIT_MESSAGE" value="update intro screen gui" />
+    <MESSAGE value="allow switching between 3 screens" />
+    <option name="LAST_COMMIT_MESSAGE" value="allow switching between 3 screens" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
