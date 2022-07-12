@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="upload report">
+    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="update player spread in gui">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_41_[Changes]/Board.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_41_[Changes]/BoardTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_41_[Changes]/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_41_[Changes]/PlayerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_41_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/Board.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/BoardTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/PlayerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_16_33_[Changes]/Board.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_16_33_[Changes]/BoardTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_16_33_[Changes]/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_16_33_[Changes]/PlayerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_16_33_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_18_12_[Changes]/Board.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_18_12_[Changes]/BoardTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_18_12_[Changes]/Player.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_18_12_[Changes]/PlayerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_18_12_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__15_41__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__15_57__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__16_33__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__18_12__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/GamePlayScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/GamePlayScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/board/Board.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/board/Cell.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/board/HalfCircle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/board/Square.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/gameplay/GamePlay.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/gameplay/GamePlayTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/gem/Gem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/gem/bigGem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/gem/smallGem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/player/Hand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/player/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/GamePlayScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/controller/GamePlayScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/images/empty-star.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/images/filled-star.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/images/home-button.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/images/left-arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/images/play-screen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/images/right-arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/images/setting-button.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/view/PlayScreen.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/test/BoardTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/test/CellTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sourcecode/test/PlayerTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -273,7 +316,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657185750912</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="update fxml">
+      <created>1657538447350</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1657538447350</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -287,7 +337,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="topic/gui/play-screen" />
                       </list>
                     </value>
                   </entry>
@@ -322,15 +372,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="update fxml" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java</url>
-          <line>88</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="boardList" language="JAVA" />

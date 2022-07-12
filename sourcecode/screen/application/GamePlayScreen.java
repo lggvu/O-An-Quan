@@ -1,4 +1,4 @@
-package sourcecode.screen;
+package sourcecode.screen.application;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -49,8 +49,8 @@ public class GamePlayScreen extends Application {
 
         final String PLAY_SCREEN_FXML_FILE_PATH = "/sourcecode/screen/view/PlayScreen.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(PLAY_SCREEN_FXML_FILE_PATH));
-        GamePlayScreenController viewStoreController = new GamePlayScreenController(board, player1, player2);
-        fxmlLoader.setController(viewStoreController);
+        GamePlayScreenController gamePlayScreenController = new GamePlayScreenController(board, player1, player2);
+        fxmlLoader.setController(gamePlayScreenController);
         Parent root = null;
         try {
             root = fxmlLoader.load();

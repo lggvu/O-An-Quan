@@ -1,0 +1,14 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_11_07_2022,_12_50_[Changes]" date="1657518612299" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_07_2022,_12_50_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 11/07/2022, 12:50 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class" />
+    <option name="AFTER_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_07_2022,_12_50_[Changes]/GamePlayScreenController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" />
+    <option name="AFTER_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_11_07_2022,_12_50_[Changes]/Board.class" />
+  </binary>
+</changelist>
