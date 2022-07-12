@@ -1,13 +1,19 @@
 package sourcecode.screen.controller;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import sourcecode.board.Board;
 import sourcecode.board.Cell;
 import sourcecode.player.Player;
@@ -162,6 +168,27 @@ public class GamePlayScreenController implements Initializable {
 
 	@FXML
 	private Label player2Score;
+
+	@FXML
+	private Button btnExit;
+
+	@FXML
+	void btnExitClicked(ActionEvent event) {
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Exit Confirmation");
+		alert.setHeaderText("Exit Game");
+		alert.setContentText("Are you sure you want to exit?");
+		Optional<ButtonType> res = alert.showAndWait();
+		if(res.get() == ButtonType.OK) {
+			// quit game
+			Stage stage = (Stage) btnExit.getScene().getWindow();
+			stage.close();
+		} else {
+			// close dialog
+			alert.close();
+		}
+
+	}
 
 
 	@Override
