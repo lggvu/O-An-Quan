@@ -28,7 +28,7 @@
                   <Image url="@../images/left-arrow.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="rightArrowCell1" fitHeight="47.0" fitWidth="56.0" layoutX="61.0" layoutY="15.0" onMouseClicked="#rightDirectionChosen" visible="false" x="43.0" y="9.0">
+            <ImageView fx:id="rightArrowCell1" fitHeight="47.0" fitWidth="56.0" layoutX="104.0" layoutY="24.0" onMouseClicked="#rightDirectionChosen" visible="false" x="43.0" y="9.0">
                <image>
                   <Image url="@../images/right-arrow.png" />
                </image>

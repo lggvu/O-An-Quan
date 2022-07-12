@@ -455,6 +455,7 @@ public class GamePlayScreenController implements Initializable {
         String rightDirectionChosen = event.getPickResult().getIntersectedNode().getId();
 		System.out.println(rightDirectionChosen);
         Cell[] boardList = this.board.getBoard();
+
         if (player1.isInTurn()) {
         	this.currentPlayer = this.player1;
         }else {
