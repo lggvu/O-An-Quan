@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import jdk.internal.misc.TerminatingThreadLocal;
 import sourcecode.board.Board;
@@ -15,6 +17,7 @@ import sourcecode.player.Player;
 import sourcecode.screen.controller.GamePlayScreenController;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.Optional;
 
 
@@ -46,6 +49,7 @@ public class GamePlayScreen extends Application {
         );
 
          */
+        music();
 
         final String PLAY_SCREEN_FXML_FILE_PATH = "/sourcecode/screen/view/PlayScreen.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(PLAY_SCREEN_FXML_FILE_PATH));
@@ -62,6 +66,20 @@ public class GamePlayScreen extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
+    public void music() {
+        Media media = null;
+        try {
+            media = new Media(getClass().getResource("/sourcecode/screen/music/gameMusic.mp3").toURI().toString());
+        } catch (URISyntaxException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        MediaPlayer mediaPlayer;
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+    }
+
+
     public static void main(String[] args) {
         board = new Board();
         player1 = new Player("Player 1");
