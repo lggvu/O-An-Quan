@@ -14,7 +14,7 @@ public class GamePlayTest {
         Player Player2 = new Player("Player 2", boardlist[11]);
         //Add Introduction and rules here
         System.out.println("Introduction");
-        Player1.setTurn(Math.random() < 0.5);
+        Player1.setTurn((Math.random()) < 0.5);
         if (Player1.isInTurn()){
             GameStart(Player1, Player2, board);
         }else {
@@ -44,7 +44,7 @@ public class GamePlayTest {
     	}
     	while (!(gameIsOver(board))) {
     		//if (!player1.isCellOnSideEmpty()) {
-    	//while(!player1.pickUpGemFrom(new Cell((int)(Math.random() * 11))) ){
+    	//while(!player1.pickUpGemFrom(new Cell((int)((Math.random()) * 11))) ){
      	    System.out.print("Pick gem from another Cell");
     	}
     }

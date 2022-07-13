@@ -14,7 +14,7 @@ public class GamePlay {
 
         // TODO Add Introduction and rules here
         System.out.println("Introduction");
-        Player1.setTurn(Math.random() < 0.5);
+        Player1.setTurn((Math.random()) < 0.5);
         if (Player1.isInTurn()){
         	System.out.println("Player 1 plays first");
             GameStart(Player1, Player2, board);

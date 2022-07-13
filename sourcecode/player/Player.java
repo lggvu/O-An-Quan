@@ -59,7 +59,7 @@ public class Player {
         Action: Pick up gem from cell `cell`
          */
         if(!(cell instanceof HalfCircle) && !(cell.isEmpty())) { // TODO add cells on side
-//            System.out.println("Picked up from cell " + cell.getPosition());
+            System.out.println("Picked up from cell " + cell.getPosition());
             this.gemsInHand.addAll(cell.getGemList());
             cell.emptyCell();
             return true;

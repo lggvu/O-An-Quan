@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="add audio">
+    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="msg: the game procedure correctly follows the rules">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/GamePlayScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/GamePlayScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/HelpScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/HelpScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/IntroScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/IntroScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/application/GamePlayScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/application/GamePlayScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/application/HelpScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/application/HelpScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/application/IntroScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/application/IntroScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/player/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/player/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/gameplay/GamePlayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/gameplay/GamePlayTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/player/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/screen/view/PlayScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/view/PlayScreen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,10 +29,11 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="topic/gui/intro-screen" />
+        <entry key="$PROJECT_DIR$" value="gui/arrow-test" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -62,7 +65,7 @@
       <recent name="$PROJECT_DIR$/sourcecode/screen/view" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GamePlay">
+  <component name="RunManager" selected="Application.IntroScreen">
     <configuration name="GamePlay" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sourcecode.gameplay.GamePlay" />
       <module name="OOP.DSAI.20212.Team26" />
@@ -130,10 +133,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GamePlay" />
-        <item itemvalue="Application.IntroScreen" />
-        <item itemvalue="Application.HelpScreen" />
         <item itemvalue="Application.GamePlayScreen" />
+        <item itemvalue="Application.IntroScreen" />
+        <item itemvalue="Application.GamePlay" />
+        <item itemvalue="Application.HelpScreen" />
         <item itemvalue="Application.PlayerTest" />
       </list>
     </recent_temporary>
@@ -315,7 +318,21 @@
       <option name="project" value="LOCAL" />
       <updated>1657642695908</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="msg: the game procedure correctly follows the rules">
+      <created>1657645440232</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1657645440232</updated>
+    </task>
+    <task id="LOCAL-00026" summary="msg: the game procedure correctly follows the rules">
+      <created>1657646960610</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1657646960610</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -329,7 +346,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="topic/gui/play-screen" />
+                        <option value="topic/gui/arrow-test" />
                       </list>
                     </value>
                   </entry>
@@ -365,7 +382,8 @@
     <MESSAGE value="allow switching between 3 screens" />
     <MESSAGE value="update play screen button and 'paws'" />
     <MESSAGE value="add audio" />
-    <option name="LAST_COMMIT_MESSAGE" value="add audio" />
+    <MESSAGE value="msg: the game procedure correctly follows the rules" />
+    <option name="LAST_COMMIT_MESSAGE" value="msg: the game procedure correctly follows the rules" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

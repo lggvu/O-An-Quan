@@ -16,7 +16,7 @@
          </image>
       </ImageView>
       <Button fx:id="btnExit" layoutX="61.0" layoutY="646.0" mnemonicParsing="false" onAction="#btnExitClicked" opacity="0.0" prefHeight="40.0" prefWidth="85.0" text="Exit" />
-      <Pane fx:id="cell1" layoutX="255.0" layoutY="286.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
+      <Pane fx:id="cell01" layoutX="255.0" layoutY="286.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
          <children>
             <ImageView fx:id="imgLeftArrow1" fitHeight="47.0" fitWidth="56.0" layoutX="-60.0" layoutY="25.0" visible="false" x="30.0">
                <image>
@@ -37,7 +37,7 @@
             <Button fx:id="rightArrowCell1" layoutX="80.0" layoutY="35.0" mnemonicParsing="false" onAction="#rightDirectionChosen" opacity="0.0" text="Button" visible="false" />
          </children>
       </Pane>
-      <Pane fx:id="cell2" layoutX="359.0" layoutY="286.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
+      <Pane fx:id="cell02" layoutX="359.0" layoutY="286.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
          <children>
             <Label fx:id="numOfGems2" layoutX="43.0" layoutY="29.0" text="5" textFill="WHITE">
                <font>
@@ -58,7 +58,7 @@
             <Button fx:id="leftArrowCell2" layoutX="-30.0" layoutY="34.0" mnemonicParsing="false" onAction="#leftDirectionChosen" opacity="0.0" text="Button" visible="false" />
          </children>
       </Pane>
-      <Pane fx:id="cell3" layoutX="462.0" layoutY="286.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
+      <Pane fx:id="cell03" layoutX="462.0" layoutY="286.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
          <children>
             <ImageView fx:id="imgLeftArrow3" fitHeight="47.0" fitWidth="56.0" layoutX="-60.0" layoutY="25.0" visible="false" x="30.0">
                <image>
@@ -79,7 +79,7 @@
             <Button fx:id="rightArrowCell3" layoutX="80.0" layoutY="35.0" mnemonicParsing="false" onAction="#rightDirectionChosen" opacity="0.0" text="Button" visible="false" />
          </children>
       </Pane>
-      <Pane fx:id="cell4" layoutX="571.0" layoutY="287.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
+      <Pane fx:id="cell04" layoutX="571.0" layoutY="287.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
          <children>
             <ImageView fx:id="imgLeftArrow4" fitHeight="47.0" fitWidth="56.0" layoutX="-60.0" layoutY="25.0" visible="false" x="30.0">
                <image>
@@ -100,7 +100,7 @@
             <Button fx:id="rightArrowCell4" layoutX="80.0" layoutY="35.0" mnemonicParsing="false" onAction="#rightDirectionChosen" opacity="0.0" text="Button" visible="false" />
          </children>
       </Pane>
-      <Pane fx:id="cell5" layoutX="677.0" layoutY="286.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
+      <Pane fx:id="cell05" layoutX="677.0" layoutY="286.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
          <children>
             <ImageView fx:id="imgLeftArrow5" fitHeight="47.0" fitWidth="56.0" layoutX="-60.0" layoutY="25.0" visible="false" x="30.0">
                <image>
@@ -121,7 +121,7 @@
             <Button fx:id="rightArrowCell5" layoutX="80.0" layoutY="35.0" mnemonicParsing="false" onAction="#rightDirectionChosen" opacity="0.0" text="Button" visible="false" />
          </children>
       </Pane>
-      <Pane fx:id="cell7" layoutX="668.0" layoutY="392.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
+      <Pane fx:id="cell07" layoutX="668.0" layoutY="392.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
          <children>
             <ImageView fx:id="imgLeftArrow7" fitHeight="47.0" fitWidth="56.0" layoutX="-60.0" layoutY="25.0" visible="false" x="30.0">
                <image>
@@ -142,7 +142,7 @@
             <Button fx:id="leftArrowCell7" layoutX="-25.0" layoutY="34.0" mnemonicParsing="false" onAction="#leftDirectionChosen" opacity="0.0" text="Button" visible="false" />
          </children>
       </Pane>
-      <Pane fx:id="cell8" layoutX="569.0" layoutY="391.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
+      <Pane fx:id="cell08" layoutX="569.0" layoutY="391.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
          <children>
             <ImageView fx:id="imgLeftArrow8" fitHeight="47.0" fitWidth="56.0" layoutX="-60.0" layoutY="25.0" visible="false" x="30.0">
                <image>
@@ -163,7 +163,7 @@
             <Button fx:id="rightArrowCell8" layoutX="80.0" layoutY="33.0" mnemonicParsing="false" onAction="#rightDirectionChosen" opacity="0.0" text="Button" visible="false" />
          </children>
       </Pane>
-      <Pane fx:id="cell9" layoutX="462.0" layoutY="391.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
+      <Pane fx:id="cell09" layoutX="462.0" layoutY="391.0" onMouseClicked="#cellChosen" prefHeight="92.0" prefWidth="101.0">
          <children>
             <ImageView fx:id="imgLeftArrow9" fitHeight="47.0" fitWidth="56.0" layoutX="-60.0" layoutY="25.0" visible="false" x="30.0">
                <image>

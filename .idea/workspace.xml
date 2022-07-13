@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="msg: the game procedure correctly follows the rules">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/player/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/player/Player.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/gameplay/GamePlayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/gameplay/GamePlayTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sourcecode/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/player/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sourcecode/screen/view/PlayScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/view/PlayScreen.fxml" afterDir="false" />
@@ -31,6 +35,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -343,7 +348,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="topic/gui/play-screen" />
+                        <option value="topic/gui/arrow-test" />
                       </list>
                     </value>
                   </entry>
