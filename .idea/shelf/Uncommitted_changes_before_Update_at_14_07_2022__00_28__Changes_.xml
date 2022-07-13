@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Update_at_14_07_2022,_00_28_[Changes]" date="1657733330630" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_07_2022,_00_28_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 14/07/2022, 00:28 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/HelpScreen.class" />
+    <option name="AFTER_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/HelpScreen.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_07_2022,_00_28_[Changes]/HelpScreen.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/IntroScreen.class" />
+    <option name="AFTER_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/IntroScreen.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_07_2022,_00_28_[Changes]/IntroScreen.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/GamePlayScreen.class" />
+    <option name="AFTER_PATH" value="out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/GamePlayScreen.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_14_07_2022,_00_28_[Changes]/GamePlayScreen.class" />
+  </binary>
+</changelist>

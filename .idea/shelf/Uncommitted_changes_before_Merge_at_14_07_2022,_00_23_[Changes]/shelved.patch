@@ -1,0 +1,212 @@
+Index: out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<?import javafx.scene.control.Button?>\n<?import javafx.scene.layout.AnchorPane?>\n<?import javafx.scene.layout.VBox?>\n<?import javafx.scene.text.Font?>\n\n\n<AnchorPane prefHeight=\"768.0\" prefWidth=\"1024.0\" xmlns=\"http://javafx.com/javafx/8.0.171\" xmlns:fx=\"http://javafx.com/fxml/1\" >\n   <children>\n      <VBox alignment=\"CENTER\" layoutX=\"349.0\" layoutY=\"-1.0\" prefHeight=\"779.0\" prefWidth=\"340.0\" spacing=\"40.0\">\n         <children>\n            <Button fx:id=\"btnStartGame\" mnemonicParsing=\"false\" onAction=\"#btnStartGameClicked\" text=\"Start\">\n               <font>\n                  <Font size=\"36.0\" />\n               </font>\n            </Button>\n            <Button fx:id=\"btnAccessHelp\" mnemonicParsing=\"false\" onAction=\"#btnAccessHelpClicked\" text=\"Help\">\n               <font>\n                  <Font size=\"36.0\" />\n               </font>\n            </Button>\n            <Button fx:id=\"btnExitGame\" mnemonicParsing=\"false\" onAction=\"#btnExitGameClicked\" text=\"Exit\">\n               <font>\n                  <Font size=\"36.0\" />\n               </font>\n            </Button>\n         </children>\n      </VBox>\n   </children>\n</AnchorPane>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml b/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml
+--- a/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml	(revision 0b5f6d1eaf7fe56e6a43ffea146e6790f760ea60)
++++ b/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml	(date 1657732980039)
+@@ -6,7 +6,7 @@
+ <?import javafx.scene.text.Font?>
+ 
+ 
+-<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" >
++<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sourcecode.screen.controller.IntroScreenController">
+    <children>
+       <VBox alignment="CENTER" layoutX="349.0" layoutY="-1.0" prefHeight="779.0" prefWidth="340.0" spacing="40.0">
+          <children>
+Index: out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"022fb2a9-0493-4d6a-9b29-9b6488214bb0\" name=\"Changes\" comment=\"update player spread in gui\">\n      <change afterPath=\"$PROJECT_DIR$/.idea/compiler.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_41_[Changes]/Board.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_41_[Changes]/BoardTest.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_41_[Changes]/Player.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_41_[Changes]/PlayerTest.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_41_[Changes]/shelved.patch\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/Board.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/BoardTest.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/Player.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/PlayerTest.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/shelved.patch\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_16_33_[Changes]/Board.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_16_33_[Changes]/BoardTest.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_16_33_[Changes]/Player.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_16_33_[Changes]/PlayerTest.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_16_33_[Changes]/shelved.patch\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_18_12_[Changes]/Board.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_18_12_[Changes]/BoardTest.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_18_12_[Changes]/Player.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_18_12_[Changes]/PlayerTest.class\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_18_12_[Changes]/shelved.patch\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__15_41__Changes_.xml\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__15_57__Changes_.xml\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__16_33__Changes_.xml\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__18_12__Changes_.xml\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/board/Board.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/board/Cell.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/board/HalfCircle.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/board/Square.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/gameplay/GamePlay.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/gameplay/GamePlayTest.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/gem/Gem.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/gem/bigGem.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/gem/smallGem.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/player/Hand.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/player/Player.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/screen/GamePlayScreen.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/screen/controller/GamePlayScreenController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/screen/images/empty-star.png\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/screen/images/filled-star.png\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/screen/images/home-button.png\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/screen/images/left-arrow.png\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/screen/images/play-screen.png\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/screen/images/right-arrow.png\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/screen/images/setting-button.png\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/screen/view/PlayScreen.fxml\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/test/BoardTest.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/test/CellTest.java\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/sourcecode/test/PlayerTest.java\" beforeDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Interface\" />\n        <option value=\"FxmlFile\" />\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitSEFilterConfiguration\">\n    <file-type-list>\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\n      <filtered-out-file-type name=\"TAG\" />\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\n    </file-type-list>\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2AYta4JtKnDPVcHrcc1TChSNdZQ\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\n    <property name=\"settings.editor.selected.configurable\" value=\"reference.projectsettings.compiler.excludes\" />\n  </component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/sourcecode/screen/view\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"Application.GamePlayScreen\">\n    <configuration name=\"BoardTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.BoardTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"CellTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.CellTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"GamePlay\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.gameplay.GamePlay\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.gameplay.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"GamePlayScreen\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.screen.GamePlayScreen\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.screen.controller.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"PlayerTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.PlayerTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.GamePlayScreen\" />\n        <item itemvalue=\"Application.GamePlay\" />\n        <item itemvalue=\"Application.PlayerTest\" />\n        <item itemvalue=\"Application.BoardTest\" />\n        <item itemvalue=\"Application.CellTest\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"022fb2a9-0493-4d6a-9b29-9b6488214bb0\" name=\"Changes\" comment=\"\" />\n      <created>1655198410651</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1655198410651</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"upload constructors for board and cells\">\n      <created>1655366801447</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655366801447</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"upate BoardTest\">\n      <created>1655366916492</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655366916492</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"upate BoardTest\">\n      <created>1655377007650</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655377007650</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"update class diagram\">\n      <created>1655400980752</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655400980752</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"update class diagram\">\n      <created>1655401039907</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655401039907</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"test board and gem\">\n      <created>1655459148349</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655459148349</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"update methods for Player\">\n      <created>1656005332624</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656005332624</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"merge GamePlay codes\">\n      <created>1656006932258</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656006932258</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"upload PlayerTest\">\n      <created>1656007212680</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656007212680</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"update Class and Use Case Diagrams\">\n      <created>1656009059522</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656009059522</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"initial submission\">\n      <created>1656070586403</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656070586403</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"GUI test\">\n      <created>1656946993988</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656946993988</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"GUI test\">\n      <created>1656952412145</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656952412145</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"upload images\">\n      <created>1657095009722</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657095009722</updated>\n    </task>\n    <task id=\"LOCAL-00015\" summary=\"update gui\">\n      <created>1657098807355</created>\n      <option name=\"number\" value=\"00015\" />\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657098807355</updated>\n    </task>\n    <task id=\"LOCAL-00016\" summary=\"change gui structure\">\n      <created>1657185559046</created>\n      <option name=\"number\" value=\"00016\" />\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657185559047</updated>\n    </task>\n    <task id=\"LOCAL-00017\" summary=\"change gui structure\">\n      <created>1657185566717</created>\n      <option name=\"number\" value=\"00017\" />\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657185566717</updated>\n    </task>\n    <task id=\"LOCAL-00018\" summary=\"update fxml\">\n      <created>1657185750912</created>\n      <option name=\"number\" value=\"00018\" />\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657185750912</updated>\n    </task>\n    <task id=\"LOCAL-00019\" summary=\"update fxml\">\n      <created>1657538447350</created>\n      <option name=\"number\" value=\"00019\" />\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657538447350</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"20\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"FILTERS\">\n                <map>\n                  <entry key=\"branch\">\n                    <value>\n                      <list>\n                        <option value=\"topic/gui/play-screen\" />\n                      </list>\n                    </value>\n                  </entry>\n                </map>\n              </option>\n              <option name=\"COLUMN_ID_WIDTH\">\n                <map>\n                  <entry key=\"Table.Default.Author.ColumnIdWidth\" value=\"-1\" />\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"upload constructors for board and cells\" />\n    <MESSAGE value=\"upate BoardTest\" />\n    <MESSAGE value=\"update class diagram\" />\n    <MESSAGE value=\"test board and gem\" />\n    <MESSAGE value=\"update methods for Player\" />\n    <MESSAGE value=\"merge GamePlay codes\" />\n    <MESSAGE value=\"upload PlayerTest\" />\n    <MESSAGE value=\"update Class and Use Case Diagrams\" />\n    <MESSAGE value=\"initial submission\" />\n    <MESSAGE value=\"GUI test\" />\n    <MESSAGE value=\"upload images\" />\n    <MESSAGE value=\"update gui\" />\n    <MESSAGE value=\"change gui structure\" />\n    <MESSAGE value=\"update fxml\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"update fxml\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <watches-manager>\n      <configuration name=\"Application\">\n        <watch expression=\"boardList\" language=\"JAVA\" />\n      </configuration>\n    </watches-manager>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml b/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml
+--- a/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml	(revision 0b5f6d1eaf7fe56e6a43ffea146e6790f760ea60)
++++ b/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml	(date 1657732980039)
+@@ -1,57 +1,26 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="update player spread in gui">
+-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_41_[Changes]/Board.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_41_[Changes]/BoardTest.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_41_[Changes]/Player.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_41_[Changes]/PlayerTest.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_41_[Changes]/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/Board.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/BoardTest.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/Player.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/PlayerTest.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_16_33_[Changes]/Board.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_16_33_[Changes]/BoardTest.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_16_33_[Changes]/Player.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_16_33_[Changes]/PlayerTest.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_16_33_[Changes]/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_18_12_[Changes]/Board.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_18_12_[Changes]/BoardTest.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_18_12_[Changes]/Player.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_18_12_[Changes]/PlayerTest.class" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_18_12_[Changes]/shelved.patch" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__15_41__Changes_.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__15_57__Changes_.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__16_33__Changes_.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__18_12__Changes_.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/board/Board.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/board/Cell.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/board/HalfCircle.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/board/Square.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/gameplay/GamePlay.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/gameplay/GamePlayTest.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/gem/Gem.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/gem/bigGem.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/gem/smallGem.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/player/Hand.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/player/Player.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/GamePlayScreen.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/controller/GamePlayScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/images/empty-star.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/images/filled-star.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/images/home-button.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/images/left-arrow.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/images/play-screen.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/images/right-arrow.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/images/setting-button.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/screen/view/PlayScreen.fxml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/test/BoardTest.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/test/CellTest.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/sourcecode/test/PlayerTest.java" beforeDir="false" />
++    <list default="true" id="022fb2a9-0493-4d6a-9b29-9b6488214bb0" name="Changes" comment="update intro screen gui">
++      <change afterPath="$PROJECT_DIR$/sourcecode/screen/application/HelpScreen.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/sourcecode/screen/application/IntroScreen.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_41_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_15_57_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_16_33_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022,_18_12_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__15_41__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__15_57__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__16_33__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/shelf/Uncommitted_changes_before_Update_at_04_07_2022__18_12__Changes_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/HalfCircle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/HalfCircle.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Square.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Square.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gameplay/GamePlay.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/Gem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/Gem.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/bigGem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/bigGem.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/smallGem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/smallGem.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/GamePlayScreen.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/sourcecode/screen/GamePlayScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/application/GamePlayScreen.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/sourcecode/screen/controller/HelpScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/HelpScreenController.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -70,7 +39,7 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="main" />
++        <entry key="$PROJECT_DIR$" value="topic/gui/intro-screen" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -105,7 +74,7 @@
+       <recent name="$PROJECT_DIR$/sourcecode/screen/view" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Application.GamePlayScreen">
++  <component name="RunManager" selected="Application.IntroScreen">
+     <configuration name="BoardTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="sourcecode.test.BoardTest" />
+       <module name="OOP.DSAI.20212.Team26" />
+@@ -119,12 +88,12 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="CellTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="sourcecode.test.CellTest" />
++    <configuration name="GamePlay" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="sourcecode.gameplay.GamePlay" />
+       <module name="OOP.DSAI.20212.Team26" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="sourcecode.test.*" />
++          <option name="PATTERN" value="sourcecode.gameplay.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -132,12 +101,12 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="GamePlay" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="sourcecode.gameplay.GamePlay" />
++    <configuration name="GamePlayScreen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="sourcecode.screen.application.GamePlayScreen" />
+       <module name="OOP.DSAI.20212.Team26" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="sourcecode.gameplay.*" />
++          <option name="PATTERN" value="sourcecode.screen.controller.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -145,12 +114,12 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="GamePlayScreen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="sourcecode.screen.GamePlayScreen" />
++    <configuration name="IntroScreen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="sourcecode.screen.application.IntroScreen" />
+       <module name="OOP.DSAI.20212.Team26" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="sourcecode.screen.controller.*" />
++          <option name="PATTERN" value="sourcecode.screen.application.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -173,11 +142,11 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.IntroScreen" />
+         <item itemvalue="Application.GamePlayScreen" />
+         <item itemvalue="Application.GamePlay" />
+         <item itemvalue="Application.PlayerTest" />
+         <item itemvalue="Application.BoardTest" />
+-        <item itemvalue="Application.CellTest" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -323,7 +292,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1657538447350</updated>
+     </task>
+-    <option name="localTasksCounter" value="20" />
++    <task id="LOCAL-00020" summary="update intro screen gui">
++      <created>1657594963563</created>
++      <option name="number" value="00020" />
++      <option name="presentableId" value="LOCAL-00020" />
++      <option name="project" value="LOCAL" />
++      <updated>1657594963563</updated>
++    </task>
++    <option name="localTasksCounter" value="21" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -369,7 +345,8 @@
+     <MESSAGE value="update gui" />
+     <MESSAGE value="change gui structure" />
+     <MESSAGE value="update fxml" />
+-    <option name="LAST_COMMIT_MESSAGE" value="update fxml" />
++    <MESSAGE value="update intro screen gui" />
++    <option name="LAST_COMMIT_MESSAGE" value="update intro screen gui" />
+   </component>
+   <component name="XDebuggerManager">
+     <watches-manager>
