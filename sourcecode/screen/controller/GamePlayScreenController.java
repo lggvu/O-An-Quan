@@ -3,6 +3,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -20,9 +21,12 @@ import sourcecode.player.Player;
 
 import javafx.scene.image.ImageView;
 
+
 public class GamePlayScreenController implements Initializable {
 	private Player player1, player2, currentPlayer;
 	private Board board;
+	private static int handDirection;
+	public static int cell_Num;
 //	private Cell[] boardList = this.board.getBoard();
 
     public GamePlayScreenController(Board board, Player player1, Player player2) {
@@ -32,7 +36,7 @@ public class GamePlayScreenController implements Initializable {
     }
 
 	@FXML
-	private Pane cell1;
+	private static Pane cell1;
 
 	@FXML
 	private ImageView leftArrowCell1;
@@ -44,7 +48,7 @@ public class GamePlayScreenController implements Initializable {
 	private Label numOfGems1;
 
 	@FXML
-	private Pane cell2;
+	private static Pane cell2;
 
 	@FXML
 	private ImageView leftArrowCell2;
@@ -56,7 +60,7 @@ public class GamePlayScreenController implements Initializable {
 	private Label numOfGems2;
 
 	@FXML
-	private Pane cell3;
+	private static Pane cell3;
 
 	@FXML
 	private ImageView leftArrowCell3;
@@ -68,7 +72,7 @@ public class GamePlayScreenController implements Initializable {
 	private Label numOfGems3;
 
 	@FXML
-	private Pane cell4;
+	private static Pane cell4;
 
 	@FXML
 	private ImageView leftArrowCell4;
@@ -80,7 +84,7 @@ public class GamePlayScreenController implements Initializable {
 	private Label numOfGems4;
 
 	@FXML
-	private Pane cell5;
+	private static Pane cell5;
 
 	@FXML
 	private ImageView leftArrowCell5;
@@ -92,7 +96,7 @@ public class GamePlayScreenController implements Initializable {
 	private Label numOfGems5;
 
 	@FXML
-	private Pane cell7;
+	private static Pane cell7;
 
 	@FXML
 	private ImageView leftArrowCell7;
@@ -104,7 +108,7 @@ public class GamePlayScreenController implements Initializable {
 	private Label numOfGems7;
 
 	@FXML
-	private Pane cell8;
+	private static Pane cell8;
 
 	@FXML
 	private ImageView leftArrowCell8;
@@ -116,7 +120,7 @@ public class GamePlayScreenController implements Initializable {
 	private Label numOfGems8;
 
 	@FXML
-	private Pane cell9;
+	private static Pane cell9;
 
 	@FXML
 	private ImageView leftArrowCell9;
@@ -128,7 +132,7 @@ public class GamePlayScreenController implements Initializable {
 	private Label numOfGems9;
 
 	@FXML
-	private Pane cell10;
+	private static Pane cell10;
 
 	@FXML
 	private ImageView leftArrowCell10;
@@ -140,7 +144,7 @@ public class GamePlayScreenController implements Initializable {
 	private Label numOfGems10;
 
 	@FXML
-	private Pane cell11;
+	private static Pane cell11;
 
 	@FXML
 	private ImageView leftArrowCell11;
@@ -171,6 +175,12 @@ public class GamePlayScreenController implements Initializable {
 
 	@FXML
 	private Button btnExit;
+	
+    @FXML
+    private static ImageView player1Badge;
+    
+    @FXML
+    private static ImageView player2Badge;
 
 	@FXML
 	void btnExitClicked(ActionEvent event) {
@@ -193,14 +203,18 @@ public class GamePlayScreenController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO
+		player1.setTurn(Math.random() < 0.5);
+		if (player1.isInTurn()) {
+			GameStart(player1, player2, board);
+		}else {
+			GameStart(player2, player1, board);
+		}
 		
 	}
 
     @FXML
     void cellChosen(MouseEvent event) {
         String paneChosen = event.getPickResult().getIntersectedNode().getId();
-		System.out.println(paneChosen);
         // Set Imageview (Let rightArrow and leftArrow visible after clicked this Pane)
 		// TODO clean this up
 
@@ -225,6 +239,7 @@ public class GamePlayScreenController implements Initializable {
         	rightArrowCell10.setVisible(false);
         	leftArrowCell11.setVisible(false);
         	rightArrowCell11.setVisible(false);
+        	cell_Num = 1;
         }else if (paneChosen.equals("cell2")) {
         	leftArrowCell1.setVisible(false);
         	rightArrowCell1.setVisible(false);
@@ -246,6 +261,7 @@ public class GamePlayScreenController implements Initializable {
         	rightArrowCell11.setVisible(false);
         	leftArrowCell2.setVisible(true);
         	rightArrowCell2.setVisible(true);
+        	cell_Num = 2;
         }else if (paneChosen.equals("cell3")) {
         	leftArrowCell3.setVisible(true);
         	rightArrowCell3.setVisible(true);
@@ -267,6 +283,7 @@ public class GamePlayScreenController implements Initializable {
         	rightArrowCell10.setVisible(false);
         	leftArrowCell11.setVisible(false);
         	rightArrowCell11.setVisible(false);
+        	cell_Num = 3;
         }else if (paneChosen.equals("cell4")) {
         	leftArrowCell4.setVisible(true);
         	rightArrowCell4.setVisible(true);
@@ -288,6 +305,7 @@ public class GamePlayScreenController implements Initializable {
         	rightArrowCell10.setVisible(false);
         	leftArrowCell11.setVisible(false);
         	rightArrowCell11.setVisible(false);
+        	cell_Num = 4;
         }else if (paneChosen.equals("cell5")) {
         	leftArrowCell5.setVisible(true);
         	rightArrowCell5.setVisible(true);
@@ -309,6 +327,7 @@ public class GamePlayScreenController implements Initializable {
         	rightArrowCell10.setVisible(false);
         	leftArrowCell11.setVisible(false);
         	rightArrowCell11.setVisible(false);
+        	cell_Num = 5;
         }else if (paneChosen.equals("cell7")) {
         	leftArrowCell7.setVisible(true);
         	rightArrowCell7.setVisible(true);
@@ -330,6 +349,7 @@ public class GamePlayScreenController implements Initializable {
         	rightArrowCell10.setVisible(false);
         	leftArrowCell11.setVisible(false);
         	rightArrowCell11.setVisible(false);
+        	cell_Num = 7;
         }else if (paneChosen.equals("cell8")) {
         	leftArrowCell8.setVisible(true);
         	rightArrowCell8.setVisible(true);
@@ -351,6 +371,7 @@ public class GamePlayScreenController implements Initializable {
         	rightArrowCell10.setVisible(false);
         	leftArrowCell11.setVisible(false);
         	rightArrowCell11.setVisible(false);
+        	cell_Num = 8;
         }else if (paneChosen.equals("cell9")) {
         	leftArrowCell9.setVisible(true);
         	rightArrowCell9.setVisible(true);
@@ -372,6 +393,7 @@ public class GamePlayScreenController implements Initializable {
         	rightArrowCell10.setVisible(false);
         	leftArrowCell11.setVisible(false);
         	rightArrowCell11.setVisible(false);
+        	cell_Num = 9;
         }else if (paneChosen.equals("cell10")) {
         	leftArrowCell10.setVisible(true);
         	rightArrowCell10.setVisible(true);
@@ -393,6 +415,7 @@ public class GamePlayScreenController implements Initializable {
         	rightArrowCell9.setVisible(false);
         	leftArrowCell11.setVisible(false);
         	rightArrowCell11.setVisible(false);
+        	cell_Num = 10;
         }else if (paneChosen.equals("cell11")) {
         	leftArrowCell11.setVisible(true);
         	rightArrowCell11.setVisible(true);
@@ -414,13 +437,14 @@ public class GamePlayScreenController implements Initializable {
         	rightArrowCell9.setVisible(false);
           	leftArrowCell10.setVisible(false);
         	rightArrowCell10.setVisible(false);
+        	cell_Num = 11;
         }
     }
 
     @FXML
     void leftDirectionChosen(MouseEvent event) {
         String leftDirectionChosen = event.getPickResult().getIntersectedNode().getId();
-		System.out.println(leftDirectionChosen);
+        this.handDirection = 1;
         Cell[] boardList = this.board.getBoard();
         if (player1.isInTurn()) {
         	this.currentPlayer = this.player1;
@@ -453,9 +477,8 @@ public class GamePlayScreenController implements Initializable {
     @FXML
     void rightDirectionChosen(MouseEvent event) {
         String rightDirectionChosen = event.getPickResult().getIntersectedNode().getId();
-		System.out.println(rightDirectionChosen);
+        this.handDirection = 0;
         Cell[] boardList = this.board.getBoard();
-
         if (player1.isInTurn()) {
         	this.currentPlayer = this.player1;
         }else {
@@ -509,5 +532,68 @@ public class GamePlayScreenController implements Initializable {
 //		player1Name.setText(this.player1.getName());
 //		player2Name.setText(this.player2.getName());
 //	}
+    
+    public static boolean isGameOver(Player player1, Player player2, Board board) {
+    	boolean res = false;
+    	if (board.getNumBigGem() - player1.numBigGemsInGemsCaptured() - player2.numBigGemsInGemsCaptured() == 0) {
+    		res = true;
+    	}else if (player1.isCellOnSideEmpty()) {
+    		res = true;
+    	}else if (player2.isCellOnSideEmpty()) {
+    		res = true;
+    	}
+    	return res;
+    }
+    
+    public static void GameStart(Player player1, Player player2, Board board){
+        ArrayList <Cell> Player1CellOnSide = new ArrayList<Cell>();
+        ArrayList <Cell> Player2CellOnSide = new ArrayList<Cell>();
+        Cell[] boardList = board.getBoard();
+        for (int i = 1; i < 6; i ++) { 
+            Player1CellOnSide.add(boardList[i]);
+        }
+        for (int i = 7; i < 12; i ++) {
+            Player2CellOnSide.add(boardList[i]);
+        }
+        
+        while (!(isGameOver(player1, player2, board))) {
+        	// disable all cells on side of player 2;
+        	cell7.setDisable(true);
+           	cell8.setDisable(true);
+           	cell9.setDisable(true);
+           	cell10.setDisable(true);
+           	cell11.setDisable(true);
+        	player1Badge.setVisible(true);
+        	}
+            while (!(player1.pickUpGemFrom(boardList[cell_Num]))){
+            	//DONOTHING
+            }
+            
+            while (handDirection != 1 && handDirection != 0) {
+            	//DO NOTHING
+            }
+            
+          	player2Badge.setVisible(true);
+            //Disable all cell on sides of player1
+        	cell1.setDisable(true);
+           	cell2.setDisable(true);
+           	cell3.setDisable(true);
+           	cell4.setDisable(true);
+           	cell5.setDisable(true);
+            while(!player2.pickUpGemFrom(boardList[cell_Num] )){
+            	
+            	// DO NOTHING
+                }
+            player2.pickUpGemFrom(boardList[cell_Num]);
+            while (handDirection != 1 && handDirection != 0) {
+            	//DO NOTHING
+            }
+   
+        }
+        //TODO: IF PLAYER1 IS IN TURN, THEN DISABLE ALL CELLSONSIDE OF PLAYER2
+        // AFTER PLAYER 1 CLICKS, DISABLE ALL THE IMAGEVIEWS THAT ARE NOT IN THIS PANE => let it invisible
+        //ADD A BOOLEAN ATTRIBUTE TO CHECK WHETHER RIGHT OF LEFT BUTTON CLICKED (IN RIGHTClick and leftClicked)
+ }
+    
 
-}
+
