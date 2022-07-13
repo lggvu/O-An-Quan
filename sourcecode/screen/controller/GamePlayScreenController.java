@@ -1,16 +1,19 @@
 package sourcecode.screen.controller;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableListBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -32,124 +35,187 @@ public class GamePlayScreenController implements Initializable {
     }
 
 	@FXML
+	private Button btnExit;
+
+	@FXML
 	private Pane cell1;
 
 	@FXML
-	private ImageView leftArrowCell1;
+	private ImageView imgLeftArrow1;
 
 	@FXML
-	private ImageView rightArrowCell1;
+	private ImageView imgRightArrow1;
 
 	@FXML
 	private Label numOfGems1;
 
 	@FXML
+	private Button leftArrowCell1;
+
+	@FXML
+	private Button rightArrowCell1;
+
+	@FXML
 	private Pane cell2;
-
-	@FXML
-	private ImageView leftArrowCell2;
-
-	@FXML
-	private ImageView rightArrowCell2;
 
 	@FXML
 	private Label numOfGems2;
 
 	@FXML
+	private ImageView imgLeftArrow2;
+
+	@FXML
+	private ImageView imgRightArrow2;
+
+	@FXML
+	private Button rightArrowCell2;
+
+	@FXML
+	private Button leftArrowCell2;
+
+	@FXML
 	private Pane cell3;
 
 	@FXML
-	private ImageView leftArrowCell3;
+	private ImageView imgLeftArrow3;
 
 	@FXML
-	private ImageView rightArrowCell3;
+	private ImageView imgRightArrow3;
 
 	@FXML
 	private Label numOfGems3;
 
 	@FXML
+	private Button leftArrowCell3;
+
+	@FXML
+	private Button rightArrowCell3;
+
+	@FXML
 	private Pane cell4;
 
 	@FXML
-	private ImageView leftArrowCell4;
+	private ImageView imgLeftArrow4;
 
 	@FXML
-	private ImageView rightArrowCell4;
+	private ImageView imgRightArrow4;
 
 	@FXML
 	private Label numOfGems4;
 
 	@FXML
+	private Button leftArrowCell4;
+
+	@FXML
+	private Button rightArrowCell4;
+
+	@FXML
 	private Pane cell5;
 
 	@FXML
-	private ImageView leftArrowCell5;
+	private ImageView imgLeftArrow5;
 
 	@FXML
-	private ImageView rightArrowCell5;
+	private ImageView imgRightArrow5;
 
 	@FXML
 	private Label numOfGems5;
 
 	@FXML
+	private Button leftArrowCell5;
+
+	@FXML
+	private Button rightArrowCell5;
+
+	@FXML
 	private Pane cell7;
 
 	@FXML
-	private ImageView leftArrowCell7;
+	private ImageView imgLeftArrow7;
 
 	@FXML
-	private ImageView rightArrowCell7;
+	private ImageView imgRightArrow7;
 
 	@FXML
 	private Label numOfGems7;
 
 	@FXML
+	private Button rightArrowCell7;
+
+	@FXML
+	private Button leftArrowCell7;
+
+	@FXML
 	private Pane cell8;
 
 	@FXML
-	private ImageView leftArrowCell8;
+	private ImageView imgLeftArrow8;
 
 	@FXML
-	private ImageView rightArrowCell8;
+	private ImageView imgRightArrow8;
 
 	@FXML
 	private Label numOfGems8;
 
 	@FXML
+	private Button leftArrowCell8;
+
+	@FXML
+	private Button rightArrowCell8;
+
+	@FXML
 	private Pane cell9;
 
 	@FXML
-	private ImageView leftArrowCell9;
+	private ImageView imgLeftArrow9;
 
 	@FXML
-	private ImageView rightArrowCell9;
+	private ImageView imgRightArrow9;
 
 	@FXML
 	private Label numOfGems9;
 
 	@FXML
+	private Button leftArrowCell9;
+
+	@FXML
+	private Button rightArrowCell9;
+
+	@FXML
 	private Pane cell10;
 
 	@FXML
-	private ImageView leftArrowCell10;
+	private ImageView imgLeftArrow10;
 
 	@FXML
-	private ImageView rightArrowCell10;
+	private ImageView imgRightArrow10;
 
 	@FXML
 	private Label numOfGems10;
 
 	@FXML
+	private Button leftArrowCell10;
+
+	@FXML
+	private Button rightArrowCell10;
+
+	@FXML
 	private Pane cell11;
 
 	@FXML
-	private ImageView leftArrowCell11;
-
-	@FXML
-	private ImageView rightArrowCell11;
-
-	@FXML
 	private Label numOfGems11;
+
+	@FXML
+	private ImageView imgRightArrow11;
+
+	@FXML
+	private ImageView imgLeftArrow11;
+
+	@FXML
+	private Button leftArrowCell11;
+
+	@FXML
+	private Button rightArrowCell11;
 
 	@FXML
 	private Label numOfGems0;
@@ -170,7 +236,10 @@ public class GamePlayScreenController implements Initializable {
 	private Label player2Score;
 
 	@FXML
-	private Button btnExit;
+	private ImageView player1Badge;
+
+	@FXML
+	private ImageView player2Badge;
 
 	@FXML
 	void btnExitClicked(ActionEvent event) {
@@ -199,289 +268,89 @@ public class GamePlayScreenController implements Initializable {
 
     @FXML
     void cellChosen(MouseEvent event) {
-        String paneChosen = event.getPickResult().getIntersectedNode().getId();
-		System.out.println(paneChosen);
-        // Set Imageview (Let rightArrow and leftArrow visible after clicked this Pane)
-		// TODO clean this up
+		Pane paneChosen = (Pane) event.getPickResult().getIntersectedNode();
+		ObservableList<Node> childrenElements = paneChosen.getChildren();
 
-		if (paneChosen.contains("cell1")) {
-        	leftArrowCell1.setVisible(true);
-        	rightArrowCell1.setVisible(true);
-        	leftArrowCell2.setVisible(false);
-        	rightArrowCell2.setVisible(false);
-        	leftArrowCell3.setVisible(false);
-        	rightArrowCell3.setVisible(false);
-        	leftArrowCell4.setVisible(false);
-        	rightArrowCell4.setVisible(false);
-           	leftArrowCell5.setVisible(false);
-        	rightArrowCell5.setVisible(false);
-           	leftArrowCell7.setVisible(false);
-        	rightArrowCell7.setVisible(false);
-        	leftArrowCell8.setVisible(false);
-        	rightArrowCell8.setVisible(false);
-        	leftArrowCell9.setVisible(false);
-        	rightArrowCell9.setVisible(false);
-          	leftArrowCell10.setVisible(false);
-        	rightArrowCell10.setVisible(false);
-        	leftArrowCell11.setVisible(false);
-        	rightArrowCell11.setVisible(false);
-        }else if (paneChosen.equals("cell2")) {
-        	leftArrowCell1.setVisible(false);
-        	rightArrowCell1.setVisible(false);
-        	leftArrowCell3.setVisible(false);
-        	rightArrowCell3.setVisible(false);
-        	leftArrowCell4.setVisible(false);
-        	rightArrowCell4.setVisible(false);
-           	leftArrowCell5.setVisible(false);
-        	rightArrowCell5.setVisible(false);
-           	leftArrowCell7.setVisible(false);
-        	rightArrowCell7.setVisible(false);
-        	leftArrowCell8.setVisible(false);
-        	rightArrowCell8.setVisible(false);
-        	leftArrowCell9.setVisible(false);
-        	rightArrowCell9.setVisible(false);
-          	leftArrowCell10.setVisible(false);
-        	rightArrowCell10.setVisible(false);
-        	leftArrowCell11.setVisible(false);
-        	rightArrowCell11.setVisible(false);
-        	leftArrowCell2.setVisible(true);
-        	rightArrowCell2.setVisible(true);
-        }else if (paneChosen.equals("cell3")) {
-        	leftArrowCell3.setVisible(true);
-        	rightArrowCell3.setVisible(true);
-        	leftArrowCell1.setVisible(false);
-        	rightArrowCell1.setVisible(false);
-        	leftArrowCell2.setVisible(false);
-        	rightArrowCell2.setVisible(false);
-        	leftArrowCell4.setVisible(false);
-        	rightArrowCell4.setVisible(false);
-           	leftArrowCell5.setVisible(false);
-        	rightArrowCell5.setVisible(false);
-           	leftArrowCell7.setVisible(false);
-        	rightArrowCell7.setVisible(false);
-        	leftArrowCell8.setVisible(false);
-        	rightArrowCell8.setVisible(false);
-        	leftArrowCell9.setVisible(false);
-        	rightArrowCell9.setVisible(false);
-          	leftArrowCell10.setVisible(false);
-        	rightArrowCell10.setVisible(false);
-        	leftArrowCell11.setVisible(false);
-        	rightArrowCell11.setVisible(false);
-        }else if (paneChosen.equals("cell4")) {
-        	leftArrowCell4.setVisible(true);
-        	rightArrowCell4.setVisible(true);
-        	leftArrowCell1.setVisible(false);
-        	rightArrowCell1.setVisible(false);
-        	leftArrowCell2.setVisible(false);
-        	rightArrowCell2.setVisible(false);
-        	leftArrowCell3.setVisible(false);
-        	rightArrowCell3.setVisible(false);
-           	leftArrowCell5.setVisible(false);
-        	rightArrowCell5.setVisible(false);
-           	leftArrowCell7.setVisible(false);
-        	rightArrowCell7.setVisible(false);
-        	leftArrowCell8.setVisible(false);
-        	rightArrowCell8.setVisible(false);
-        	leftArrowCell9.setVisible(false);
-        	rightArrowCell9.setVisible(false);
-          	leftArrowCell10.setVisible(false);
-        	rightArrowCell10.setVisible(false);
-        	leftArrowCell11.setVisible(false);
-        	rightArrowCell11.setVisible(false);
-        }else if (paneChosen.equals("cell5")) {
-        	leftArrowCell5.setVisible(true);
-        	rightArrowCell5.setVisible(true);
-        	leftArrowCell1.setVisible(false);
-        	rightArrowCell1.setVisible(false);
-        	leftArrowCell2.setVisible(false);
-        	rightArrowCell2.setVisible(false);
-        	leftArrowCell3.setVisible(false);
-        	rightArrowCell3.setVisible(false);
-        	leftArrowCell4.setVisible(false);
-        	rightArrowCell4.setVisible(false);
-           	leftArrowCell7.setVisible(false);
-        	rightArrowCell7.setVisible(false);
-        	leftArrowCell8.setVisible(false);
-        	rightArrowCell8.setVisible(false);
-        	leftArrowCell9.setVisible(false);
-        	rightArrowCell9.setVisible(false);
-          	leftArrowCell10.setVisible(false);
-        	rightArrowCell10.setVisible(false);
-        	leftArrowCell11.setVisible(false);
-        	rightArrowCell11.setVisible(false);
-        }else if (paneChosen.equals("cell7")) {
-        	leftArrowCell7.setVisible(true);
-        	rightArrowCell7.setVisible(true);
-        	leftArrowCell1.setVisible(false);
-        	rightArrowCell1.setVisible(false);
-        	leftArrowCell2.setVisible(false);
-        	rightArrowCell2.setVisible(false);
-        	leftArrowCell3.setVisible(false);
-        	rightArrowCell3.setVisible(false);
-        	leftArrowCell4.setVisible(false);
-        	rightArrowCell4.setVisible(false);
-           	leftArrowCell5.setVisible(false);
-        	rightArrowCell5.setVisible(false);
-        	leftArrowCell8.setVisible(false);
-        	rightArrowCell8.setVisible(false);
-        	leftArrowCell9.setVisible(false);
-        	rightArrowCell9.setVisible(false);
-          	leftArrowCell10.setVisible(false);
-        	rightArrowCell10.setVisible(false);
-        	leftArrowCell11.setVisible(false);
-        	rightArrowCell11.setVisible(false);
-        }else if (paneChosen.equals("cell8")) {
-        	leftArrowCell8.setVisible(true);
-        	rightArrowCell8.setVisible(true);
-        	leftArrowCell1.setVisible(false);
-        	rightArrowCell1.setVisible(false);
-        	leftArrowCell2.setVisible(false);
-        	rightArrowCell2.setVisible(false);
-        	leftArrowCell3.setVisible(false);
-        	rightArrowCell3.setVisible(false);
-        	leftArrowCell4.setVisible(false);
-        	rightArrowCell4.setVisible(false);
-           	leftArrowCell5.setVisible(false);
-        	rightArrowCell5.setVisible(false);
-           	leftArrowCell7.setVisible(false);
-        	rightArrowCell7.setVisible(false);
-        	leftArrowCell9.setVisible(false);
-        	rightArrowCell9.setVisible(false);
-          	leftArrowCell10.setVisible(false);
-        	rightArrowCell10.setVisible(false);
-        	leftArrowCell11.setVisible(false);
-        	rightArrowCell11.setVisible(false);
-        }else if (paneChosen.equals("cell9")) {
-        	leftArrowCell9.setVisible(true);
-        	rightArrowCell9.setVisible(true);
-        	leftArrowCell1.setVisible(false);
-        	rightArrowCell1.setVisible(false);
-        	leftArrowCell2.setVisible(false);
-        	rightArrowCell2.setVisible(false);
-        	leftArrowCell3.setVisible(false);
-        	rightArrowCell3.setVisible(false);
-        	leftArrowCell4.setVisible(false);
-        	rightArrowCell4.setVisible(false);
-           	leftArrowCell5.setVisible(false);
-        	rightArrowCell5.setVisible(false);
-           	leftArrowCell7.setVisible(false);
-        	rightArrowCell7.setVisible(false);
-        	leftArrowCell8.setVisible(false);
-        	rightArrowCell8.setVisible(false);
-          	leftArrowCell10.setVisible(false);
-        	rightArrowCell10.setVisible(false);
-        	leftArrowCell11.setVisible(false);
-        	rightArrowCell11.setVisible(false);
-        }else if (paneChosen.equals("cell10")) {
-        	leftArrowCell10.setVisible(true);
-        	rightArrowCell10.setVisible(true);
-        	leftArrowCell1.setVisible(false);
-        	rightArrowCell1.setVisible(false);
-        	leftArrowCell2.setVisible(false);
-        	rightArrowCell2.setVisible(false);
-        	leftArrowCell3.setVisible(false);
-        	rightArrowCell3.setVisible(false);
-        	leftArrowCell4.setVisible(false);
-        	rightArrowCell4.setVisible(false);
-           	leftArrowCell5.setVisible(false);
-        	rightArrowCell5.setVisible(false);
-           	leftArrowCell7.setVisible(false);
-        	rightArrowCell7.setVisible(false);
-        	leftArrowCell8.setVisible(false);
-        	rightArrowCell8.setVisible(false);
-        	leftArrowCell9.setVisible(false);
-        	rightArrowCell9.setVisible(false);
-        	leftArrowCell11.setVisible(false);
-        	rightArrowCell11.setVisible(false);
-        }else if (paneChosen.equals("cell11")) {
-        	leftArrowCell11.setVisible(true);
-        	rightArrowCell11.setVisible(true);
-        	leftArrowCell1.setVisible(false);
-        	rightArrowCell1.setVisible(false);
-        	leftArrowCell2.setVisible(false);
-        	rightArrowCell2.setVisible(false);
-        	leftArrowCell3.setVisible(false);
-        	rightArrowCell3.setVisible(false);
-        	leftArrowCell4.setVisible(false);
-        	rightArrowCell4.setVisible(false);
-           	leftArrowCell5.setVisible(false);
-        	rightArrowCell5.setVisible(false);
-           	leftArrowCell7.setVisible(false);
-        	rightArrowCell7.setVisible(false);
-        	leftArrowCell8.setVisible(false);
-        	rightArrowCell8.setVisible(false);
-        	leftArrowCell9.setVisible(false);
-        	rightArrowCell9.setVisible(false);
-          	leftArrowCell10.setVisible(false);
-        	rightArrowCell10.setVisible(false);
-        }
+		// set invisible for all arrows and its button
+		for(ImageView imageView : Arrays.asList(imgLeftArrow1, imgLeftArrow2, imgLeftArrow3, imgLeftArrow4, imgLeftArrow5,
+				imgLeftArrow7, imgLeftArrow8, imgLeftArrow9, imgLeftArrow10, imgLeftArrow11,
+				imgRightArrow1, imgRightArrow2, imgRightArrow3, imgRightArrow4, imgRightArrow5,
+				imgRightArrow7, imgRightArrow8, imgRightArrow9, imgRightArrow10, imgRightArrow11)) {
+			imageView.setVisible(false);
+		}
+
+
+		for(Button arrowButton : Arrays.asList(leftArrowCell1, leftArrowCell2, leftArrowCell3, leftArrowCell4, leftArrowCell5,
+				leftArrowCell7, leftArrowCell8, leftArrowCell9, leftArrowCell10, leftArrowCell11, rightArrowCell1, rightArrowCell2,
+				rightArrowCell3, rightArrowCell4, rightArrowCell5, rightArrowCell7, rightArrowCell8, rightArrowCell9, rightArrowCell10, rightArrowCell11)) {
+			arrowButton.setVisible(false);
+		}
+
+		for(Node node:childrenElements) {
+			node.setVisible(true);
+		}
     }
 
     @FXML
-    void leftDirectionChosen(MouseEvent event) {
-        String leftDirectionChosen = event.getPickResult().getIntersectedNode().getId();
-		System.out.println(leftDirectionChosen);
-        Cell[] boardList = this.board.getBoard();
-        if (player1.isInTurn()) {
-        	this.currentPlayer = this.player1;
-        }else {
-        	this.currentPlayer = this.player2;
-        }
+    void leftDirectionChosen(ActionEvent event) {
+		Pane paneChosen = (Pane) ((Node) event.getTarget()).getParent();
+		System.out.println("pane chosen: " + paneChosen);
+		String id = paneChosen.getId();
+		int index = Integer.parseInt(id.substring(id.length()-1));
 
-		for(int i = 1; i <= 5; i++) {
-			String leftArrowName = "leftArrowCell" + i;
-			if(leftDirectionChosen.equals(leftArrowName)) {
-				currentPlayer.pickUpGemFrom(boardList[i]);
-				currentPlayer.spreadGem(boardList[i], 1, this.board);
-				setNumGems(boardList);
-				setScore();
-			}
+		Cell[] boardList = this.board.getBoard();
+		if(this.player1.isInTurn()) {
+			this.currentPlayer = this.player1;
+			player1Badge.setVisible(true);
+		} else {
+			this.currentPlayer = this.player2;
+			player2Badge.setVisible(true);
 		}
 
-        for (int i = 7; i <= 11; i++) {
-        	String leftArrowName = "leftArrowCell" + i;
-        	if (leftDirectionChosen.equals(leftArrowName)){ 
-        		currentPlayer.pickUpGemFrom(boardList[i]);
-        		currentPlayer.spreadGem(boardList[i], 0, this.board);
-        		setNumGems(boardList);
-        		setScore();
-        	}
-        }
+		for(int i = 1; i <= 5; i++) {
+			currentPlayer.pickUpGemFrom(boardList[index]);
+			currentPlayer.spreadGem(boardList[index], 1, this.board);
+			setNumGems(boardList);
+			setScore();
+		}
 
+		for(int i = 7; i <= 11; i++) {
+			currentPlayer.pickUpGemFrom(boardList[index]);
+			currentPlayer.spreadGem(boardList[index], 0, this.board);
+			setNumGems(boardList);
+			setScore();
+		}
     }
 
     @FXML
-    void rightDirectionChosen(MouseEvent event) {
-        String rightDirectionChosen = event.getPickResult().getIntersectedNode().getId();
-		System.out.println(rightDirectionChosen);
-        Cell[] boardList = this.board.getBoard();
+    void rightDirectionChosen(ActionEvent event) {
+		Pane paneChosen = (Pane) ((Node) event.getTarget()).getParent();
+		System.out.println("pane chosen: " + paneChosen);
+		String id = paneChosen.getId();
+		int index = Integer.parseInt(id.substring(id.length()-1));
 
-        if (player1.isInTurn()) {
-        	this.currentPlayer = this.player1;
-        }else {
-        	this.currentPlayer = this.player2;
-        }
+		Cell[] boardList = this.board.getBoard();
+		if(this.player1.isInTurn()) {
+			this.currentPlayer = this.player1;
+			player1Badge.setVisible(true);
+		} else {
+			this.currentPlayer = this.player2;
+			player2Badge.setVisible(true);
+		}
 
 		for(int i = 1; i <= 5; i++) {
-			String rightArrowName = "rightArrowCell" + i;
-			if(rightDirectionChosen.equals(rightArrowName)) {
-				currentPlayer.pickUpGemFrom(boardList[i]);
-				currentPlayer.spreadGem(boardList[i], 0, this.board);
-				setNumGems(boardList);
-				setScore();
-			}
+			currentPlayer.pickUpGemFrom(boardList[index]);
+			currentPlayer.spreadGem(boardList[index], 0, this.board);
+			setNumGems(boardList);
+			setScore();
 		}
 
-		for (int i = 7; i <= 11; i++) {
-			String rightArrowName = "rightArrowCell" + i;
-			if (rightDirectionChosen.equals(rightArrowName)){
-				currentPlayer.pickUpGemFrom(boardList[i]);
-				currentPlayer.spreadGem(boardList[i], 1, this.board);
-				setNumGems(boardList);
-				setScore();
-			}
+		for(int i = 7; i <= 11; i++) {
+			currentPlayer.pickUpGemFrom(boardList[index]);
+			currentPlayer.spreadGem(boardList[index], 1, this.board);
+			setNumGems(boardList);
+			setScore();
 		}
-
     }
     
     public void setNumGems(Cell[] boardList) {

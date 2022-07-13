@@ -126,7 +126,7 @@ public class Player {
         if(this.gemsInHand.size() > 0) {
             cell.addGem(gem);
             this.gemsInHand.remove(gem);
-//            System.out.println("Dropped gem into cell " + cell.getPosition());
+            System.out.println("Dropped gem into cell " + cell.getPosition());
         }
         // else skip
     }
@@ -141,7 +141,7 @@ public class Player {
          */
         this.gemsCaptured.addAll(cell.getGemList());
         cell.emptyCell();
-//        System.out.println("Eat all gems at: " + cell.getPosition());
+        System.out.println("Eat all gems at: " + cell.getPosition());
     }
     public boolean isInTurn() {
         return inTurn;
