@@ -20,8 +20,6 @@ public class Player {
     private ArrayList<Gem> gemsCaptured = new ArrayList<Gem>();
     private ArrayList<Cell> cellsOnSide = new ArrayList<Cell>();
     private Cell handPosition;
-    private int numGemsBorrowed;
-    public boolean borrow;
 
     Board board = new Board();
 
@@ -156,7 +154,6 @@ public class Player {
                 score += 1;
             }
         }
-        score -= this.numGemsBorrowed;
         return score;
     }
     public void setCellsOnSides(ArrayList<Cell> CellsOnSide){
@@ -178,13 +175,6 @@ public class Player {
             }
         }
         return res == 0;
-    }
-
-    public void setNumBorrow(int numGemsBorrowed) {
-        this.numGemsBorrowed = numGemsBorrowed;
-    }
-    public void setBorrow(boolean isBorrow) {
-        this.borrow = isBorrow;
     }
 
 	public int numBigGemsInGemsCaptured() {

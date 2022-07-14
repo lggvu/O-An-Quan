@@ -32,7 +32,6 @@ public class HelpScreenController {
             // TODO while playing: just a pop-up
 
             final String INTRO_SCREEN_FILE_PATH = "/sourcecode/screen/view/IntroScreen.fxml";
-//            final String PLAY_SCREEN_FILE_PATH = "/sourcecode/screen/view/PlayScreen.fxml";
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(INTRO_SCREEN_FILE_PATH));
             fxmlLoader.setController(new IntroScreenController(board, player1, player2));

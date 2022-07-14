@@ -17,8 +17,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import sourcecode.board.Board;
 import sourcecode.board.Cell;
@@ -277,7 +275,6 @@ public class GamePlayScreenController implements Initializable {
 
 	}
 
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO
@@ -343,7 +340,6 @@ public class GamePlayScreenController implements Initializable {
 			imageView.setVisible(false);
 		}
 
-
 		for(Button arrowButton : Arrays.asList(leftArrowCell1, leftArrowCell2, leftArrowCell3, leftArrowCell4, leftArrowCell5,
 				leftArrowCell7, leftArrowCell8, leftArrowCell9, leftArrowCell10, leftArrowCell11, rightArrowCell1, rightArrowCell2,
 				rightArrowCell3, rightArrowCell4, rightArrowCell5, rightArrowCell7, rightArrowCell8, rightArrowCell9, rightArrowCell10, rightArrowCell11)) {
@@ -369,7 +365,6 @@ public class GamePlayScreenController implements Initializable {
 		} else {
 			this.currentPlayer = this.player2;
 		}
-
 
 		if(index >= 1 && index <= 5) {
 			currentPlayer.pickUpGemFrom(boardList[index]);

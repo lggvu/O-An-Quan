@@ -10,7 +10,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import sourcecode.board.Board;
 import sourcecode.player.Player;
-import sourcecode.screen.controller.GamePlayScreenController;
 import sourcecode.screen.controller.HelpScreenController;
 
 import java.io.IOException;
@@ -54,7 +53,6 @@ public class HelpScreen extends Application {
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
     }
-
 
     public static void main(String[] args) {
         board = new Board();

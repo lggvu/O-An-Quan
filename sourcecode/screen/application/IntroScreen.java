@@ -5,15 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import sourcecode.board.Board;
 import sourcecode.player.Player;
 import sourcecode.screen.controller.IntroScreenController;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 public class IntroScreen extends Application {
 
