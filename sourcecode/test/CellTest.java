@@ -7,7 +7,7 @@ public class CellTest {
     public static void main(String[] args) {
         Cell cell = new Cell();
         Gem gem1 = new bigGem(cell);
-        Gem gem2 = new Gem(cell);
+        Gem gem2 = new smallGem(cell);
         cell.addGem(gem1);
         cell.addGem(gem2);
 

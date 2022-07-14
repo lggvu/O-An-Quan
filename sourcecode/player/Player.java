@@ -8,9 +8,7 @@ import java.util.ArrayList;
 
 public class Player {
     private boolean inTurn;
-    private int score;
     private String name;
-    private int id;
     private ArrayList<Gem> gemsInHand = new ArrayList<Gem>();
 
     public void setName(String name) {
@@ -158,9 +156,6 @@ public class Player {
     }
     public void setCellsOnSides(ArrayList<Cell> CellsOnSide){
         this.cellsOnSide = CellsOnSide;
-    }
-    public int getScore(){
-        return this.score;
     }
 
     public void setTurn(boolean turn) {

@@ -1,4 +1,4 @@
-package sourcecode.gameplay;
+package sourcecode.test;
 import java.util.Scanner;
 
 import sourcecode.board.Board;

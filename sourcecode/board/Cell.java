@@ -4,7 +4,7 @@ import sourcecode.gem.Gem;
 
 import java.util.ArrayList;
 
-public class Cell {
+public abstract class Cell {
     private int position;
     private int numberOfGems;
     private ArrayList<Gem> gemList = new ArrayList<Gem>();
@@ -63,7 +63,4 @@ public class Cell {
         return this.getGemList().size() == 0;
     }
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
 }
