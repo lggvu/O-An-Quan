@@ -287,7 +287,12 @@ public class GamePlayScreenController implements Initializable {
 	    ArrayList <Cell> Player1CellOnSide = new ArrayList<Cell>();
 	    ArrayList <Cell> Player2CellOnSide = new ArrayList<Cell>();
 	    Cell[] boardList = board.getBoard();
-	    for (int i = 1; i < 6; i ++) { 
+
+		for(Cell cell:boardList) {
+			System.out.println(cell.seeDetails());
+		}
+
+		for (int i = 1; i < 6; i ++) {
 	        Player1CellOnSide.add(boardList[i]);
 	     }
 	    for (int i = 7; i < 12; i ++) {

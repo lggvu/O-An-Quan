@@ -14,6 +14,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import jdk.internal.misc.TerminatingThreadLocal;
 import sourcecode.board.Board;
+import sourcecode.board.Cell;
 import sourcecode.player.Player;
 import sourcecode.screen.controller.GamePlayScreenController;
 
