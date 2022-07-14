@@ -24,32 +24,17 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Optional;
-import java.util.ResourceBundle;
 
-import javafx.fxml.Initializable;
 
-public class IntroScreenController implements Initializable {
+public class IntroScreenController {
     private final Board board;
     private final Player player1;
     private final Player player2;
-    private boolean playMusic = false;
-    private Media media;
-    private MediaPlayer mediaPlayer = null;
-
     public IntroScreenController (Board board, Player player1, Player player2) {
         this.board = board;
         this.player1 = player1;
         this.player2 = player2;
     }
-
-    @FXML
-    private Rectangle Mute;
-    
-    @FXML
-    private Circle unMute;
-    
-    @FXML
-    private Button adjustMusicButton;
 
 
     @FXML
@@ -81,18 +66,6 @@ public class IntroScreenController implements Initializable {
         }
 
     }
-    
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-        try {
-            this.media = new Media(getClass().getResource("/sourcecode/screen/music/gameMusic.mp3").toURI().toString());
-        } catch (URISyntaxException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        this.mediaPlayer = new MediaPlayer(this.media);
-		
-		}
 
     @FXML
     void btnExitGameClicked(ActionEvent event) {
@@ -129,25 +102,6 @@ public class IntroScreenController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
 
-        }
-
-    }
-    
-    @FXML
-    void adjustMusic(MouseEvent event) {
-        if (this.playMusic) {
-        	this.playMusic = false;
-        	Mute.setVisible(false);
-        	unMute.setVisible(true);
-        }else {
-        	this.playMusic = true;
-        	Mute.setVisible(true);
-        	unMute.setVisible(false);
-        }
-        if (this.playMusic) {
-            this.mediaPlayer.play();
-        }else {
-        	this.mediaPlayer.stop();
         }
 
     }
