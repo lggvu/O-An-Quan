@@ -263,19 +263,29 @@ public class GamePlayScreenController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
 		// TODO
 		player1.setTurn((Math.random()) < 0.5);
-		// just testing if the badges work
-		if(player1.isInTurn()) {
-			player1Badge.setVisible(true);
+		if (player1.isInTurn()){
+			player2.setTurn(false);
+			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
+				pane.setDisable(false);
 		}
-		else {
-			player2Badge.setVisible(true);
-		}
-		if (player1.isInTurn()) {
-			GameStart(player1, player2, board);
+			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
+				pane.setDisable(true);
+			}
+            player1Badge.setVisible(true);
+            player2Badge.setVisible(false);
 		}else {
-			GameStart(player2, player1, board);
+			player2.setTurn(false);
+			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
+				pane.setDisable(false);
+		}
+			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
+				pane.setDisable(true);
+			}
+            player1Badge.setVisible(true);
+            player2Badge.setVisible(false);
 		}
 		
 	}
@@ -319,11 +329,24 @@ public class GamePlayScreenController implements Initializable {
 		Cell[] boardList = this.board.getBoard();
 		if(this.player1.isInTurn()) {
 			this.currentPlayer = this.player1;
-//			player1Badge.setVisible(true);
+			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
+				pane.setDisable(false);
+		}
+			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
+				pane.setDisable(true);
+			}
+            player1Badge.setVisible(true);
+            player2Badge.setVisible(false);
 		} else {
 			this.currentPlayer = this.player2;
-//			player2Badge.setVisible(true);
+			player1Badge.setVisible(false);
+            player2Badge.setVisible(true);
+			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
+				pane.setDisable(true);
 		}
+			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
+				pane.setDisable(false);
+			}
 
 		if(index >= 1 && index <= 5) {
 			currentPlayer.pickUpGemFrom(boardList[index]);
@@ -337,6 +360,17 @@ public class GamePlayScreenController implements Initializable {
 			currentPlayer.spreadGem(boardList[index], 0, this.board);
 			setNumGems(boardList);
 			setScore();
+		}
+		
+		if (!(isGameOver(this.player1, this.player2, this.board))) {
+			if (this.currentPlayer == this.player1) {
+				this.player1.setTurn(false);
+				this.player2.setTurn(true);
+			}else {
+				this.player1.setTurn(true);
+				this.player2.setTurn(false);
+			}
+		}
 		}
 
     }
@@ -351,10 +385,24 @@ public class GamePlayScreenController implements Initializable {
 		Cell[] boardList = this.board.getBoard();
 		if(this.player1.isInTurn()) {
 			this.currentPlayer = this.player1;
-//			player1Badge.setVisible(true);
+			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
+				pane.setDisable(false);
+		}
+			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
+				pane.setDisable(true);
+			}
+            player1Badge.setVisible(true);
+            player2Badge.setVisible(false);
 		} else {
 			this.currentPlayer = this.player2;
-//			player2Badge.setVisible(true);
+            player2Badge.setVisible(true);
+            player1Badge.setVisible(false);
+			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
+				pane.setDisable(true);
+		}
+			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
+				pane.setDisable(false);
+			}
 		}
 
 		if(index >= 1 && index <= 5) {
@@ -366,9 +414,18 @@ public class GamePlayScreenController implements Initializable {
 
 		if(index >= 7 && index <= 11) {
 			currentPlayer.pickUpGemFrom(boardList[index]);
-			currentPlayer.spreadGem(boardList[index], 1, this.board);
+			currentPlayer.spreadGem(boardList[index], 0, this.board);
 			setNumGems(boardList);
 			setScore();
+		}
+		if (!(isGameOver(this.player1, this.player2, this.board))) {
+			if (this.currentPlayer == this.player1) {
+				this.player1.setTurn(false);
+				this.player2.setTurn(true);
+			}else {
+				this.player1.setTurn(true);
+				this.player2.setTurn(false);
+			}
 		}
 
     }
@@ -393,13 +450,8 @@ public class GamePlayScreenController implements Initializable {
     	player1Score.setText("" + this.player1.calculateScore());
     	player2Score.setText("" + this.player2.calculateScore());
     }
-
-//	public void setPlayerName() {
-//		player1Name.setText(this.player1.getName());
-//		player2Name.setText(this.player2.getName());
-//	}
-
-	public static boolean isGameOver(Player player1, Player player2, Board board) {
+    
+    public static boolean isGameOver(Player player1, Player player2, Board board) {
 		boolean res = false;
 		if (board.getNumBigGem() - player1.numBigGemsInGemsCaptured() - player2.numBigGemsInGemsCaptured() == 0) {
 			res = true;
@@ -410,79 +462,5 @@ public class GamePlayScreenController implements Initializable {
 		}
 		return res;
 	}
-
-	public void GameStart(Player player1, Player player2, Board board){
-		ArrayList <Cell> Player1CellOnSide = new ArrayList<Cell>();
-		ArrayList <Cell> Player2CellOnSide = new ArrayList<Cell>();
-		Cell[] boardList = board.getBoard();
-
-		for (int i = 1; i < 6; i ++) {
-			Player1CellOnSide.add(boardList[i]);
-		}
-		for (int i = 7; i < 12; i ++) {
-			Player2CellOnSide.add(boardList[i]);
-		}
-
-		// nevermind this, just testing if the `disable` works
-		/*
-		if(player1.isInTurn()) {
-			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
-				pane.setDisable(true);
-			}
-		}
-
-		if(player2.isInTurn()) {
-			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
-				pane.setDisable(true);
-			}
-		}
-
-		 */
-
-
-
-
-/*		while (!(isGameOver(player1, player2, board))) {
-			// disable all cells on side of player 2;
-			cell07.setDisable(true);
-			cell08.setDisable(true);
-			cell09.setDisable(true);
-			cell10.setDisable(true);
-			cell11.setDisable(true);
-			player1Badge.setVisible(true);
-		}
-		while (!(player1.pickUpGemFrom(boardList[cell_Num]))){
-			//DONOTHING
-		}
-
-		while (handDirection != 1 && handDirection != 0) {
-			//DO NOTHING
-		}
-
-
-		while (!(isGameOver(player1, player2, board))) {
-			//Disable all cell on sides of player1
-			cell01.setDisable(true);
-			cell02.setDisable(true);
-			cell03.setDisable(true);
-			cell04.setDisable(true);
-			cell05.setDisable(true);
-			player2Badge.setVisible(true);
-
-		}
-
-		while(!player2.pickUpGemFrom(boardList[cell_Num] )){
-
-			// DO NOTHING
-		}
-		player2.pickUpGemFrom(boardList[cell_Num]);
-		while (handDirection != 1 && handDirection != 0) {
-			//DO NOTHING
-		}*/
-
-	}
-	//TODO: IF PLAYER1 IS IN TURN, THEN DISABLE ALL CELLSONSIDE OF PLAYER2
-	// AFTER PLAYER 1 CLICKS, DISABLE ALL THE IMAGEVIEWS THAT ARE NOT IN THIS PANE => let it invisible
-	//ADD A BOOLEAN ATTRIBUTE TO CHECK WHETHER RIGHT OF LEFT BUTTON CLICKED (IN RIGHTClick and leftClicked)
-
 }
+
