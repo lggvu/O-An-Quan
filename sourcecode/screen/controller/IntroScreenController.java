@@ -9,23 +9,33 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import sourcecode.board.Board;
 import sourcecode.player.Player;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.Arrays;
 import java.util.Optional;
+
 
 public class IntroScreenController {
     private final Board board;
     private final Player player1;
     private final Player player2;
-
-    public IntroScreenController(Board board, Player player1, Player player2) {
+    public IntroScreenController (Board board, Player player1, Player player2) {
         this.board = board;
         this.player1 = player1;
         this.player2 = player2;
     }
+
 
     @FXML
     private Button btnStartGame;
@@ -95,6 +105,5 @@ public class IntroScreenController {
         }
 
     }
-
 }
 
