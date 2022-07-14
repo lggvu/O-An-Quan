@@ -1,0 +1,10 @@
+/** file: outline.css (place in same directory as OutlinedLabelText) */    
+.label {
+    -fx-font-size: 72px;
+}
+
+.outline.label .text {
+    -fx-fill: white;
+    -fx-stroke: chocolate;
+    -fx-stroke-width: 3px;
+}
