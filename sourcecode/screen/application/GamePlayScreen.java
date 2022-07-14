@@ -25,8 +25,6 @@ public class GamePlayScreen extends Application {
     private static Board board;
     private static Player player1;
     private static Player player2;
-//    private static String player1Name;
-//    private static String player2Name;
 
     public void start(Stage primaryStage)
     {
@@ -49,7 +47,7 @@ public class GamePlayScreen extends Application {
         );
 
          */
-        music();
+//        music();
 
         final String PLAY_SCREEN_FXML_FILE_PATH = "/sourcecode/screen/view/PlayScreen.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(PLAY_SCREEN_FXML_FILE_PATH));

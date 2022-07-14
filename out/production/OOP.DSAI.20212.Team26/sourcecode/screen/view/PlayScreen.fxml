@@ -226,12 +226,12 @@
             <Button fx:id="rightArrowCell11" layoutX="80.0" layoutY="32.0" mnemonicParsing="false" onAction="#rightDirectionChosen" opacity="0.0" text="Button" visible="false" />
          </children>
       </Pane>
-      <Label fx:id="numOfGems0" layoutX="201.0" layoutY="371.0" rotate="270.0" text="5" textFill="WHITE">
+      <Label fx:id="numOfGems0" layoutX="201.0" layoutY="371.0" rotate="270.0" text="1" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <Label fx:id="numOfGems6" layoutX="817.0" layoutY="365.0" rotate="90.0" text="5" textFill="WHITE">
+      <Label fx:id="numOfGems6" layoutX="817.0" layoutY="365.0" rotate="90.0" text="1" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
@@ -266,5 +266,16 @@
             <Image url="@../images/paw-player-2.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="Mute" fitHeight="56.0" fitWidth="67.0" layoutX="937.0" layoutY="29.0" visible="false">
+         <image>
+            <Image url="@../images/mute.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="unMute" fitHeight="56.0" fitWidth="67.0" layoutX="937.0" layoutY="29.0">
+         <image>
+            <Image url="@../images/unmute.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="adjustMusicButton" layoutX="931.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#adjustMusic" opacity="0.0" prefHeight="62.0" prefWidth="72.0" text="Sound" />
    </children>
 </AnchorPane>

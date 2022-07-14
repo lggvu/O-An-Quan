@@ -33,6 +33,9 @@ public class GamePlayScreenController implements Initializable {
 	private boolean playMusic = false;
 	private Media media;
 	private MediaPlayer mediaPlayer = null;
+	private String winnerPlayer;
+	private int winnerScore;
+	private String endGameContent;
 
     public GamePlayScreenController(Board board, Player player1, Player player2) {
         this.player1 = player1;
@@ -41,10 +44,10 @@ public class GamePlayScreenController implements Initializable {
     }
     
     @FXML
-    private Rectangle Mute;
+    private ImageView Mute;
     
     @FXML
-    private Circle unMute;
+    private ImageView unMute;
     
     @FXML
     private Button adjustMusicButton;
@@ -452,12 +455,7 @@ public class GamePlayScreenController implements Initializable {
     	player2Score.setText("" + this.player2.calculateScore());
     }
 
-//	public void setPlayerName() {
-//		player1Name.setText(this.player1.getName());
-//		player2Name.setText(this.player2.getName());
-//	}
-
-	public static boolean isGameOver(Player player1, Player player2, Board board) {
+	public boolean isGameOver(Player player1, Player player2, Board board) {
 		boolean res = false;
 		if (board.getNumBigGem() - player1.numBigGemsInGemsCaptured() - player2.numBigGemsInGemsCaptured() == 0) {
 			res = true;
@@ -466,7 +464,43 @@ public class GamePlayScreenController implements Initializable {
 		}else if (player2.isCellOnSideEmpty()) {
 			res = true;
 		}
+
+		if(res) {
+			System.out.println("Game finished");
+			if(player1.calculateScore() > player2.calculateScore()) {
+				this.winnerPlayer = player1.getName();
+				this.winnerScore = player1.calculateScore();
+				this.endGameContent = winnerPlayer + " wins! Score: " + winnerScore;
+			}
+			else if(player1.calculateScore() < player2.calculateScore()){
+				this.winnerPlayer = player2.getName();
+				this.winnerScore = player2.calculateScore();
+				this.endGameContent = winnerPlayer + " wins! Score: " + winnerScore;
+			}
+			else {
+				this.endGameContent = "Draw";
+			}
+			displayEndGameScreen();
+		}
+
 		return res;
+	}
+
+	public void displayEndGameScreen() {
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("End Game");
+		alert.setHeaderText("End Game");
+		alert.setContentText(endGameContent);
+		Optional<ButtonType> res = alert.showAndWait();
+		if(res.get() == ButtonType.OK) {
+			// quit game
+			Stage stage = (Stage) btnExit.getScene().getWindow();
+			stage.close();
+		} else {
+			// close dialog
+			alert.close();
+		}
+
 	}
 	
 	public void changeTurn() {
