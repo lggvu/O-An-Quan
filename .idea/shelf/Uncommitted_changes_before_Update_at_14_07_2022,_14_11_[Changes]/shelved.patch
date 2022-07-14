@@ -1,0 +1,386 @@
+Index: sourcecode/screen/controller/GamePlayScreenController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sourcecode.screen.controller;\nimport javafx.collections.ObservableList;\nimport javafx.event.ActionEvent;\nimport javafx.fxml.Initializable;\n\nimport java.net.URL;\nimport java.util.*;\n\nimport javafx.fxml.FXML;\nimport javafx.scene.Node;\nimport javafx.scene.control.Alert;\nimport javafx.scene.control.Button;\nimport javafx.scene.control.ButtonType;\nimport javafx.scene.control.Label;\nimport javafx.scene.input.MouseEvent;\nimport javafx.scene.layout.Pane;\nimport javafx.stage.Stage;\nimport sourcecode.board.Board;\nimport sourcecode.board.Cell;\nimport sourcecode.player.Player;\n\nimport javafx.scene.image.ImageView;\n\npublic class GamePlayScreenController implements Initializable {\n\tprivate Player player1, player2, currentPlayer;\n\tprivate Board board;\n\tpublic static int cell_Num;\n\n    public GamePlayScreenController(Board board, Player player1, Player player2) {\n        this.player1 = player1;\n        this.player2 = player2;\n        this.board = board;\n    }\n\n\t@FXML\n\tprivate Button btnExit;\n\n\t@FXML\n\tprivate Pane cell01;\n\n\t@FXML\n\tprivate ImageView imgLeftArrow1;\n\n\t@FXML\n\tprivate ImageView imgRightArrow1;\n\n\t@FXML\n\tprivate Label numOfGems1;\n\n\t@FXML\n\tprivate Button leftArrowCell1;\n\n\t@FXML\n\tprivate Button rightArrowCell1;\n\n\t@FXML\n\tprivate Pane cell02;\n\n\t@FXML\n\tprivate Label numOfGems2;\n\n\t@FXML\n\tprivate ImageView imgLeftArrow2;\n\n\t@FXML\n\tprivate ImageView imgRightArrow2;\n\n\t@FXML\n\tprivate Button rightArrowCell2;\n\n\t@FXML\n\tprivate Button leftArrowCell2;\n\n\t@FXML\n\tprivate Pane cell03;\n\n\t@FXML\n\tprivate ImageView imgLeftArrow3;\n\n\t@FXML\n\tprivate ImageView imgRightArrow3;\n\n\t@FXML\n\tprivate Label numOfGems3;\n\n\t@FXML\n\tprivate Button leftArrowCell3;\n\n\t@FXML\n\tprivate Button rightArrowCell3;\n\n\t@FXML\n\tprivate Pane cell04;\n\n\t@FXML\n\tprivate ImageView imgLeftArrow4;\n\n\t@FXML\n\tprivate ImageView imgRightArrow4;\n\n\t@FXML\n\tprivate Label numOfGems4;\n\n\t@FXML\n\tprivate Button leftArrowCell4;\n\n\t@FXML\n\tprivate Button rightArrowCell4;\n\n\t@FXML\n\tprivate Pane cell05;\n\n\t@FXML\n\tprivate ImageView imgLeftArrow5;\n\n\t@FXML\n\tprivate ImageView imgRightArrow5;\n\n\t@FXML\n\tprivate Label numOfGems5;\n\n\t@FXML\n\tprivate Button leftArrowCell5;\n\n\t@FXML\n\tprivate Button rightArrowCell5;\n\n\t@FXML\n\tprivate Pane cell07;\n\n\t@FXML\n\tprivate ImageView imgLeftArrow7;\n\n\t@FXML\n\tprivate ImageView imgRightArrow7;\n\n\t@FXML\n\tprivate Label numOfGems7;\n\n\t@FXML\n\tprivate Button rightArrowCell7;\n\n\t@FXML\n\tprivate Button leftArrowCell7;\n\n\t@FXML\n\tprivate Pane cell08;\n\n\t@FXML\n\tprivate ImageView imgLeftArrow8;\n\n\t@FXML\n\tprivate ImageView imgRightArrow8;\n\n\t@FXML\n\tprivate Label numOfGems8;\n\n\t@FXML\n\tprivate Button leftArrowCell8;\n\n\t@FXML\n\tprivate Button rightArrowCell8;\n\n\t@FXML\n\tprivate Pane cell09;\n\n\t@FXML\n\tprivate ImageView imgLeftArrow9;\n\n\t@FXML\n\tprivate ImageView imgRightArrow9;\n\n\t@FXML\n\tprivate Label numOfGems9;\n\n\t@FXML\n\tprivate Button leftArrowCell9;\n\n\t@FXML\n\tprivate Button rightArrowCell9;\n\n\t@FXML\n\tprivate Pane cell10;\n\n\t@FXML\n\tprivate ImageView imgLeftArrow10;\n\n\t@FXML\n\tprivate ImageView imgRightArrow10;\n\n\t@FXML\n\tprivate Label numOfGems10;\n\n\t@FXML\n\tprivate Button leftArrowCell10;\n\n\t@FXML\n\tprivate Button rightArrowCell10;\n\n\t@FXML\n\tprivate Pane cell11;\n\n\t@FXML\n\tprivate Label numOfGems11;\n\n\t@FXML\n\tprivate ImageView imgRightArrow11;\n\n\t@FXML\n\tprivate ImageView imgLeftArrow11;\n\n\t@FXML\n\tprivate Button leftArrowCell11;\n\n\t@FXML\n\tprivate Button rightArrowCell11;\n\n\t@FXML\n\tprivate Label numOfGems0;\n\n\t@FXML\n\tprivate Label numOfGems6;\n\n\t@FXML\n\tprivate Label player1Name;\n\n\t@FXML\n\tprivate Label player2Name;\n\n\t@FXML\n\tprivate Label player1Score;\n\n\t@FXML\n\tprivate Label player2Score;\n\n\t@FXML\n\tprivate ImageView player1Badge;\n\n\t@FXML\n\tprivate ImageView player2Badge;\n\n\t@FXML\n\tvoid btnExitClicked(ActionEvent event) {\n\t\tAlert alert = new Alert(Alert.AlertType.CONFIRMATION);\n\t\talert.setTitle(\"Exit Confirmation\");\n\t\talert.setHeaderText(\"Exit Game\");\n\t\talert.setContentText(\"Are you sure you want to exit?\");\n\t\tOptional<ButtonType> res = alert.showAndWait();\n\t\tif(res.get() == ButtonType.OK) {\n\t\t\t// quit game\n\t\t\tStage stage = (Stage) btnExit.getScene().getWindow();\n\t\t\tstage.close();\n\t\t} else {\n\t\t\t// close dialog\n\t\t\talert.close();\n\t\t}\n\n\t}\n\n\n\t@Override\n\tpublic void initialize(URL location, ResourceBundle resources) {\n\t\t// TODO\n\t\tplayer1.setTurn((Math.random()) < 0.5);\n\t\tif (player1.isInTurn()){\n\t\t\tplayer2.setTurn(false);\n\t\t\tfor(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {\n\t\t\t\tpane.setDisable(false);\n\t\t\t}\n\t\t\tfor(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {\n\t\t\t\tpane.setDisable(true);\n\t\t\t}\n\t\t\tplayer1Badge.setVisible(true);\n\t\t\tplayer2Badge.setVisible(false);\n\t\t}else {\n\t\t\tplayer2.setTurn(false);\n\t\t\tfor(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {\n\t\t\t\tpane.setDisable(false);\n\t\t\t}\n\t\t\tfor(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {\n\t\t\t\tpane.setDisable(true);\n\t\t\t}\n\t\t\tplayer1Badge.setVisible(true);\n\t\t\tplayer2Badge.setVisible(false);\n\t\t}\n\t\t\n\t}\n\n    @FXML\n    void cellChosen(MouseEvent event) {\n\t\tPane paneChosen = (Pane) event.getPickResult().getIntersectedNode();\n\t\tObservableList<Node> childrenElements = paneChosen.getChildren();\n\n\t\tString id = paneChosen.getId();\n\t\tcell_Num = Integer.parseInt(id.substring(id.length()-2));\n\t\tSystem.out.println(cell_Num);\n\n\t\t// set invisible for all arrows and its button\n\t\tfor(ImageView imageView : Arrays.asList(imgLeftArrow1, imgLeftArrow2, imgLeftArrow3, imgLeftArrow4, imgLeftArrow5,\n\t\t\t\timgLeftArrow7, imgLeftArrow8, imgLeftArrow9, imgLeftArrow10, imgLeftArrow11,\n\t\t\t\timgRightArrow1, imgRightArrow2, imgRightArrow3, imgRightArrow4, imgRightArrow5,\n\t\t\t\timgRightArrow7, imgRightArrow8, imgRightArrow9, imgRightArrow10, imgRightArrow11)) {\n\t\t\timageView.setVisible(false);\n\t\t}\n\n\n\t\tfor(Button arrowButton : Arrays.asList(leftArrowCell1, leftArrowCell2, leftArrowCell3, leftArrowCell4, leftArrowCell5,\n\t\t\t\tleftArrowCell7, leftArrowCell8, leftArrowCell9, leftArrowCell10, leftArrowCell11, rightArrowCell1, rightArrowCell2,\n\t\t\t\trightArrowCell3, rightArrowCell4, rightArrowCell5, rightArrowCell7, rightArrowCell8, rightArrowCell9, rightArrowCell10, rightArrowCell11)) {\n\t\t\tarrowButton.setVisible(false);\n\t\t}\n\n\t\tfor(Node node:childrenElements) {\n\t\t\tnode.setVisible(true);\n\t\t}\n    }\n\n    @FXML\n    void leftDirectionChosen(ActionEvent event) {\n\t\tPane paneChosen = (Pane) ((Node) event.getTarget()).getParent();\n\t\tSystem.out.println(\"pane chosen: \" + paneChosen);\n\t\tString id = paneChosen.getId();\n\t\tint index = Integer.parseInt(id.substring(id.length()-2));\n\n\t\tCell[] boardList = this.board.getBoard();\n\n\t\tif(this.player1.isInTurn()) {\n\t\t\tthis.currentPlayer = this.player1;\n\t\t\tfor(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {\n\t\t\t\tpane.setDisable(false);\n\t\t\t}\n\t\t\tfor(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {\n\t\t\t\tpane.setDisable(true);\n\t\t\t}\n\t\t\tplayer1Badge.setVisible(true);\n\t\t\tplayer2Badge.setVisible(false);\n\t\t} else {\n\t\t\tthis.currentPlayer = this.player2;\n\t\t\tplayer1Badge.setVisible(false);\n\t\t\tplayer2Badge.setVisible(true);\n\t\t\tfor (Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {\n\t\t\t\tpane.setDisable(true);\n\t\t\t}\n\t\t\tfor (Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {\n\t\t\t\tpane.setDisable(false);\n\t\t\t}\n\t\t}\n\n\n\t\tif(index >= 1 && index <= 5) {\n\t\t\tcurrentPlayer.pickUpGemFrom(boardList[index]);\n\t\t\tcurrentPlayer.spreadGem(boardList[index], 1, this.board);\n\t\t\tsetNumGems(boardList);\n\t\t\tsetScore();\n\t\t}\n\n\t\tif(index >= 7 && index <= 11) {\n\t\t\tcurrentPlayer.pickUpGemFrom(boardList[index]);\n\t\t\tcurrentPlayer.spreadGem(boardList[index], 0, this.board);\n\t\t\tsetNumGems(boardList);\n\t\t\tsetScore();\n\t\t}\n\n\t\tif (!(isGameOver(this.player1, this.player2, this.board))) {\n\t\t\tif (this.currentPlayer == this.player1) {\n\t\t\t\tthis.player1.setTurn(false);\n\t\t\t\tthis.player2.setTurn(true);\n\t\t\t}else {\n\t\t\t\tthis.player1.setTurn(true);\n\t\t\t\tthis.player2.setTurn(false);\n\t\t\t}\n\t\t}\n\n    }\n\n    @FXML\n    void rightDirectionChosen(ActionEvent event) {\n\t\tPane paneChosen = (Pane) ((Node) event.getTarget()).getParent();\n\t\tSystem.out.println(\"pane chosen: \" + paneChosen);\n\t\tString id = paneChosen.getId();\n\t\tint index = Integer.parseInt(id.substring(id.length()-2));\n\n\t\tCell[] boardList = this.board.getBoard();\n\n\t\tif(this.player1.isInTurn()) {\n\t\t\tthis.currentPlayer = this.player1;\n\t\t\tfor(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {\n\t\t\t\tpane.setDisable(false);\n\t\t\t}\n\t\t\tfor(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {\n\t\t\t\tpane.setDisable(true);\n\t\t\t}\n\t\t\tplayer1Badge.setVisible(true);\n\t\t\tplayer2Badge.setVisible(false);\n\t\t} else {\n\t\t\tthis.currentPlayer = this.player2;\n\t\t\tplayer2Badge.setVisible(true);\n\t\t\tplayer1Badge.setVisible(false);\n\t\t\tfor(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {\n\t\t\t\tpane.setDisable(true);\n\t\t\t}\n\t\t\tfor(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {\n\t\t\t\tpane.setDisable(false);\n\t\t\t}\n\t\t}\n\n\t\tif(index >= 1 && index <= 5) {\n\t\t\tcurrentPlayer.pickUpGemFrom(boardList[index]);\n\t\t\tcurrentPlayer.spreadGem(boardList[index], 0, this.board);\n\t\t\tsetNumGems(boardList);\n\t\t\tsetScore();\n\t\t}\n\n\t\tif(index >= 7 && index <= 11) {\n\t\t\tcurrentPlayer.pickUpGemFrom(boardList[index]);\n\t\t\tcurrentPlayer.spreadGem(boardList[index], 1, this.board);\n\t\t\tsetNumGems(boardList);\n\t\t\tsetScore();\n\t\t}\n\n\t\tif (!(isGameOver(this.player1, this.player2, this.board))) {\n\t\t\tif (this.currentPlayer == this.player1) {\n\t\t\t\tthis.player1.setTurn(false);\n\t\t\t\tthis.player2.setTurn(true);\n\t\t\t}else {\n\t\t\t\tthis.player1.setTurn(true);\n\t\t\t\tthis.player2.setTurn(false);\n\t\t\t}\n\t\t}\n\n    }\n    \n    public void setNumGems(Cell[] boardList) {\n  \t    numOfGems0.setText(\"\" + boardList[0].getGemList().size());\n    \tnumOfGems1.setText(\"\" + boardList[1].getGemList().size());\n    \tnumOfGems2.setText(\"\" + boardList[2].getGemList().size());\n    \tnumOfGems3.setText(\"\" + boardList[3].getGemList().size());\n    \tnumOfGems4.setText(\"\" + boardList[4].getGemList().size());\n    \tnumOfGems5.setText(\"\" + boardList[5].getGemList().size());\n    \tnumOfGems6.setText(\"\" + boardList[6].getGemList().size());\n    \tnumOfGems7.setText(\"\" + boardList[7].getGemList().size());\n    \tnumOfGems8.setText(\"\" + boardList[8].getGemList().size());\n    \tnumOfGems9.setText(\"\" + boardList[9].getGemList().size());\n    \tnumOfGems10.setText(\"\" + boardList[10].getGemList().size());\n    \tnumOfGems11.setText(\"\" + boardList[11].getGemList().size());\n    \t\n    }\n    \n    public void setScore() {\n    \tplayer1Score.setText(\"\" + this.player1.calculateScore());\n    \tplayer2Score.setText(\"\" + this.player2.calculateScore());\n    }\n\n//\tpublic void setPlayerName() {\n//\t\tplayer1Name.setText(this.player1.getName());\n//\t\tplayer2Name.setText(this.player2.getName());\n//\t}\n\n\tpublic static boolean isGameOver(Player player1, Player player2, Board board) {\n\t\tboolean res = false;\n\t\tif (board.getNumBigGem() - player1.numBigGemsInGemsCaptured() - player2.numBigGemsInGemsCaptured() == 0) {\n\t\t\tres = true;\n\t\t}else if (player1.isCellOnSideEmpty()) {\n\t\t\tres = true;\n\t\t}else if (player2.isCellOnSideEmpty()) {\n\t\t\tres = true;\n\t\t}\n\t\treturn res;\n\t}\n\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/sourcecode/screen/controller/GamePlayScreenController.java b/sourcecode/screen/controller/GamePlayScreenController.java
+--- a/sourcecode/screen/controller/GamePlayScreenController.java	(revision 324025c410914ebb86bf5cfbc3f8871c73008d6b)
++++ b/sourcecode/screen/controller/GamePlayScreenController.java	(date 1657782435347)
+@@ -26,11 +26,11 @@
+ 	private Board board;
+ 	public static int cell_Num;
+ 
+-    public GamePlayScreenController(Board board, Player player1, Player player2) {
+-        this.player1 = player1;
+-        this.player2 = player2;
+-        this.board = board;
+-    }
++	public GamePlayScreenController(Board board, Player player1, Player player2) {
++		this.player1 = player1;
++		this.player2 = player2;
++		this.board = board;
++	}
+ 
+ 	@FXML
+ 	private Button btnExit;
+@@ -262,7 +262,7 @@
+ 	public void initialize(URL location, ResourceBundle resources) {
+ 		// TODO
+ 		player1.setTurn((Math.random()) < 0.5);
+-		if (player1.isInTurn()){
++		if (player1.isInTurn()) {
+ 			player2.setTurn(false);
+ 			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
+ 				pane.setDisable(false);
+@@ -273,21 +273,33 @@
+ 			player1Badge.setVisible(true);
+ 			player2Badge.setVisible(false);
+ 		}else {
+-			player2.setTurn(false);
++			player2.setTurn(true);
+ 			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
+-				pane.setDisable(false);
++				pane.setDisable(true);
+ 			}
+ 			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
+-				pane.setDisable(true);
++				pane.setDisable(false);
+ 			}
+-			player1Badge.setVisible(true);
+-			player2Badge.setVisible(false);
++			player1Badge.setVisible(false);
++			player2Badge.setVisible(true);
+ 		}
+-		
++
++		ArrayList <Cell> Player1CellOnSide = new ArrayList<Cell>();
++		ArrayList <Cell> Player2CellOnSide = new ArrayList<Cell>();
++		Cell[] boardList = board.getBoard();
++		for (int i = 1; i < 6; i ++) {
++			Player1CellOnSide.add(boardList[i]);
++		}
++		for (int i = 7; i < 12; i ++) {
++			Player2CellOnSide.add(boardList[i]);
++		}
++		player1.setCellsOnSide(Player1CellOnSide);
++		player2.setCellsOnSide(Player2CellOnSide);
++
+ 	}
+ 
+-    @FXML
+-    void cellChosen(MouseEvent event) {
++	@FXML
++	void cellChosen(MouseEvent event) {
+ 		Pane paneChosen = (Pane) event.getPickResult().getIntersectedNode();
+ 		ObservableList<Node> childrenElements = paneChosen.getChildren();
+ 
+@@ -313,17 +325,17 @@
+ 		for(Node node:childrenElements) {
+ 			node.setVisible(true);
+ 		}
+-    }
++	}
+ 
+-    @FXML
+-    void leftDirectionChosen(ActionEvent event) {
++	@FXML
++	void leftDirectionChosen(ActionEvent event) {
++		System.out.println(player1.isInTurn());
+ 		Pane paneChosen = (Pane) ((Node) event.getTarget()).getParent();
+ 		System.out.println("pane chosen: " + paneChosen);
+ 		String id = paneChosen.getId();
+ 		int index = Integer.parseInt(id.substring(id.length()-2));
+ 
+ 		Cell[] boardList = this.board.getBoard();
+-
+ 		if(this.player1.isInTurn()) {
+ 			this.currentPlayer = this.player1;
+ 			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
+@@ -360,21 +372,66 @@
+ 			setNumGems(boardList);
+ 			setScore();
+ 		}
+-
+ 		if (!(isGameOver(this.player1, this.player2, this.board))) {
+ 			if (this.currentPlayer == this.player1) {
+ 				this.player1.setTurn(false);
+ 				this.player2.setTurn(true);
++				for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
++					pane.setDisable(true);
++				}
++				for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
++					boolean empty = false;
++					for (Node n : pane.getChildren()) {
++						if (n instanceof Label) {
++							String text = ((Label)n).getText();
++							if (text.equals("" + '0')) {
++								empty = true;
++								break;
++							}
++						}
++					}
++					if (!empty) {
++						pane.setDisable(false);
++					}else {
++						pane.setDisable(true);
++					}
++				}
++				player1Badge.setVisible(false);
++				player2Badge.setVisible(true);
+ 			}else {
+ 				this.player1.setTurn(true);
+ 				this.player2.setTurn(false);
++				for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
++					boolean empty = false;
++					for (Node n : pane.getChildren()) {
++						if (n instanceof Label) {
++							String text = ((Label) n).getText();
++							System.out.println(text);
++							if (text.equals("" + '0')) {
++								empty = true;
++								break;
++							}
++						}
++					}
++					if (!empty) {
++						pane.setDisable(false);
++					}else {
++						pane.setDisable(true);
++					}
++				}
++				for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
++					pane.setDisable(true);
++				}
++				player1Badge.setVisible(true);
++				player2Badge.setVisible(false);
+ 			}
+ 		}
++		System.out.println(player1.isInTurn());
+ 
+-    }
++	}
+ 
+-    @FXML
+-    void rightDirectionChosen(ActionEvent event) {
++	@FXML
++	void rightDirectionChosen(ActionEvent event) {
+ 		Pane paneChosen = (Pane) ((Node) event.getTarget()).getParent();
+ 		System.out.println("pane chosen: " + paneChosen);
+ 		String id = paneChosen.getId();
+@@ -422,34 +479,84 @@
+ 			if (this.currentPlayer == this.player1) {
+ 				this.player1.setTurn(false);
+ 				this.player2.setTurn(true);
++				for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
++					pane.setDisable(true);
++				}
++				for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
++					boolean empty = false;
++					for (Node n : pane.getChildren()) {
++						if (n instanceof Label) {
++							String text = ((Label)n).getText();
++							System.out.println(text);
++							if (text.equals("" + '0')) {
++								empty = true;
++								break;
++							}
++						}
++					}
++					if (!empty) {
++						pane.setDisable(false);
++					}else {
++						pane.setDisable(true);
++					}
++				}
++				player1Badge.setVisible(false);
++				player2Badge.setVisible(true);
+ 			}else {
+ 				this.player1.setTurn(true);
+ 				this.player2.setTurn(false);
++				for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
++					boolean empty = false;
++					for (Node n : pane.getChildren()) {
++						if (n instanceof Label) {
++							String text = ((Label)n).getText();
++							System.out.println(text);
++							if (text.equals("" + '0')) {
++								empty = true;
++								break;
++							}
++						}
++					}
++					if (!empty) {
++						pane.setDisable(false);
++					}else {
++						pane.setDisable(true);
++					}
++				}
++				for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
++					pane.setDisable(true);
++				}
++				player1Badge.setVisible(true);
++				player2Badge.setVisible(false);
+ 			}
++		}else {
++			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05, cell07, cell08,  cell09, cell10, cell11)) {
++				pane.setDisable(true);
++			}
+ 		}
+-
+-    }
+-    
+-    public void setNumGems(Cell[] boardList) {
+-  	    numOfGems0.setText("" + boardList[0].getGemList().size());
+-    	numOfGems1.setText("" + boardList[1].getGemList().size());
+-    	numOfGems2.setText("" + boardList[2].getGemList().size());
+-    	numOfGems3.setText("" + boardList[3].getGemList().size());
+-    	numOfGems4.setText("" + boardList[4].getGemList().size());
+-    	numOfGems5.setText("" + boardList[5].getGemList().size());
+-    	numOfGems6.setText("" + boardList[6].getGemList().size());
+-    	numOfGems7.setText("" + boardList[7].getGemList().size());
+-    	numOfGems8.setText("" + boardList[8].getGemList().size());
+-    	numOfGems9.setText("" + boardList[9].getGemList().size());
+-    	numOfGems10.setText("" + boardList[10].getGemList().size());
+-    	numOfGems11.setText("" + boardList[11].getGemList().size());
+-    	
+-    }
+-    
+-    public void setScore() {
+-    	player1Score.setText("" + this.player1.calculateScore());
+-    	player2Score.setText("" + this.player2.calculateScore());
+-    }
++		System.out.println(player1.isInTurn());
++	}
++
++	public void setNumGems(Cell[] boardList) {
++		numOfGems0.setText("" + boardList[0].getGemList().size());
++		numOfGems1.setText("" + boardList[1].getGemList().size());
++		numOfGems2.setText("" + boardList[2].getGemList().size());
++		numOfGems3.setText("" + boardList[3].getGemList().size());
++		numOfGems4.setText("" + boardList[4].getGemList().size());
++		numOfGems5.setText("" + boardList[5].getGemList().size());
++		numOfGems6.setText("" + boardList[6].getGemList().size());
++		numOfGems7.setText("" + boardList[7].getGemList().size());
++		numOfGems8.setText("" + boardList[8].getGemList().size());
++		numOfGems9.setText("" + boardList[9].getGemList().size());
++		numOfGems10.setText("" + boardList[10].getGemList().size());
++		numOfGems11.setText("" + boardList[11].getGemList().size());
++
++	}
++
++	public void setScore() {
++		player1Score.setText("" + this.player1.calculateScore());
++		player2Score.setText("" + this.player2.calculateScore());
++	}
+ 
+ //	public void setPlayerName() {
+ //		player1Name.setText(this.player1.getName());
+@@ -469,4 +576,4 @@
+ 	}
+ 
+ 
+-}
++}
+\ No newline at end of file
+Index: sourcecode/screen/application/GamePlayScreen.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sourcecode.screen.application;\n\nimport javafx.application.Application;\nimport javafx.event.ActionEvent;\nimport javafx.event.EventHandler;\nimport javafx.fxml.FXMLLoader;\nimport javafx.scene.Parent;\nimport javafx.scene.Scene;\nimport javafx.scene.control.Button;\nimport javafx.scene.control.TextInputDialog;\nimport javafx.scene.image.Image;\nimport javafx.scene.media.Media;\nimport javafx.scene.media.MediaPlayer;\nimport javafx.stage.Stage;\nimport jdk.internal.misc.TerminatingThreadLocal;\nimport sourcecode.board.Board;\nimport sourcecode.player.Player;\nimport sourcecode.screen.controller.GamePlayScreenController;\n\nimport java.io.IOException;\nimport java.net.URISyntaxException;\nimport java.util.Optional;\n\n\npublic class GamePlayScreen extends Application {\n    private static Board board;\n    private static Player player1;\n    private static Player player2;\n//    private static String player1Name;\n//    private static String player2Name;\n\n    public void start(Stage primaryStage)\n    {\n        // the code below allow users to enter their player names before start the game\n        /*\n        // Avoid throwing IllegalStateException by running from a non-JavaFX thread.\n\n        Platform.runLater(\n                () -> {\n                    TextInputDialog d1 = new TextInputDialog();\n                    d1.setTitle(\"Enter Player 1 name\");\n                    Optional<String> res1 = d1.showAndWait();\n                    res1.ifPresent(string -> player1Name = (String.valueOf(res1)));\n\n                    TextInputDialog d2 = new TextInputDialog();\n                    d2.setTitle(\"Enter Player 2 name\");\n                    Optional<String> res2 = d2.showAndWait();\n                    res2.ifPresent(string -> player2.setName(String.valueOf(res2)));\n                }\n        );\n\n         */\n//        music();\n\n        final String PLAY_SCREEN_FXML_FILE_PATH = \"/sourcecode/screen/view/PlayScreen.fxml\";\n        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(PLAY_SCREEN_FXML_FILE_PATH));\n        GamePlayScreenController gamePlayScreenController = new GamePlayScreenController(board, player1, player2);\n        fxmlLoader.setController(gamePlayScreenController);\n        Parent root = null;\n        try {\n            root = fxmlLoader.load();\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n\n        Image icon = new Image(\"/sourcecode/screen/images/icon.png\");\n        primaryStage.getIcons().add(icon);\n        primaryStage.setResizable(false);\n\n        primaryStage.setTitle(\"O An Quan\");\n        primaryStage.setScene(new Scene(root));\n        primaryStage.show();\n    }\n    public void music() {\n        Media media = null;\n        try {\n            media = new Media(getClass().getResource(\"/sourcecode/screen/music/gameMusic.mp3\").toURI().toString());\n        } catch (URISyntaxException e) {\n            // TODO Auto-generated catch block\n            e.printStackTrace();\n        }\n        MediaPlayer mediaPlayer;\n        mediaPlayer = new MediaPlayer(media);\n        mediaPlayer.play();\n    }\n\n\n    public static void main(String[] args) {\n        board = new Board();\n        player1 = new Player(\"Player 1\");\n        player2 = new Player(\"Player 2\");\n\n        launch(args);\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/sourcecode/screen/application/GamePlayScreen.java b/sourcecode/screen/application/GamePlayScreen.java
+--- a/sourcecode/screen/application/GamePlayScreen.java	(revision 324025c410914ebb86bf5cfbc3f8871c73008d6b)
++++ b/sourcecode/screen/application/GamePlayScreen.java	(date 1657777670717)
+@@ -90,6 +90,8 @@
+         player1 = new Player("Player 1");
+         player2 = new Player("Player 2");
+ 
++
++
+         launch(args);
+     }
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"0a570501-3eb8-4d17-8082-b4bd2b7a8d6e\" name=\"Changes\" comment=\"commit main\">\n      <change afterPath=\"$PROJECT_DIR$/.idea/compiler.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Interface\" />\n        <option value=\"Class\" />\n        <option value=\"FxmlFile\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n    <option name=\"RESET_MODE\" value=\"HARD\" />\n  </component>\n  <component name=\"GitSEFilterConfiguration\">\n    <file-type-list>\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\n      <filtered-out-file-type name=\"TAG\" />\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\n    </file-type-list>\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2AYta4JtKnDPVcHrcc1TChSNdZQ\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\n    <property name=\"settings.editor.selected.configurable\" value=\"reference.projectsettings.compiler.excludes\" />\n  </component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/sourcecode/screen/view\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"Application.IntroScreen\">\n    <configuration name=\"GamePlay\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.gameplay.GamePlay\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.gameplay.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"GamePlayScreen\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.screen.application.GamePlayScreen\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.screen.controller.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"HelpScreen\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.screen.application.HelpScreen\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.screen.application.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"IntroScreen\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.screen.application.IntroScreen\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.screen.application.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"PlayerTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.PlayerTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.IntroScreen\" />\n        <item itemvalue=\"Application.HelpScreen\" />\n        <item itemvalue=\"Application.GamePlayScreen\" />\n        <item itemvalue=\"Application.PlayerTest\" />\n        <item itemvalue=\"Application.GamePlay\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"0a570501-3eb8-4d17-8082-b4bd2b7a8d6e\" name=\"Changes\" comment=\"commit main\" />\n      <created>1655198410651</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1655198410651</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"upload constructors for board and cells\">\n      <created>1655366801447</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655366801447</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"upate BoardTest\">\n      <created>1655366916492</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655366916492</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"upate BoardTest\">\n      <created>1655377007650</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655377007650</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"update class diagram\">\n      <created>1655400980752</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655400980752</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"update class diagram\">\n      <created>1655401039907</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655401039907</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"test board and gem\">\n      <created>1655459148349</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655459148349</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"update methods for Player\">\n      <created>1656005332624</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656005332624</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"merge GamePlay codes\">\n      <created>1656006932258</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656006932258</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"upload PlayerTest\">\n      <created>1656007212680</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656007212680</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"update Class and Use Case Diagrams\">\n      <created>1656009059522</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656009059522</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"initial submission\">\n      <created>1656070586403</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656070586403</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"GUI test\">\n      <created>1656946993988</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656946993988</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"GUI test\">\n      <created>1656952412145</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656952412145</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"upload images\">\n      <created>1657095009722</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657095009722</updated>\n    </task>\n    <task id=\"LOCAL-00015\" summary=\"update gui\">\n      <created>1657098807355</created>\n      <option name=\"number\" value=\"00015\" />\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657098807355</updated>\n    </task>\n    <task id=\"LOCAL-00016\" summary=\"change gui structure\">\n      <created>1657185559046</created>\n      <option name=\"number\" value=\"00016\" />\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657185559047</updated>\n    </task>\n    <task id=\"LOCAL-00017\" summary=\"change gui structure\">\n      <created>1657185566717</created>\n      <option name=\"number\" value=\"00017\" />\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657185566717</updated>\n    </task>\n    <task id=\"LOCAL-00018\" summary=\"update fxml\">\n      <created>1657185750912</created>\n      <option name=\"number\" value=\"00018\" />\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657185750912</updated>\n    </task>\n    <task id=\"LOCAL-00019\" summary=\"update fxml\">\n      <created>1657538447350</created>\n      <option name=\"number\" value=\"00019\" />\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657538447350</updated>\n    </task>\n    <task id=\"LOCAL-00020\" summary=\"update intro screen gui\">\n      <created>1657594963563</created>\n      <option name=\"number\" value=\"00020\" />\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657594963563</updated>\n    </task>\n    <task id=\"LOCAL-00021\" summary=\"allow switching between 3 screens\">\n      <created>1657619699759</created>\n      <option name=\"number\" value=\"00021\" />\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657619699759</updated>\n    </task>\n    <task id=\"LOCAL-00022\" summary=\"update play screen button and 'paws'\">\n      <created>1657630744807</created>\n      <option name=\"number\" value=\"00022\" />\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657630744807</updated>\n    </task>\n    <task id=\"LOCAL-00023\" summary=\"add audio\">\n      <created>1657640600358</created>\n      <option name=\"number\" value=\"00023\" />\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657640600359</updated>\n    </task>\n    <task id=\"LOCAL-00024\" summary=\"add audio\">\n      <created>1657642695908</created>\n      <option name=\"number\" value=\"00024\" />\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657642695908</updated>\n    </task>\n    <task id=\"LOCAL-00025\" summary=\"msg: the game procedure correctly follows the rules\">\n      <created>1657645440232</created>\n      <option name=\"number\" value=\"00025\" />\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657645440232</updated>\n    </task>\n    <task id=\"LOCAL-00026\" summary=\"msg: the game procedure correctly follows the rules\">\n      <created>1657646960610</created>\n      <option name=\"number\" value=\"00026\" />\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657646960610</updated>\n    </task>\n    <task id=\"LOCAL-00027\" summary=\"commit main\">\n      <created>1657733392506</created>\n      <option name=\"number\" value=\"00027\" />\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657733392506</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"28\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"FILTERS\">\n                <map>\n                  <entry key=\"branch\">\n                    <value>\n                      <list>\n                        <option value=\"topic/gui/arrow-test\" />\n                      </list>\n                    </value>\n                  </entry>\n                </map>\n              </option>\n              <option name=\"COLUMN_ID_WIDTH\">\n                <map>\n                  <entry key=\"Table.Default.Author.ColumnIdWidth\" value=\"-1\" />\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"upload constructors for board and cells\" />\n    <MESSAGE value=\"upate BoardTest\" />\n    <MESSAGE value=\"update class diagram\" />\n    <MESSAGE value=\"test board and gem\" />\n    <MESSAGE value=\"update methods for Player\" />\n    <MESSAGE value=\"merge GamePlay codes\" />\n    <MESSAGE value=\"upload PlayerTest\" />\n    <MESSAGE value=\"update Class and Use Case Diagrams\" />\n    <MESSAGE value=\"initial submission\" />\n    <MESSAGE value=\"GUI test\" />\n    <MESSAGE value=\"upload images\" />\n    <MESSAGE value=\"update gui\" />\n    <MESSAGE value=\"change gui structure\" />\n    <MESSAGE value=\"update fxml\" />\n    <MESSAGE value=\"update intro screen gui\" />\n    <MESSAGE value=\"allow switching between 3 screens\" />\n    <MESSAGE value=\"update play screen button and 'paws'\" />\n    <MESSAGE value=\"add audio\" />\n    <MESSAGE value=\"msg: the game procedure correctly follows the rules\" />\n    <MESSAGE value=\"commit main\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"commit main\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <watches-manager>\n      <configuration name=\"Application\">\n        <watch expression=\"boardList\" language=\"JAVA\" />\n      </configuration>\n    </watches-manager>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 324025c410914ebb86bf5cfbc3f8871c73008d6b)
++++ b/.idea/workspace.xml	(date 1657777670676)
+@@ -1,12 +1,10 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="0a570501-3eb8-4d17-8082-b4bd2b7a8d6e" name="Changes" comment="commit main">
+-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
++    <list default="true" id="0a570501-3eb8-4d17-8082-b4bd2b7a8d6e" name="Changes" comment="fix bug in spread direction">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/sourcecode/screen/application/GamePlayScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/application/GamePlayScreen.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -55,6 +53,9 @@
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
++    <property name="project.structure.last.edited" value="Project" />
++    <property name="project.structure.proportion" value="0.0" />
++    <property name="project.structure.side.proportion" value="0.0" />
+     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.excludes" />
+   </component>
+   <component name="RecentsManager">
+@@ -62,7 +63,7 @@
+       <recent name="$PROJECT_DIR$/sourcecode/screen/view" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Application.IntroScreen">
++  <component name="RunManager" selected="Application.GamePlayScreen">
+     <configuration name="GamePlay" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="sourcecode.gameplay.GamePlay" />
+       <module name="OOP.DSAI.20212.Team26" />
+@@ -130,9 +131,9 @@
+     </configuration>
+     <recent_temporary>
+       <list>
++        <item itemvalue="Application.GamePlayScreen" />
+         <item itemvalue="Application.IntroScreen" />
+         <item itemvalue="Application.HelpScreen" />
+-        <item itemvalue="Application.GamePlayScreen" />
+         <item itemvalue="Application.PlayerTest" />
+         <item itemvalue="Application.GamePlay" />
+       </list>
+@@ -336,7 +337,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1657733392506</updated>
+     </task>
+-    <option name="localTasksCounter" value="28" />
++    <task id="LOCAL-00028" summary="fix bug in spread direction">
++      <created>1657774256332</created>
++      <option name="number" value="00028" />
++      <option name="presentableId" value="LOCAL-00028" />
++      <option name="project" value="LOCAL" />
++      <updated>1657774256332</updated>
++    </task>
++    <option name="localTasksCounter" value="29" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -388,7 +396,8 @@
+     <MESSAGE value="add audio" />
+     <MESSAGE value="msg: the game procedure correctly follows the rules" />
+     <MESSAGE value="commit main" />
+-    <option name="LAST_COMMIT_MESSAGE" value="commit main" />
++    <MESSAGE value="fix bug in spread direction" />
++    <option name="LAST_COMMIT_MESSAGE" value="fix bug in spread direction" />
+   </component>
+   <component name="XDebuggerManager">
+     <watches-manager>
