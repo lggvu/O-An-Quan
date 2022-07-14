@@ -1,6 +1,5 @@
 package sourcecode.screen.controller;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
@@ -13,7 +12,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -27,7 +25,6 @@ public class GamePlayScreenController implements Initializable {
 	private Player player1, player2, currentPlayer;
 	private Board board;
 	public static int cell_Num;
-	private static int handDirection;
 
     public GamePlayScreenController(Board board, Player player1, Player player2) {
         this.player1 = player1;
@@ -263,29 +260,28 @@ public class GamePlayScreenController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
 		// TODO
 		player1.setTurn((Math.random()) < 0.5);
 		if (player1.isInTurn()){
 			player2.setTurn(false);
 			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
 				pane.setDisable(false);
-		}
+			}
 			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
 				pane.setDisable(true);
 			}
-            player1Badge.setVisible(true);
-            player2Badge.setVisible(false);
+			player1Badge.setVisible(true);
+			player2Badge.setVisible(false);
 		}else {
 			player2.setTurn(false);
 			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
 				pane.setDisable(false);
-		}
+			}
 			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
 				pane.setDisable(true);
 			}
-            player1Badge.setVisible(true);
-            player2Badge.setVisible(false);
+			player1Badge.setVisible(true);
+			player2Badge.setVisible(false);
 		}
 		
 	}
@@ -327,26 +323,29 @@ public class GamePlayScreenController implements Initializable {
 		int index = Integer.parseInt(id.substring(id.length()-2));
 
 		Cell[] boardList = this.board.getBoard();
+
 		if(this.player1.isInTurn()) {
 			this.currentPlayer = this.player1;
 			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
 				pane.setDisable(false);
-		}
+			}
 			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
 				pane.setDisable(true);
 			}
-            player1Badge.setVisible(true);
-            player2Badge.setVisible(false);
+			player1Badge.setVisible(true);
+			player2Badge.setVisible(false);
 		} else {
 			this.currentPlayer = this.player2;
 			player1Badge.setVisible(false);
-            player2Badge.setVisible(true);
-			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
+			player2Badge.setVisible(true);
+			for (Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
 				pane.setDisable(true);
-		}
-			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
+			}
+			for (Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
 				pane.setDisable(false);
 			}
+		}
+
 
 		if(index >= 1 && index <= 5) {
 			currentPlayer.pickUpGemFrom(boardList[index]);
@@ -361,7 +360,7 @@ public class GamePlayScreenController implements Initializable {
 			setNumGems(boardList);
 			setScore();
 		}
-		
+
 		if (!(isGameOver(this.player1, this.player2, this.board))) {
 			if (this.currentPlayer == this.player1) {
 				this.player1.setTurn(false);
@@ -370,7 +369,6 @@ public class GamePlayScreenController implements Initializable {
 				this.player1.setTurn(true);
 				this.player2.setTurn(false);
 			}
-		}
 		}
 
     }
@@ -383,23 +381,24 @@ public class GamePlayScreenController implements Initializable {
 		int index = Integer.parseInt(id.substring(id.length()-2));
 
 		Cell[] boardList = this.board.getBoard();
+
 		if(this.player1.isInTurn()) {
 			this.currentPlayer = this.player1;
 			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
 				pane.setDisable(false);
-		}
+			}
 			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
 				pane.setDisable(true);
 			}
-            player1Badge.setVisible(true);
-            player2Badge.setVisible(false);
+			player1Badge.setVisible(true);
+			player2Badge.setVisible(false);
 		} else {
 			this.currentPlayer = this.player2;
-            player2Badge.setVisible(true);
-            player1Badge.setVisible(false);
+			player2Badge.setVisible(true);
+			player1Badge.setVisible(false);
 			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
 				pane.setDisable(true);
-		}
+			}
 			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
 				pane.setDisable(false);
 			}
@@ -414,10 +413,11 @@ public class GamePlayScreenController implements Initializable {
 
 		if(index >= 7 && index <= 11) {
 			currentPlayer.pickUpGemFrom(boardList[index]);
-			currentPlayer.spreadGem(boardList[index], 0, this.board);
+			currentPlayer.spreadGem(boardList[index], 1, this.board);
 			setNumGems(boardList);
 			setScore();
 		}
+
 		if (!(isGameOver(this.player1, this.player2, this.board))) {
 			if (this.currentPlayer == this.player1) {
 				this.player1.setTurn(false);
@@ -450,8 +450,13 @@ public class GamePlayScreenController implements Initializable {
     	player1Score.setText("" + this.player1.calculateScore());
     	player2Score.setText("" + this.player2.calculateScore());
     }
-    
-    public static boolean isGameOver(Player player1, Player player2, Board board) {
+
+//	public void setPlayerName() {
+//		player1Name.setText(this.player1.getName());
+//		player2Name.setText(this.player2.getName());
+//	}
+
+	public static boolean isGameOver(Player player1, Player player2, Board board) {
 		boolean res = false;
 		if (board.getNumBigGem() - player1.numBigGemsInGemsCaptured() - player2.numBigGemsInGemsCaptured() == 0) {
 			res = true;
@@ -462,5 +467,6 @@ public class GamePlayScreenController implements Initializable {
 		}
 		return res;
 	}
-}
 
+
+}
