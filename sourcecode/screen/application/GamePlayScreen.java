@@ -12,9 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import jdk.internal.misc.TerminatingThreadLocal;
 import sourcecode.board.Board;
-import sourcecode.board.Cell;
 import sourcecode.player.Player;
 import sourcecode.screen.controller.GamePlayScreenController;
 
@@ -51,7 +49,7 @@ public class GamePlayScreen extends Application {
         );
 
          */
-//        music();
+        music();
 
         final String PLAY_SCREEN_FXML_FILE_PATH = "/sourcecode/screen/view/PlayScreen.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(PLAY_SCREEN_FXML_FILE_PATH));
@@ -90,8 +88,6 @@ public class GamePlayScreen extends Application {
         board = new Board();
         player1 = new Player("Player 1");
         player2 = new Player("Player 2");
-
-
 
         launch(args);
     }
