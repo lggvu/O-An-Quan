@@ -3,6 +3,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 
@@ -14,6 +15,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import sourcecode.board.Board;
 import sourcecode.board.Cell;
@@ -25,12 +30,27 @@ public class GamePlayScreenController implements Initializable {
 	private Player player1, player2, currentPlayer;
 	private Board board;
 	public static int cell_Num;
+	private boolean playMusic = false;
+	private Media media;
+	private MediaPlayer mediaPlayer = null;
+	private String winnerPlayer;
+	private int winnerScore;
+	private String endGameContent;
 
     public GamePlayScreenController(Board board, Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
         this.board = board;
     }
+    
+    @FXML
+    private ImageView Mute;
+    
+    @FXML
+    private ImageView unMute;
+    
+    @FXML
+    private Button adjustMusicButton;
 
 	@FXML
 	private Button btnExit;
@@ -283,16 +303,19 @@ public class GamePlayScreenController implements Initializable {
 				player1Badge.setVisible(false);
 				player2Badge.setVisible(true);
 		}
+	    try {
+	          this.media = new Media(getClass().getResource("/sourcecode/screen/music/gameMusic.mp3").toURI().toString());
+	        } catch (URISyntaxException e) {
+	            // TODO Auto-generated catch block
+	            e.printStackTrace();
+	        }
+	        this.mediaPlayer = new MediaPlayer(this.media);
+			
 		
 	    ArrayList <Cell> Player1CellOnSide = new ArrayList<Cell>();
 	    ArrayList <Cell> Player2CellOnSide = new ArrayList<Cell>();
 	    Cell[] boardList = board.getBoard();
-
-		for(Cell cell:boardList) {
-			System.out.println(cell.seeDetails());
-		}
-
-		for (int i = 1; i < 6; i ++) {
+	    for (int i = 1; i < 6; i ++) { 
 	        Player1CellOnSide.add(boardList[i]);
 	     }
 	    for (int i = 7; i < 12; i ++) {
@@ -343,24 +366,8 @@ public class GamePlayScreenController implements Initializable {
 		Cell[] boardList = this.board.getBoard();
         if(this.player1.isInTurn()) {
 			this.currentPlayer = this.player1;
-			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
-				pane.setDisable(false);
-			}
-			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
-				pane.setDisable(true);
-			}
-			player1Badge.setVisible(true);
-			player2Badge.setVisible(false);
 		} else {
 			this.currentPlayer = this.player2;
-			player1Badge.setVisible(false);
-			player2Badge.setVisible(true);
-			for (Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
-				pane.setDisable(true);
-			}
-			for (Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
-				pane.setDisable(false);
-			}
 		}
 
 
@@ -378,60 +385,12 @@ public class GamePlayScreenController implements Initializable {
 			setScore();
 		}	
 		if (!(isGameOver(this.player1, this.player2, this.board))) {
-			if (this.currentPlayer == this.player1) {
-				this.player1.setTurn(false);
-				this.player2.setTurn(true);
-				for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
-					pane.setDisable(true);
-				}
-				for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
-					boolean empty = false;
-					for (Node n : pane.getChildren()) {
-						if (n instanceof Label) {
-							   String text = ((Label)n).getText();
-							   if (text.equals("" + '0')) {
-								   empty = true;
-								   break;
-						}
-						   }
-					}
-					if (!empty) {
-						pane.setDisable(false);
-					}else {
-						pane.setDisable(true);
-					}
-				}
-				player1Badge.setVisible(false);
-				player2Badge.setVisible(true);
-			}else {
-				this.player1.setTurn(true);
-				this.player2.setTurn(false);
-				for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
-					boolean empty = false;
-					for (Node n : pane.getChildren()) {
-						if (n instanceof Label) {
-							   String text = ((Label) n).getText();
-							   System.out.println(text);
-							   if (text.equals("" + '0')) {
-								   empty = true;
-								   break;
-						}
-						   }
-					}
-					if (!empty) {
-						pane.setDisable(false);
-					}else {
-						pane.setDisable(true);
-					}
-				}
-				for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
-					pane.setDisable(true);
-				}
-				player1Badge.setVisible(true);
-				player2Badge.setVisible(false);
+			changeTurn();
+		}else {
+			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05, cell07, cell08,  cell09, cell10, cell11)) {
+				pane.setDisable(true);
 			}
 		}
-		System.out.println(player1.isInTurn());
 
     }
 
@@ -446,24 +405,8 @@ public class GamePlayScreenController implements Initializable {
 
 		if(this.player1.isInTurn()) {
 			this.currentPlayer = this.player1;
-			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
-				pane.setDisable(false);
-			}
-			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
-				pane.setDisable(true);
-			}
-			player1Badge.setVisible(true);
-			player2Badge.setVisible(false);
 		} else {
 			this.currentPlayer = this.player2;
-			player2Badge.setVisible(true);
-			player1Badge.setVisible(false);
-			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
-				pane.setDisable(true);
-			}
-			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
-				pane.setDisable(false);
-			}
 		}
 
 		if(index >= 1 && index <= 5) {
@@ -481,59 +424,8 @@ public class GamePlayScreenController implements Initializable {
 		}
 		
 		if (!(isGameOver(this.player1, this.player2, this.board))) {
-			if (this.currentPlayer == this.player1) {
-				this.player1.setTurn(false);
-				this.player2.setTurn(true);
-				for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
-					pane.setDisable(true);
-				}
-				for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
-					boolean empty = false;
-					for (Node n : pane.getChildren()) {
-						if (n instanceof Label) {
-							   String text = ((Label)n).getText();
-							   System.out.println(text);
-							   if (text.equals("" + '0')) {
-								   empty = true;
-								   break;
-						}
-						   }
-					}
-					if (!empty) {
-						pane.setDisable(false);
-					}else {
-						pane.setDisable(true);
-					}
-				}
-				player1Badge.setVisible(false);
-				player2Badge.setVisible(true);
-			}else {
-				this.player1.setTurn(true);
-				this.player2.setTurn(false);
-				for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
-					boolean empty = false;
-					for (Node n : pane.getChildren()) {
-						if (n instanceof Label) {
-							   String text = ((Label)n).getText();
-							   System.out.println(text);
-							   if (text.equals("" + '0')) {
-								   empty = true;
-								   break;
-						}
-						   }
-					}
-					if (!empty) {
-						pane.setDisable(false);
-					}else {
-						pane.setDisable(true);
-					}
-				}
-				for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
-					pane.setDisable(true);
-				}
-				player1Badge.setVisible(true);
-				player2Badge.setVisible(false);
-			}
+			changeTurn();
+
 		}else {
 			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05, cell07, cell08,  cell09, cell10, cell11)) {
 				pane.setDisable(true);
@@ -563,12 +455,7 @@ public class GamePlayScreenController implements Initializable {
     	player2Score.setText("" + this.player2.calculateScore());
     }
 
-//	public void setPlayerName() {
-//		player1Name.setText(this.player1.getName());
-//		player2Name.setText(this.player2.getName());
-//	}
-
-	public static boolean isGameOver(Player player1, Player player2, Board board) {
+	public boolean isGameOver(Player player1, Player player2, Board board) {
 		boolean res = false;
 		if (board.getNumBigGem() - player1.numBigGemsInGemsCaptured() - player2.numBigGemsInGemsCaptured() == 0) {
 			res = true;
@@ -577,8 +464,110 @@ public class GamePlayScreenController implements Initializable {
 		}else if (player2.isCellOnSideEmpty()) {
 			res = true;
 		}
+
+		if(res) {
+			System.out.println("Game finished");
+			if(player1.calculateScore() > player2.calculateScore()) {
+				this.winnerPlayer = player1.getName();
+				this.winnerScore = player1.calculateScore();
+				this.endGameContent = winnerPlayer + " wins! Score: " + winnerScore;
+			}
+			else if(player1.calculateScore() < player2.calculateScore()){
+				this.winnerPlayer = player2.getName();
+				this.winnerScore = player2.calculateScore();
+				this.endGameContent = winnerPlayer + " wins! Score: " + winnerScore;
+			}
+			else {
+				this.endGameContent = "Draw";
+			}
+			displayEndGameScreen();
+		}
+
 		return res;
 	}
 
+	public void displayEndGameScreen() {
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("End Game");
+		alert.setHeaderText("End Game");
+		alert.setContentText(endGameContent);
+		Optional<ButtonType> res = alert.showAndWait();
+		if(res.get() == ButtonType.OK) {
+			// quit game
+			Stage stage = (Stage) btnExit.getScene().getWindow();
+			stage.close();
+		} else {
+			// close dialog
+			alert.close();
+		}
+
+	}
+	
+	public void changeTurn() {
+		if (this.currentPlayer == this.player1) {
+			this.player1.setTurn(false);
+			this.player2.setTurn(true);
+			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
+				pane.setDisable(true);
+			}
+			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
+				if (!(isPaneEmpty(pane))) {
+					pane.setDisable(false);
+				}else {
+					pane.setDisable(true);
+				}
+			}
+			player1Badge.setVisible(false);
+			player2Badge.setVisible(true);
+		}else {
+			this.player1.setTurn(true);
+			this.player2.setTurn(false);
+			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
+				if (!(isPaneEmpty(pane))) {
+					pane.setDisable(false);
+				}else {
+					pane.setDisable(true);
+				}
+			}
+			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
+				pane.setDisable(true);
+			}
+			player1Badge.setVisible(true);
+			player2Badge.setVisible(false);
+		}
+	}
+	public static boolean isPaneEmpty(Pane pane) {
+	    boolean empty = false;
+		for (Node n : pane.getChildren()) {
+		    if (n instanceof Label) {
+		        String text = ((Label)n).getText();
+		        if (text.equals("" + '0')) {
+			    empty = true;
+			    break;
+			    }
+            }
+		}
+		return empty;
+    }
+	
+    @FXML
+    void adjustMusic(MouseEvent event) {
+		if (this.playMusic) {
+			this.playMusic = false;
+	        Mute.setVisible(false);
+	        unMute.setVisible(true);
+	    }else {
+	        this.playMusic = true;
+	        Mute.setVisible(true);
+	        unMute.setVisible(false);
+	        }
+	    if (this.playMusic) {
+	        this.mediaPlayer.play();
+	    }else {
+	        this.mediaPlayer.stop();
+	    }
+
+    }
 
 }
+ 

@@ -266,5 +266,16 @@
             <Image url="@../images/paw-player-2.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="Mute" fitHeight="56.0" fitWidth="67.0" layoutX="937.0" layoutY="29.0" visible="false">
+         <image>
+            <Image url="@../images/mute.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="unMute" fitHeight="56.0" fitWidth="67.0" layoutX="937.0" layoutY="29.0">
+         <image>
+            <Image url="@../images/unmute.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="adjustMusicButton" layoutX="931.0" layoutY="25.0" mnemonicParsing="false" onMouseClicked="#adjustMusic" opacity="0.0" prefHeight="62.0" prefWidth="72.0" text="Sound" />
    </children>
 </AnchorPane>

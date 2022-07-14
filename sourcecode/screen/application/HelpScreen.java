@@ -21,7 +21,7 @@ public class HelpScreen extends Application {
     private static Player player1, player2;
 
     public void start(Stage primaryStage) {
-//        music();
+        music();
         final String HELP_SCREEN_FXML_FILE_PATH = "/sourcecode/screen/view/HelpScreen.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(HELP_SCREEN_FXML_FILE_PATH));
         HelpScreenController helpScreenController = new HelpScreenController(board, player1, player2);

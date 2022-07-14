@@ -21,7 +21,6 @@ public class IntroScreen extends Application {
     private static Player player1, player2;
 
     public void start(Stage primaryStage) {
-//        music();
 
         final String INTRO_SCREEN_FXML_FILE_PATH = "/sourcecode/screen/view/IntroScreen.fxml";
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(INTRO_SCREEN_FXML_FILE_PATH));
@@ -42,20 +41,6 @@ public class IntroScreen extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
-
-    MediaPlayer mediaPlayer;
-    public void music() {
-        Media media = null;
-        try {
-            media = new Media(getClass().getResource("/sourcecode/screen/music/gameMusic.mp3").toURI().toString());
-        } catch (URISyntaxException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.play();
-    }
-
 
     public static void main(String[] args) {
         board = new Board();

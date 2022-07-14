@@ -1,0 +1,280 @@
+Index: out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<?import javafx.scene.control.Button?>\n<?import javafx.scene.image.Image?>\n<?import javafx.scene.image.ImageView?>\n<?import javafx.scene.layout.AnchorPane?>\n<?import javafx.scene.text.Font?>\n\n<AnchorPane prefHeight=\"768.0\" prefWidth=\"1024.0\" xmlns=\"http://javafx.com/javafx/8.0.171\" xmlns:fx=\"http://javafx.com/fxml/1\" >\n   <children>\n      <ImageView fitHeight=\"780.0\" fitWidth=\"1024.0\">\n         <image>\n            <Image url=\"@../images/intro-screen.png\" />\n         </image>\n      </ImageView>\n      <Button fx:id=\"btnStartGame\" layoutX=\"419.0\" layoutY=\"212.0\" mnemonicParsing=\"false\" onAction=\"#btnStartGameClicked\" opacity=\"0.0\" prefHeight=\"101.0\" prefWidth=\"187.0\" text=\"Start\">\n         <font>\n            <Font size=\"36.0\" />\n         </font>\n      </Button>\n      <Button fx:id=\"btnAccessHelp\" layoutX=\"408.0\" layoutY=\"376.0\" mnemonicParsing=\"false\" onAction=\"#btnAccessHelpClicked\" opacity=\"0.0\" prefHeight=\"101.0\" prefWidth=\"210.0\" text=\"Help\">\n         <font>\n            <Font size=\"36.0\" />\n         </font>\n      </Button>\n      <Button fx:id=\"btnExitGame\" layoutX=\"419.0\" layoutY=\"536.0\" mnemonicParsing=\"false\" onAction=\"#btnExitGameClicked\" opacity=\"0.0\" prefHeight=\"101.0\" prefWidth=\"203.0\" text=\"Exit\">\n         <font>\n            <Font size=\"36.0\" />\n         </font>\n      </Button>\n   </children>\n</AnchorPane>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml b/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml
+--- a/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml	(revision 881fddee8a861cd5fa496bf29a974d1dc8c2a9ec)
++++ b/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml	(date 1657796504544)
+@@ -4,9 +4,11 @@
+ <?import javafx.scene.image.Image?>
+ <?import javafx.scene.image.ImageView?>
+ <?import javafx.scene.layout.AnchorPane?>
++<?import javafx.scene.shape.Circle?>
++<?import javafx.scene.shape.Rectangle?>
+ <?import javafx.scene.text.Font?>
+ 
+-<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" >
++<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+       <ImageView fitHeight="780.0" fitWidth="1024.0">
+          <image>
+@@ -28,5 +30,8 @@
+             <Font size="36.0" />
+          </font>
+       </Button>
++      <Rectangle fx:id="Mute" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="51.0" layoutX="829.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="119.0" />
++      <Circle fx:id="unMute" fill="DODGERBLUE" layoutX="892.0" layoutY="66.0" radius="48.0" stroke="BLACK" strokeType="INSIDE" />
++      <Button fx:id="adjustMusicButton" layoutX="852.0" layoutY="47.0" mnemonicParsing="false" onMouseClicked="#adjustMusic" prefHeight="38.0" prefWidth="86.0" text="Button" />
+    </children>
+ </AnchorPane>
+Index: sourcecode/screen/controller/IntroScreenController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sourcecode.screen.controller;\n\nimport javafx.event.ActionEvent;\nimport javafx.fxml.FXML;\nimport javafx.fxml.FXMLLoader;\nimport javafx.scene.Node;\nimport javafx.scene.Parent;\nimport javafx.scene.Scene;\nimport javafx.scene.control.Alert;\nimport javafx.scene.control.Button;\nimport javafx.scene.control.ButtonType;\nimport javafx.scene.input.MouseEvent;\nimport javafx.scene.layout.Pane;\nimport javafx.scene.media.Media;\nimport javafx.scene.media.MediaPlayer;\nimport javafx.scene.shape.Circle;\nimport javafx.scene.shape.Rectangle;\nimport javafx.stage.Stage;\nimport sourcecode.board.Board;\nimport sourcecode.player.Player;\n\nimport java.io.IOException;\nimport java.net.URISyntaxException;\nimport java.net.URL;\nimport java.util.Arrays;\nimport java.util.Optional;\nimport java.util.ResourceBundle;\n\nimport javafx.fxml.Initializable;\n\npublic class IntroScreenController implements Initializable {\n    private final Board board;\n    private final Player player1;\n    private final Player player2;\n    private boolean playMusic = false;\n    private Media media;\n    private MediaPlayer mediaPlayer = null;\n\n    public IntroScreenController (Board board, Player player1, Player player2) {\n        this.board = board;\n        this.player1 = player1;\n        this.player2 = player2;\n    }\n\n    @FXML\n    private Rectangle Mute;\n    \n    @FXML\n    private Circle unMute;\n    \n    @FXML\n    private Button adjustMusicButton;\n\n\n    @FXML\n    private Button btnStartGame;\n\n    @FXML\n    private Button btnAccessHelp;\n\n    @FXML\n    private Button btnExitGame;\n\n    @FXML\n    void btnAccessHelpClicked(ActionEvent event) {\n        try {\n            final String HELP_SCREEN_FILE_PATH = \"/sourcecode/screen/view/HelpScreen.fxml\";\n            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(HELP_SCREEN_FILE_PATH));\n            fxmlLoader.setController(new HelpScreenController(board, player1, player2));\n            Parent root = fxmlLoader.load();\n            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();\n\n            // set new scene for current stage\n            stage.setScene(new Scene(root));\n            stage.setTitle(\"Help Screen\");\n            stage.show();\n\n        } catch (IOException e) {\n            e.printStackTrace();\n\n        }\n\n    }\n    \n\t@Override\n\tpublic void initialize(URL location, ResourceBundle resources) {\n        try {\n            this.media = new Media(getClass().getResource(\"/sourcecode/screen/music/gameMusic.mp3\").toURI().toString());\n        } catch (URISyntaxException e) {\n            // TODO Auto-generated catch block\n            e.printStackTrace();\n        }\n        this.mediaPlayer = new MediaPlayer(this.media);\n\t\t\n\t\t}\n\n    @FXML\n    void btnExitGameClicked(ActionEvent event) {\n        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);\n        alert.setTitle(\"Exit Confirmation\");\n        alert.setHeaderText(\"Exit Game\");\n        alert.setContentText(\"Are you sure you want to exit?\");\n        Optional<ButtonType> res = alert.showAndWait();\n        if(res.get() == ButtonType.OK) {\n            // quit game\n            Stage stage = (Stage) btnExitGame.getScene().getWindow();\n            stage.close();\n        } else {\n            // close dialog\n            alert.close();\n        }\n\n    }\n\n    @FXML\n    void btnStartGameClicked(ActionEvent event) {\n        try {\n            final String PLAY_SCREEN_FILE_PATH = \"/sourcecode/screen/view/PlayScreen.fxml\";\n            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(PLAY_SCREEN_FILE_PATH));\n            fxmlLoader.setController(new GamePlayScreenController(board, player1, player2));\n            Parent root = fxmlLoader.load();\n            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();\n\n            // set new scene for current stage\n            stage.setScene(new Scene(root));\n            stage.setTitle(\"Play Screen\");\n            stage.show();\n\n        } catch (IOException e) {\n            e.printStackTrace();\n\n        }\n\n    }\n    \n    @FXML\n    void adjustMusic(MouseEvent event) {\n        if (this.playMusic) {\n        \tthis.playMusic = false;\n        \tMute.setVisible(false);\n        \tunMute.setVisible(true);\n        }else {\n        \tthis.playMusic = true;\n        \tMute.setVisible(true);\n        \tunMute.setVisible(false);\n        }\n        if (this.playMusic) {\n            this.mediaPlayer.play();\n        }else {\n        \tthis.mediaPlayer.stop();\n        }\n\n    }\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/sourcecode/screen/controller/IntroScreenController.java b/sourcecode/screen/controller/IntroScreenController.java
+--- a/sourcecode/screen/controller/IntroScreenController.java	(revision 881fddee8a861cd5fa496bf29a974d1dc8c2a9ec)
++++ b/sourcecode/screen/controller/IntroScreenController.java	(date 1657798238891)
+@@ -44,10 +44,10 @@
+ 
+     @FXML
+     private Rectangle Mute;
+-    
++
+     @FXML
+     private Circle unMute;
+-    
++
+     @FXML
+     private Button adjustMusicButton;
+ 
+@@ -81,9 +81,9 @@
+         }
+ 
+     }
+-    
+-	@Override
+-	public void initialize(URL location, ResourceBundle resources) {
++
++    @Override
++    public void initialize(URL location, ResourceBundle resources) {
+         try {
+             this.media = new Media(getClass().getResource("/sourcecode/screen/music/gameMusic.mp3").toURI().toString());
+         } catch (URISyntaxException e) {
+@@ -91,8 +91,8 @@
+             e.printStackTrace();
+         }
+         this.mediaPlayer = new MediaPlayer(this.media);
+-		
+-		}
++
++    }
+ 
+     @FXML
+     void btnExitGameClicked(ActionEvent event) {
+@@ -132,24 +132,23 @@
+         }
+ 
+     }
+-    
++
+     @FXML
+     void adjustMusic(MouseEvent event) {
+         if (this.playMusic) {
+-        	this.playMusic = false;
+-        	Mute.setVisible(false);
+-        	unMute.setVisible(true);
++            this.playMusic = false;
++            Mute.setVisible(false);
++            unMute.setVisible(true);
+         }else {
+-        	this.playMusic = true;
+-        	Mute.setVisible(true);
+-        	unMute.setVisible(false);
++            this.playMusic = true;
++            Mute.setVisible(true);
++            unMute.setVisible(false);
+         }
+         if (this.playMusic) {
+             this.mediaPlayer.play();
+         }else {
+-        	this.mediaPlayer.stop();
++            this.mediaPlayer.stop();
+         }
+ 
+     }
+ }
+-
+Index: sourcecode/screen/application/GamePlayScreen.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package sourcecode.screen.application;\n\nimport javafx.application.Application;\nimport javafx.event.ActionEvent;\nimport javafx.event.EventHandler;\nimport javafx.fxml.FXMLLoader;\nimport javafx.scene.Parent;\nimport javafx.scene.Scene;\nimport javafx.scene.control.Button;\nimport javafx.scene.control.TextInputDialog;\nimport javafx.scene.image.Image;\nimport javafx.scene.media.Media;\nimport javafx.scene.media.MediaPlayer;\nimport javafx.stage.Stage;\nimport sourcecode.board.Board;\nimport sourcecode.player.Player;\nimport sourcecode.screen.controller.GamePlayScreenController;\n\nimport java.io.IOException;\nimport java.net.URISyntaxException;\nimport java.util.Optional;\n\n\npublic class GamePlayScreen extends Application {\n    private static Board board;\n    private static Player player1;\n    private static Player player2;\n//    private static String player1Name;\n//    private static String player2Name;\n\n    public void start(Stage primaryStage)\n    {\n        // the code below allow users to enter their player names before start the game\n        /*\n        // Avoid throwing IllegalStateException by running from a non-JavaFX thread.\n\n        Platform.runLater(\n                () -> {\n                    TextInputDialog d1 = new TextInputDialog();\n                    d1.setTitle(\"Enter Player 1 name\");\n                    Optional<String> res1 = d1.showAndWait();\n                    res1.ifPresent(string -> player1Name = (String.valueOf(res1)));\n\n                    TextInputDialog d2 = new TextInputDialog();\n                    d2.setTitle(\"Enter Player 2 name\");\n                    Optional<String> res2 = d2.showAndWait();\n                    res2.ifPresent(string -> player2.setName(String.valueOf(res2)));\n                }\n        );\n\n         */\n        music();\n\n        final String PLAY_SCREEN_FXML_FILE_PATH = \"/sourcecode/screen/view/PlayScreen.fxml\";\n        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(PLAY_SCREEN_FXML_FILE_PATH));\n        GamePlayScreenController gamePlayScreenController = new GamePlayScreenController(board, player1, player2);\n        fxmlLoader.setController(gamePlayScreenController);\n        Parent root = null;\n        try {\n            root = fxmlLoader.load();\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n\n        Image icon = new Image(\"/sourcecode/screen/images/icon.png\");\n        primaryStage.getIcons().add(icon);\n        primaryStage.setResizable(false);\n\n        primaryStage.setTitle(\"O An Quan\");\n        primaryStage.setScene(new Scene(root));\n        primaryStage.show();\n    }\n    public void music() {\n        Media media = null;\n        try {\n            media = new Media(getClass().getResource(\"/sourcecode/screen/music/gameMusic.mp3\").toURI().toString());\n        } catch (URISyntaxException e) {\n            // TODO Auto-generated catch block\n            e.printStackTrace();\n        }\n        MediaPlayer mediaPlayer;\n        mediaPlayer = new MediaPlayer(media);\n        mediaPlayer.play();\n    }\n\n\n    public static void main(String[] args) {\n        board = new Board();\n        player1 = new Player(\"Player 1\");\n        player2 = new Player(\"Player 2\");\n\n        launch(args);\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/sourcecode/screen/application/GamePlayScreen.java b/sourcecode/screen/application/GamePlayScreen.java
+--- a/sourcecode/screen/application/GamePlayScreen.java	(revision 881fddee8a861cd5fa496bf29a974d1dc8c2a9ec)
++++ b/sourcecode/screen/application/GamePlayScreen.java	(date 1657796492896)
+@@ -25,8 +25,6 @@
+     private static Board board;
+     private static Player player1;
+     private static Player player2;
+-//    private static String player1Name;
+-//    private static String player2Name;
+ 
+     public void start(Stage primaryStage)
+     {
+Index: out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/EndGameScreen.fxml
+===================================================================
+diff --git a/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/EndGameScreen.fxml b/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/EndGameScreen.fxml
+deleted file mode 100644
+--- a/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/EndGameScreen.fxml	(revision 881fddee8a861cd5fa496bf29a974d1dc8c2a9ec)
++++ /dev/null	(revision 881fddee8a861cd5fa496bf29a974d1dc8c2a9ec)
+@@ -1,16 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-
+-<?import javafx.scene.image.Image?>
+-<?import javafx.scene.image.ImageView?>
+-<?import javafx.scene.layout.AnchorPane?>
+-
+-
+-<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sourcecode.screen.view.EndGameScreen">
+-   <children>
+-      <ImageView fitHeight="768.0" fitWidth="1024.0">
+-         <image>
+-            <Image url="@../images/end-screen.png" />
+-         </image>
+-      </ImageView>
+-   </children>
+-</AnchorPane>
+Index: sourcecode/screen/view/EndGameScreen.fxml
+===================================================================
+diff --git a/sourcecode/screen/view/EndGameScreen.fxml b/sourcecode/screen/view/EndGameScreen.fxml
+deleted file mode 100644
+--- a/sourcecode/screen/view/EndGameScreen.fxml	(revision 881fddee8a861cd5fa496bf29a974d1dc8c2a9ec)
++++ /dev/null	(revision 881fddee8a861cd5fa496bf29a974d1dc8c2a9ec)
+@@ -1,16 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-
+-<?import javafx.scene.image.Image?>
+-<?import javafx.scene.image.ImageView?>
+-<?import javafx.scene.layout.AnchorPane?>
+-
+-
+-<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sourcecode.screen.view.EndGameScreen">
+-   <children>
+-      <ImageView fitHeight="768.0" fitWidth="1024.0">
+-         <image>
+-            <Image url="@../images/end-screen.png" />
+-         </image>
+-      </ImageView>
+-   </children>
+-</AnchorPane>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"0a570501-3eb8-4d17-8082-b4bd2b7a8d6e\" name=\"Changes\" comment=\"msg: the game procedure correctly follows the rules\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/bigGem.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/bigGem.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/GamePlayScreen.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/GamePlayScreen.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sourcecode/board/Board.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sourcecode/board/Board.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sourcecode/screen/application/GamePlayScreen.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sourcecode/screen/application/GamePlayScreen.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/sourcecode/screen/view/PlayScreen.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/sourcecode/screen/view/PlayScreen.fxml\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Interface\" />\n        <option value=\"Class\" />\n        <option value=\"FxmlFile\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"topic/gui/gameplay\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n    <option name=\"RESET_MODE\" value=\"HARD\" />\n  </component>\n  <component name=\"GitSEFilterConfiguration\">\n    <file-type-list>\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\n      <filtered-out-file-type name=\"TAG\" />\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\n    </file-type-list>\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2AYta4JtKnDPVcHrcc1TChSNdZQ\" />\n  <component name=\"ProjectLevelVcsManager\">\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\n    <property name=\"project.structure.last.edited\" value=\"Project\" />\n    <property name=\"project.structure.proportion\" value=\"0.0\" />\n    <property name=\"project.structure.side.proportion\" value=\"0.0\" />\n    <property name=\"settings.editor.selected.configurable\" value=\"reference.projectsettings.compiler.excludes\" />\n  </component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/sourcecode/screen/view\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"Application.GamePlayScreen\">\n    <configuration name=\"GamePlay\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.gameplay.GamePlay\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.gameplay.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"GamePlayScreen\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.screen.application.GamePlayScreen\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.screen.controller.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"HelpScreen\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.screen.application.HelpScreen\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.screen.application.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"IntroScreen\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.screen.application.IntroScreen\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.screen.application.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"PlayerTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"sourcecode.test.PlayerTest\" />\n      <module name=\"OOP.DSAI.20212.Team26\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"sourcecode.test.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.PlayerTest\" />\n        <item itemvalue=\"Application.IntroScreen\" />\n        <item itemvalue=\"Application.HelpScreen\" />\n        <item itemvalue=\"Application.GamePlayScreen\" />\n        <item itemvalue=\"Application.GamePlay\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"0a570501-3eb8-4d17-8082-b4bd2b7a8d6e\" name=\"Changes\" comment=\"commit main\" />\n      <created>1655198410651</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1655198410651</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"upload constructors for board and cells\">\n      <created>1655366801447</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655366801447</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"upate BoardTest\">\n      <created>1655366916492</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655366916492</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"upate BoardTest\">\n      <created>1655377007650</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655377007650</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"update class diagram\">\n      <created>1655400980752</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655400980752</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"update class diagram\">\n      <created>1655401039907</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655401039907</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"test board and gem\">\n      <created>1655459148349</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1655459148349</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"update methods for Player\">\n      <created>1656005332624</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656005332624</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"merge GamePlay codes\">\n      <created>1656006932258</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656006932258</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"upload PlayerTest\">\n      <created>1656007212680</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656007212680</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"update Class and Use Case Diagrams\">\n      <created>1656009059522</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656009059522</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"initial submission\">\n      <created>1656070586403</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656070586403</updated>\n    </task>\n    <task id=\"LOCAL-00012\" summary=\"GUI test\">\n      <created>1656946993988</created>\n      <option name=\"number\" value=\"00012\" />\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656946993988</updated>\n    </task>\n    <task id=\"LOCAL-00013\" summary=\"GUI test\">\n      <created>1656952412145</created>\n      <option name=\"number\" value=\"00013\" />\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1656952412145</updated>\n    </task>\n    <task id=\"LOCAL-00014\" summary=\"upload images\">\n      <created>1657095009722</created>\n      <option name=\"number\" value=\"00014\" />\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657095009722</updated>\n    </task>\n    <task id=\"LOCAL-00015\" summary=\"update gui\">\n      <created>1657098807355</created>\n      <option name=\"number\" value=\"00015\" />\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657098807355</updated>\n    </task>\n    <task id=\"LOCAL-00016\" summary=\"change gui structure\">\n      <created>1657185559046</created>\n      <option name=\"number\" value=\"00016\" />\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657185559047</updated>\n    </task>\n    <task id=\"LOCAL-00017\" summary=\"change gui structure\">\n      <created>1657185566717</created>\n      <option name=\"number\" value=\"00017\" />\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657185566717</updated>\n    </task>\n    <task id=\"LOCAL-00018\" summary=\"update fxml\">\n      <created>1657185750912</created>\n      <option name=\"number\" value=\"00018\" />\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657185750912</updated>\n    </task>\n    <task id=\"LOCAL-00019\" summary=\"update fxml\">\n      <created>1657538447350</created>\n      <option name=\"number\" value=\"00019\" />\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657538447350</updated>\n    </task>\n    <task id=\"LOCAL-00020\" summary=\"update intro screen gui\">\n      <created>1657594963563</created>\n      <option name=\"number\" value=\"00020\" />\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657594963563</updated>\n    </task>\n    <task id=\"LOCAL-00021\" summary=\"allow switching between 3 screens\">\n      <created>1657619699759</created>\n      <option name=\"number\" value=\"00021\" />\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657619699759</updated>\n    </task>\n    <task id=\"LOCAL-00022\" summary=\"update play screen button and 'paws'\">\n      <created>1657630744807</created>\n      <option name=\"number\" value=\"00022\" />\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657630744807</updated>\n    </task>\n    <task id=\"LOCAL-00023\" summary=\"add audio\">\n      <created>1657640600358</created>\n      <option name=\"number\" value=\"00023\" />\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657640600359</updated>\n    </task>\n    <task id=\"LOCAL-00024\" summary=\"add audio\">\n      <created>1657642695908</created>\n      <option name=\"number\" value=\"00024\" />\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657642695908</updated>\n    </task>\n    <task id=\"LOCAL-00025\" summary=\"msg: the game procedure correctly follows the rules\">\n      <created>1657645440232</created>\n      <option name=\"number\" value=\"00025\" />\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657645440232</updated>\n    </task>\n    <task id=\"LOCAL-00026\" summary=\"msg: the game procedure correctly follows the rules\">\n      <created>1657646960610</created>\n      <option name=\"number\" value=\"00026\" />\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657646960610</updated>\n    </task>\n    <task id=\"LOCAL-00027\" summary=\"commit main\">\n      <created>1657733392506</created>\n      <option name=\"number\" value=\"00027\" />\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657733392506</updated>\n    </task>\n    <task id=\"LOCAL-00028\" summary=\"fix bug in spread direction\">\n      <created>1657774256332</created>\n      <option name=\"number\" value=\"00028\" />\n      <option name=\"presentableId\" value=\"LOCAL-00028\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1657774256332</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"29\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"FILTERS\">\n                <map>\n                  <entry key=\"branch\">\n                    <value>\n                      <list>\n                        <option value=\"main\" />\n                      </list>\n                    </value>\n                  </entry>\n                </map>\n              </option>\n              <option name=\"COLUMN_ID_WIDTH\">\n                <map>\n                  <entry key=\"Table.Default.Author.ColumnIdWidth\" value=\"-1\" />\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"upload constructors for board and cells\" />\n    <MESSAGE value=\"upate BoardTest\" />\n    <MESSAGE value=\"update class diagram\" />\n    <MESSAGE value=\"test board and gem\" />\n    <MESSAGE value=\"update methods for Player\" />\n    <MESSAGE value=\"merge GamePlay codes\" />\n    <MESSAGE value=\"upload PlayerTest\" />\n    <MESSAGE value=\"update Class and Use Case Diagrams\" />\n    <MESSAGE value=\"initial submission\" />\n    <MESSAGE value=\"GUI test\" />\n    <MESSAGE value=\"upload images\" />\n    <MESSAGE value=\"update gui\" />\n    <MESSAGE value=\"change gui structure\" />\n    <MESSAGE value=\"update fxml\" />\n    <MESSAGE value=\"update intro screen gui\" />\n    <MESSAGE value=\"allow switching between 3 screens\" />\n    <MESSAGE value=\"update play screen button and 'paws'\" />\n    <MESSAGE value=\"add audio\" />\n    <MESSAGE value=\"msg: the game procedure correctly follows the rules\" />\n    <MESSAGE value=\"commit main\" />\n    <MESSAGE value=\"fix bug in spread direction\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"fix bug in spread direction\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <watches-manager>\n      <configuration name=\"Application\">\n        <watch expression=\"boardList\" language=\"JAVA\" />\n      </configuration>\n    </watches-manager>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 881fddee8a861cd5fa496bf29a974d1dc8c2a9ec)
++++ b/.idea/workspace.xml	(date 1657800075404)
+@@ -1,17 +1,19 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="0a570501-3eb8-4d17-8082-b4bd2b7a8d6e" name="Changes" comment="msg: the game procedure correctly follows the rules">
++    <list default="true" id="0a570501-3eb8-4d17-8082-b4bd2b7a8d6e" name="Changes" comment="test game">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/bigGem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/bigGem.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/GamePlayScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/GamePlayScreen.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/HelpScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/HelpScreen.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/IntroScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/IntroScreen.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/IntroScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/IntroScreenController.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/music/gameMusic.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/music/gameMusic.mp3" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/EndGameScreen.fxml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/IntroScreen.fxml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/sourcecode/screen/application/GamePlayScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/application/GamePlayScreen.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/view/PlayScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/view/PlayScreen.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/sourcecode/screen/controller/IntroScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/IntroScreenController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/sourcecode/screen/view/EndGameScreen.fxml" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -22,15 +24,15 @@
+     <option name="RECENT_TEMPLATES">
+       <list>
+         <option value="Interface" />
+-        <option value="Class" />
+         <option value="FxmlFile" />
++        <option value="Class" />
+       </list>
+     </option>
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="topic/gui/gameplay" />
++        <entry key="$PROJECT_DIR$" value="topic/gui/end-screen" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -69,7 +71,7 @@
+       <recent name="$PROJECT_DIR$/sourcecode/screen/view" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Application.GamePlayScreen">
++  <component name="RunManager" selected="Application.IntroScreen">
+     <configuration name="GamePlay" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+       <option name="MAIN_CLASS_NAME" value="sourcecode.gameplay.GamePlay" />
+       <module name="OOP.DSAI.20212.Team26" />
+@@ -137,10 +139,10 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Application.PlayerTest" />
+         <item itemvalue="Application.IntroScreen" />
+-        <item itemvalue="Application.HelpScreen" />
+         <item itemvalue="Application.GamePlayScreen" />
++        <item itemvalue="Application.PlayerTest" />
++        <item itemvalue="Application.HelpScreen" />
+         <item itemvalue="Application.GamePlay" />
+       </list>
+     </recent_temporary>
+@@ -350,7 +352,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1657774256332</updated>
+     </task>
+-    <option name="localTasksCounter" value="29" />
++    <task id="LOCAL-00029" summary="test game">
++      <created>1657784685466</created>
++      <option name="number" value="00029" />
++      <option name="presentableId" value="LOCAL-00029" />
++      <option name="project" value="LOCAL" />
++      <updated>1657784685466</updated>
++    </task>
++    <option name="localTasksCounter" value="30" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -403,7 +412,8 @@
+     <MESSAGE value="msg: the game procedure correctly follows the rules" />
+     <MESSAGE value="commit main" />
+     <MESSAGE value="fix bug in spread direction" />
+-    <option name="LAST_COMMIT_MESSAGE" value="fix bug in spread direction" />
++    <MESSAGE value="test game" />
++    <option name="LAST_COMMIT_MESSAGE" value="test game" />
+   </component>
+   <component name="XDebuggerManager">
+     <watches-manager>
