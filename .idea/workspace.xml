@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a570501-3eb8-4d17-8082-b4bd2b7a8d6e" name="Changes" comment="test game">
+      <change afterPath="$PROJECT_DIR$/sourcecode/screen/controller/EndGameScreenController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/bigGem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/bigGem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/PlayScreen.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/images/end-screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/images/end-screen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/images/intro-screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/images/intro-screen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/images/play-screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/images/play-screen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/EndGameScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/view/EndGameScreen.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/screen/images/end-screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/images/end-screen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/screen/images/intro-screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/images/intro-screen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/screen/images/play-screen.png" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/images/play-screen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/screen/view/EndGameScreen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/view/EndGameScreen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +24,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -64,7 +71,7 @@
       <recent name="$PROJECT_DIR$/sourcecode/screen/view" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.IntroScreen">
+  <component name="RunManager" selected="Application.GamePlayScreen">
     <configuration name="GamePlay" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sourcecode.gameplay.GamePlay" />
       <module name="OOP.DSAI.20212.Team26" />
@@ -132,10 +139,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GamePlayScreen" />
         <item itemvalue="Application.IntroScreen" />
         <item itemvalue="Application.PlayerTest" />
         <item itemvalue="Application.HelpScreen" />
-        <item itemvalue="Application.GamePlayScreen" />
         <item itemvalue="Application.GamePlay" />
       </list>
     </recent_temporary>

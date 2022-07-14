@@ -1,13 +1,17 @@
 package sourcecode.screen.controller;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -20,11 +24,15 @@ import sourcecode.board.Cell;
 import sourcecode.player.Player;
 
 import javafx.scene.image.ImageView;
+import sourcecode.screen.application.GamePlayScreen;
 
 public class GamePlayScreenController implements Initializable {
 	private Player player1, player2, currentPlayer;
 	private Board board;
 	public static int cell_Num;
+	private String winnerPlayer;
+	private int winnerScore;
+	private String endGameContent;
 
 	public GamePlayScreenController(Board board, Player player1, Player player2) {
 		this.player1 = player1;
@@ -261,7 +269,10 @@ public class GamePlayScreenController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO
-		player1.setTurn((Math.random()) < 0.5);
+		double turnSeed = Math.random();
+		System.out.println("seed: " + turnSeed);
+
+		player1.setTurn(turnSeed < 0.5);
 		if (player1.isInTurn()) {
 			player2.setTurn(false);
 			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
@@ -432,16 +443,53 @@ public class GamePlayScreenController implements Initializable {
 //		player2Name.setText(this.player2.getName());
 //	}
 
-	public static boolean isGameOver(Player player1, Player player2, Board board) {
+	public boolean isGameOver(Player player1, Player player2, Board board) {
 		boolean res = false;
 		if (board.getNumBigGem() - player1.numBigGemsInGemsCaptured() - player2.numBigGemsInGemsCaptured() == 0) {
 			res = true;
+
 		}else if (player1.isCellOnSideEmpty()) {
 			res = true;
+
 		}else if (player2.isCellOnSideEmpty()) {
 			res = true;
 		}
+
+		if(res) {
+			System.out.println("Game finished");
+			if(player1.calculateScore() > player2.calculateScore()) {
+				this.winnerPlayer = player1.getName();
+				this.winnerScore = player1.calculateScore();
+				this.endGameContent = winnerPlayer + " wins! Score: " + winnerScore;
+			}
+			else if(player1.calculateScore() < player2.calculateScore()){
+				this.winnerPlayer = player2.getName();
+				this.winnerScore = player2.calculateScore();
+				this.endGameContent = winnerPlayer + " wins! Score: " + winnerScore;
+			}
+			else {
+				this.endGameContent = "Draw";
+			}
+		}
+
 		return res;
+	}
+
+	public void displayEndGameScreen() {
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("End Game");
+		alert.setHeaderText("End Game");
+		alert.setContentText(endGameContent);
+		Optional<ButtonType> res = alert.showAndWait();
+		if(res.get() == ButtonType.OK) {
+			// quit game
+			Stage stage = (Stage) btnExit.getScene().getWindow();
+			stage.close();
+		} else {
+			// close dialog
+			alert.close();
+		}
+
 	}
 
 	public void changeTurn() {
