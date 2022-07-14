@@ -90,6 +90,8 @@ public class GamePlayScreen extends Application {
         player1 = new Player("Player 1");
         player2 = new Player("Player 2");
 
+
+
         launch(args);
     }
 
