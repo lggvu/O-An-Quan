@@ -386,11 +386,13 @@ public class GamePlayScreenController implements Initializable {
 				pane.setDisable(true);
 			}
 		}
+	   	System.out.println(player1.isInTurn());
 
     }
 
     @FXML
     void rightDirectionChosen(ActionEvent event) {
+       	System.out.println(player1.isInTurn());
 		Pane paneChosen = (Pane) ((Node) event.getTarget()).getParent();
 		System.out.println("pane chosen: " + paneChosen);
 		String id = paneChosen.getId();
@@ -452,11 +454,12 @@ public class GamePlayScreenController implements Initializable {
 
 	public boolean isGameOver(Player player1, Player player2, Board board) {
 		boolean res = false;
-		if (board.getNumBigGem() - player1.numBigGemsInGemsCaptured() - player2.numBigGemsInGemsCaptured() == 0) {
+		Cell[] boardList = board.getBoard();
+		if (boardList[0].isEmpty() && boardList[(board.getNumSquare() + board.getNumHalfCircle()) / 2].isEmpty()) {
 			res = true;
-		}else if (player1.isCellOnSideEmpty() && player1.isInTurn()) {
+		}else if (player2.isCellOnSideEmpty() && player1.isInTurn()) {
 			res = true;
-		}else if (player2.isCellOnSideEmpty() && player2.isInTurn()) {
+		}else if (player1.isCellOnSideEmpty() && player2.isInTurn()) {
 			res = true;
 		}
 
