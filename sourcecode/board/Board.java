@@ -7,7 +7,7 @@ public class Board {
     private static final int numHalfCircle = 2;  // even number
     private static final int numSmallGem = 50;
     private static final int numBigGem = 2;
-    private Cell[] boardList = new Cell[numHalfCircle + numSquare];
+    private final Cell[] boardList = new Cell[numHalfCircle + numSquare];
 
     public int getNumSquare() {
         return numSquare;

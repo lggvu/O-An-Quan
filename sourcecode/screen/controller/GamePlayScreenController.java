@@ -27,13 +27,15 @@ import sourcecode.player.Player;
 import javafx.scene.image.ImageView;
 
 public class GamePlayScreenController implements Initializable {
-	private final Player player1, player2;
-	private Player currentPlayer;
-	private final Board board;
+	private Player player1, player2, currentPlayer;
+	private Board board;
+	public static int cell_Num;
 	private boolean playMusic = false;
 	private Media media;
 	private MediaPlayer mediaPlayer = null;
-	public String endGameContent;
+	private String winnerPlayer;
+	private int winnerScore;
+	private String endGameContent;
 
     public GamePlayScreenController(Board board, Player player1, Player player2) {
         this.player1 = player1;
@@ -329,7 +331,7 @@ public class GamePlayScreenController implements Initializable {
 		ObservableList<Node> childrenElements = paneChosen.getChildren();
 
 		String id = paneChosen.getId();
-		int cell_Num = Integer.parseInt(id.substring(id.length() - 2));
+		cell_Num = Integer.parseInt(id.substring(id.length()-2));
 		System.out.println(cell_Num);
 
 		// set invisible for all arrows and its button
@@ -367,32 +369,20 @@ public class GamePlayScreenController implements Initializable {
 		}
 
 		if(index >= 1 && index <= 5) {
-			try {
-				currentPlayer.pickUpGemFrom(boardList[index]);
-			} catch (IllegalCellChosen e) {
-				e.printStackTrace();
-			}
+			currentPlayer.pickUpGemFrom(boardList[index]);
 			currentPlayer.spreadGem(boardList[index], 1, this.board);
 			setNumGems(boardList);
 			setScore();
 		}
 
 		if(index >= 7 && index <= 11) {
-			try {
-				currentPlayer.pickUpGemFrom(boardList[index]);
-			} catch (IllegalCellChosen e) {
-				e.printStackTrace();
-			}
+			currentPlayer.pickUpGemFrom(boardList[index]);
 			currentPlayer.spreadGem(boardList[index], 0, this.board);
 			setNumGems(boardList);
 			setScore();
 		}	
 		if (!(isGameOver(this.player1, this.player2, this.board))) {
-			try {
-				changeTurn();
-			} catch (EmptyCellException e) {
-				e.printStackTrace();
-			}
+			changeTurn();
 		}else {
 			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05, cell07, cell08,  cell09, cell10, cell11)) {
 				pane.setDisable(true);
@@ -417,33 +407,21 @@ public class GamePlayScreenController implements Initializable {
 		}
 
 		if(index >= 1 && index <= 5) {
-			try {
-				currentPlayer.pickUpGemFrom(boardList[index]);
-			} catch (IllegalCellChosen e) {
-				e.printStackTrace();
-			}
+			currentPlayer.pickUpGemFrom(boardList[index]);
 			currentPlayer.spreadGem(boardList[index], 0, this.board);
 			setNumGems(boardList);
 			setScore();
 		}
 
 		if(index >= 7 && index <= 11) {
-			try {
-				currentPlayer.pickUpGemFrom(boardList[index]);
-			} catch (IllegalCellChosen e) {
-				e.printStackTrace();
-			}
+			currentPlayer.pickUpGemFrom(boardList[index]);
 			currentPlayer.spreadGem(boardList[index], 1, this.board);
 			setNumGems(boardList);
 			setScore();
 		}
 		
 		if (!(isGameOver(this.player1, this.player2, this.board))) {
-			try {
-				changeTurn();
-			} catch (EmptyCellException e) {
-				e.printStackTrace();
-			}
+			changeTurn();
 
 		}else {
 			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05, cell07, cell08,  cell09, cell10, cell11)) {
@@ -486,16 +464,14 @@ public class GamePlayScreenController implements Initializable {
 
 		if(res) {
 			System.out.println("Game finished");
-			String winnerPlayer;
-			int winnerScore;
 			if(player1.calculateScore() > player2.calculateScore()) {
-				winnerPlayer = player1.getName();
-				winnerScore = player1.calculateScore();
+				this.winnerPlayer = player1.getName();
+				this.winnerScore = player1.calculateScore();
 				this.endGameContent = winnerPlayer + " wins! Score: " + winnerScore;
 			}
 			else if(player1.calculateScore() < player2.calculateScore()){
-				winnerPlayer = player2.getName();
-				winnerScore = player2.calculateScore();
+				this.winnerPlayer = player2.getName();
+				this.winnerScore = player2.calculateScore();
 				this.endGameContent = winnerPlayer + " wins! Score: " + winnerScore;
 			}
 			else {
@@ -524,7 +500,7 @@ public class GamePlayScreenController implements Initializable {
 
 	}
 	
-	public void changeTurn() throws EmptyCellException {
+	public void changeTurn() {
 		if (this.currentPlayer == this.player1) {
 			this.player1.setTurn(false);
 			this.player2.setTurn(true);
@@ -536,7 +512,6 @@ public class GamePlayScreenController implements Initializable {
 					pane.setDisable(false);
 				}else {
 					pane.setDisable(true);
-					throw new EmptyCellException("Empty cell chosen!");
 				}
 			}
 			player1Badge.setVisible(false);
@@ -549,7 +524,6 @@ public class GamePlayScreenController implements Initializable {
 					pane.setDisable(false);
 				}else {
 					pane.setDisable(true);
-					throw new EmptyCellException("Empty cell chosen!");
 				}
 			}
 			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {

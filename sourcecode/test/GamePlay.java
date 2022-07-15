@@ -55,11 +55,7 @@ public class GamePlay {
         	int cell_Num = sc.nextInt();
         	sc.nextLine();
             while (true){
-                try {
-                    if (!!(player1.pickUpGemFrom(boardList[cell_Num]))) break;
-                } catch (IllegalCellChosen e) {
-                    e.printStackTrace();
-                }
+                if (!!(player1.pickUpGemFrom(boardList[cell_Num]))) break;
                 System.out.println("The cell is invalid. Please choose another cell to pick!");
                 cell_Num = sc.nextInt();
                 sc.nextLine();
@@ -78,19 +74,11 @@ public class GamePlay {
             int cell_Num2 = sc.nextInt();
             sc.nextLine();
             while(true){
-                try {
-                    if (!!player2.pickUpGemFrom(boardList[cell_Num2] )) break;
-                } catch (IllegalCellChosen e) {
-                    e.printStackTrace();
-                }
+                if (!!player2.pickUpGemFrom(boardList[cell_Num2] )) break;
                 System.out.println("The cell is invalid. Please choose another cell to pick!");
                 cell_Num2 = sc.nextInt();
                 }
-            try {
-                player2.pickUpGemFrom(boardList[cell_Num2]);
-            } catch (IllegalCellChosen e) {
-                e.printStackTrace();
-            }
+            player2.pickUpGemFrom(boardList[cell_Num2]);
             System.out.println("Player 2 chooses Hand Direction");
             int Player2HandDirection = sc.nextInt();
             while (Player2HandDirection != 1 && Player2HandDirection != 0) {

@@ -1,7 +1,6 @@
 package sourcecode.player;
 
 import sourcecode.board.*;
-import sourcecode.exception.IllegalCellChosen;
 import sourcecode.gem.Gem;
 import sourcecode.gem.bigGem;
 
@@ -51,18 +50,18 @@ public class Player {
         this.handPosition = position;
     }
 
-    public boolean pickUpGemFrom(Cell cell) throws IllegalCellChosen {
+    public boolean pickUpGemFrom(Cell cell) {
         /*
         Action: Pick up gem from cell `cell`
          */
-        if(!(cell instanceof HalfCircle) && !(cell.isEmpty())) { // TODO add cells on side
+        if(!(cell instanceof HalfCircle) && !(cell.isEmpty()) && (cellsOnSide.contains(cell))) { // TODO add cells on side
             System.out.println("Picked up from cell " + cell.getPosition());
             this.gemsInHand.addAll(cell.getGemList());
             cell.emptyCell();
             return true;
         }
         else {
-            throw new IllegalCellChosen("Illegal cell chosen!");
+            return false;
         }
     }
 
@@ -70,8 +69,6 @@ public class Player {
         /*
         Suppose already picked up gem from initPosition
         Actions: move to the cell nearby, drop gem into it, continue moving to the cells nearby
-
-        Direction: 0 = clockwise; 1 = counter-clockwise
          */
         this.handPosition = initPosition;
         if (handDirection == 0) {  // clockwise
@@ -84,11 +81,7 @@ public class Player {
             Cell nextHandPosition = board.getNextCellClockwise(handPosition);
             if(!nextHandPosition.isEmpty()) {
                 if(!(nextHandPosition instanceof HalfCircle)) {  // can continue spreading
-                    try {
-                        pickUpGemFrom(nextHandPosition);
-                    } catch (IllegalCellChosen e) {
-                        e.printStackTrace();
-                    }
+                    pickUpGemFrom(nextHandPosition);
                     spreadGem(nextHandPosition, handDirection, board);
                 }
             }
@@ -109,11 +102,7 @@ public class Player {
             Cell nextHandPosition = board.getNextCellCounterClockwise(handPosition);
             if(!nextHandPosition.isEmpty()) {
                 if(!(nextHandPosition instanceof HalfCircle)) {  // can continue spreading
-                    try {
-                        pickUpGemFrom(nextHandPosition);
-                    } catch (IllegalCellChosen e) {
-                        e.printStackTrace();
-                    }
+                    pickUpGemFrom(nextHandPosition);
                     spreadGem(nextHandPosition, handDirection, board);
                 }
             }
