@@ -1,5 +1,6 @@
 # OOP.DSAI.20212.26
 OOP Project 20212
+The final submission (due 15th Jul, 2022) is pushed to the `release/version-1.0` branch.
 ## Team members
 1. Hoang Long Vu - 20204897 - vu.hl204897@sis.hust.edu.vn 
 2. Pham Vu Huyen Trang - 20207997 - trang.pvh207997@sis.hust.edu.vn 
