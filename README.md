@@ -20,7 +20,6 @@ Both (active) members participated in brain-storming and constructing the diagra
 2. Hoang Long Vu (50%)
 - Implement Board, Cell classes
 - Participated in constructing the Player class: implement `pickUpGemFrom`, `spreadGem`, `dropGemInto` methods.
-- Pariticpated in brain-storming the action logics in GamePlay class.
 - Test components functionalities (test GamePlay, BoardTest, PlayerTest).
 - Design the background images for GUI (using Adobe Illustrator 2022).
 - Design screens using SceneBuilder: IntroScrene, HelpScreen.
@@ -28,7 +27,7 @@ Both (active) members participated in brain-storming and constructing the diagra
 - Participated in implementing the `exitButton`, `disPlayEndGameScreen` and handling the programmatic aspects of `cellChosen` method for GamePlayScreenController.
 - Write report.
 
-3. Nguyen Huu Vuong (0*)
+3. Nguyen Huu Vuong (0%)
 Team members could not contact with this member, either by direct messages or direct talking on classes as he does not seem to attend any lectures, thus did not receive any response on the decision to contribute to this Project. 
 
 ## Demo link
