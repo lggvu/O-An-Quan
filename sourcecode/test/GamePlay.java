@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 import sourcecode.board.Board;
 import sourcecode.board.Cell;
+import sourcecode.exception.IllegalCellChosen;
 import sourcecode.player.Player;
 import java.util.ArrayList;
 public class GamePlay {
@@ -53,7 +54,12 @@ public class GamePlay {
         	System.out.println("Player 1 chooses a cell to pick gems from: ");
         	int cell_Num = sc.nextInt();
         	sc.nextLine();
-            while (!(player1.pickUpGemFrom(boardList[cell_Num]))){
+            while (true){
+                try {
+                    if (!!(player1.pickUpGemFrom(boardList[cell_Num]))) break;
+                } catch (IllegalCellChosen e) {
+                    e.printStackTrace();
+                }
                 System.out.println("The cell is invalid. Please choose another cell to pick!");
                 cell_Num = sc.nextInt();
                 sc.nextLine();
@@ -71,11 +77,20 @@ public class GamePlay {
             System.out.println("Player 2 chooses a cell to pick gems from: ");
             int cell_Num2 = sc.nextInt();
             sc.nextLine();
-            while(!player2.pickUpGemFrom(boardList[cell_Num2] )){
+            while(true){
+                try {
+                    if (!!player2.pickUpGemFrom(boardList[cell_Num2] )) break;
+                } catch (IllegalCellChosen e) {
+                    e.printStackTrace();
+                }
                 System.out.println("The cell is invalid. Please choose another cell to pick!");
                 cell_Num2 = sc.nextInt();
                 }
-            player2.pickUpGemFrom(boardList[cell_Num2]);
+            try {
+                player2.pickUpGemFrom(boardList[cell_Num2]);
+            } catch (IllegalCellChosen e) {
+                e.printStackTrace();
+            }
             System.out.println("Player 2 chooses Hand Direction");
             int Player2HandDirection = sc.nextInt();
             while (Player2HandDirection != 1 && Player2HandDirection != 0) {

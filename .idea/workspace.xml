@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a570501-3eb8-4d17-8082-b4bd2b7a8d6e" name="Changes" comment="clean some code">
+    <list default="true" id="0a570501-3eb8-4d17-8082-b4bd2b7a8d6e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/sourcecode/exception/EmptyCellException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sourcecode/exception/IllegalCellChosen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/board/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/board/HalfCircle.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/HalfCircle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/test/GamePlay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/gameplay/GamePlayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/test/GamePlayTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/gem/Gem.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/gem/Gem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sourcecode/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/test/CellTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/test/CellTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/test/GamePlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/test/GamePlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/test/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/test/PlayerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -356,7 +354,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657806962818</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="set Cell and Gem to abstract">
+      <created>1657821420890</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1657821420890</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -410,7 +415,8 @@
     <MESSAGE value="commit main" />
     <MESSAGE value="fix bug in spread direction" />
     <MESSAGE value="clean some code" />
-    <option name="LAST_COMMIT_MESSAGE" value="clean some code" />
+    <MESSAGE value="set Cell and Gem to abstract" />
+    <option name="LAST_COMMIT_MESSAGE" value="set Cell and Gem to abstract" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

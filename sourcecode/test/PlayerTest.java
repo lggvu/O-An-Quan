@@ -2,6 +2,7 @@ package sourcecode.test;
 
 import sourcecode.board.Board;
 import sourcecode.board.Cell;
+import sourcecode.exception.IllegalCellChosen;
 import sourcecode.player.Player;
 
 import java.util.ArrayList;
@@ -34,7 +35,11 @@ public class PlayerTest {
         System.out.println();
         System.out.println("Test spread");
         System.out.println(player.getGemsInHand().size());
-        player.pickUpGemFrom(boardList[2]);
+        try {
+            player.pickUpGemFrom(boardList[2]);
+        } catch (IllegalCellChosen e) {
+            e.printStackTrace();
+        }
         player.spreadGem(boardList[2], 0, board); // anti-clockwise
         System.out.println(player.getGemsInHand().size());
         for(Cell cell:boardList) {

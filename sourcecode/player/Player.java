@@ -1,6 +1,7 @@
 package sourcecode.player;
 
 import sourcecode.board.*;
+import sourcecode.exception.IllegalCellChosen;
 import sourcecode.gem.Gem;
 import sourcecode.gem.bigGem;
 
@@ -50,7 +51,7 @@ public class Player {
         this.handPosition = position;
     }
 
-    public boolean pickUpGemFrom(Cell cell) {
+    public boolean pickUpGemFrom(Cell cell) throws IllegalCellChosen {
         /*
         Action: Pick up gem from cell `cell`
          */
@@ -61,7 +62,7 @@ public class Player {
             return true;
         }
         else {
-            return false;
+            throw new IllegalCellChosen("Illegal cell chosen!");
         }
     }
 
@@ -69,6 +70,8 @@ public class Player {
         /*
         Suppose already picked up gem from initPosition
         Actions: move to the cell nearby, drop gem into it, continue moving to the cells nearby
+
+        Direction: 0 = clockwise; 1 = counter-clockwise
          */
         this.handPosition = initPosition;
         if (handDirection == 0) {  // clockwise
@@ -81,7 +84,11 @@ public class Player {
             Cell nextHandPosition = board.getNextCellClockwise(handPosition);
             if(!nextHandPosition.isEmpty()) {
                 if(!(nextHandPosition instanceof HalfCircle)) {  // can continue spreading
-                    pickUpGemFrom(nextHandPosition);
+                    try {
+                        pickUpGemFrom(nextHandPosition);
+                    } catch (IllegalCellChosen e) {
+                        e.printStackTrace();
+                    }
                     spreadGem(nextHandPosition, handDirection, board);
                 }
             }
@@ -102,7 +109,11 @@ public class Player {
             Cell nextHandPosition = board.getNextCellCounterClockwise(handPosition);
             if(!nextHandPosition.isEmpty()) {
                 if(!(nextHandPosition instanceof HalfCircle)) {  // can continue spreading
-                    pickUpGemFrom(nextHandPosition);
+                    try {
+                        pickUpGemFrom(nextHandPosition);
+                    } catch (IllegalCellChosen e) {
+                        e.printStackTrace();
+                    }
                     spreadGem(nextHandPosition, handDirection, board);
                 }
             }
@@ -145,10 +156,10 @@ public class Player {
 
     public int calculateScore() {
         int score = 0;
-        for(int i = 0; i < this.gemsCaptured.size(); i ++){
-            if (gemsCaptured.get(i) instanceof bigGem){
+        for (Gem gem : this.gemsCaptured) {
+            if (gem instanceof bigGem) {
                 score += 5;
-            } else{
+            } else {
                 score += 1;
             }
         }
@@ -164,8 +175,8 @@ public class Player {
     }
     public boolean isCellOnSideEmpty() {
         int res = board.getNumSquare() / 2;
-        for (int i = 0; i < this.cellsOnSide.size(); i ++) {
-            if (this.cellsOnSide.get(i).isEmpty()) {
+        for (Cell cell : this.cellsOnSide) {
+            if (cell.isEmpty()) {
                 res -= 1;
             }
         }
@@ -174,11 +185,11 @@ public class Player {
 
 	public int numBigGemsInGemsCaptured() {
 		int res = 0;
-		for (int i = 0; i < gemsCaptured.size(); i++) {
-			if (gemsCaptured.get(i) instanceof bigGem) {
-				res += 1;
-			}
-		}
+        for (Gem gem : gemsCaptured) {
+            if (gem instanceof bigGem) {
+                res += 1;
+            }
+        }
 		return res;
 	}
 
