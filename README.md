@@ -34,4 +34,4 @@ Both (active) members participated in brain-storming and constructing the diagra
 https://drive.google.com/file/d/1HPmcRuR1tWA6w5nzYl6A5CuDGM44-Ii6/view
 
 ## Starting the program
-Run the `IntroScreen.java` file in the directory `sourcecode/screen/controller` to start game from the Introduction Screne.
+Run the `IntroScreen.java` file in the directory `sourcecode/screen/controller` to start game from the Introduction Screen.
