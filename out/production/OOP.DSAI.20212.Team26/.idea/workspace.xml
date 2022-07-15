@@ -1,21 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0a570501-3eb8-4d17-8082-b4bd2b7a8d6e" name="Changes" comment="msg: the game procedure correctly follows the rules">
-      <change afterPath="$PROJECT_DIR$/sourcecode/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+    <list default="true" id="0a570501-3eb8-4d17-8082-b4bd2b7a8d6e" name="Changes" comment="clean code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/gameplay/GamePlayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/gameplay/GamePlayTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/gem/Gem.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/gem/Gem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/application/GamePlayScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/application/GamePlayScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/application/HelpScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/application/HelpScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/application/IntroScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/application/IntroScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/controller/HelpScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/HelpScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/controller/IntroScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/IntroScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/images/mute.jfif" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +21,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="topic/gui/gameplay" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -73,7 +60,7 @@
       <recent name="$PROJECT_DIR$/sourcecode/screen/view" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GamePlayTest">
+  <component name="RunManager" selected="Application.GamePlayScreen">
     <configuration name="GamePlayScreen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="sourcecode.screen.application.GamePlayScreen" />
       <module name="OOP.DSAI.20212.Team26" />
@@ -88,24 +75,11 @@
       </method>
     </configuration>
     <configuration name="GamePlayTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="sourcecode.gameplay.GamePlayTest" />
+      <option name="MAIN_CLASS_NAME" value="sourcecode.test.gameplay.GamePlayTest" />
       <module name="OOP.DSAI.20212.Team26" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="sourcecode.gameplay.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HelpScreen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="sourcecode.screen.application.HelpScreen" />
-      <module name="OOP.DSAI.20212.Team26" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="sourcecode.screen.application.*" />
+          <option name="PATTERN" value="sourcecode.test.gameplay.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -119,6 +93,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="sourcecode.screen.application.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sourcecode.Main" />
+      <module name="OOP.DSAI.20212.Team26" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sourcecode.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -141,11 +128,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GamePlayTest" />
         <item itemvalue="Application.GamePlayScreen" />
-        <item itemvalue="Application.PlayerTest" />
         <item itemvalue="Application.IntroScreen" />
-        <item itemvalue="Application.HelpScreen" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.GamePlayTest" />
+        <item itemvalue="Application.PlayerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -354,7 +341,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657774256332</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="clean code">
+      <created>1657875133148</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1657875133148</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -407,7 +401,8 @@
     <MESSAGE value="msg: the game procedure correctly follows the rules" />
     <MESSAGE value="commit main" />
     <MESSAGE value="fix bug in spread direction" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix bug in spread direction" />
+    <MESSAGE value="clean code" />
+    <option name="LAST_COMMIT_MESSAGE" value="clean code" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
