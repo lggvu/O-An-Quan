@@ -146,15 +146,6 @@ public class Player {
 		return this.name;
 	}
 	
-	public int numBigGemsInGemsCaptured() {
-		int res = 0;
-        for (Gem gem : gemsCaptured) {
-            if (gem instanceof bigGem) {
-                res += 1;
-            }
-        }
-		return res;
-	}
-
-
 }
+
+
