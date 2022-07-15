@@ -1,7 +1,7 @@
 package sourcecode.gem;
 import sourcecode.board.*;
 
-public class Gem {
+public abstract class Gem {
 	protected Cell position;
 
     public Gem(Cell position){

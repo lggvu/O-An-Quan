@@ -4,7 +4,7 @@ import sourcecode.gem.Gem;
 
 import java.util.ArrayList;
 
-public class Cell {
+public abstract class Cell {
     private int position;
     private int numberOfGems;
     private ArrayList<Gem> gemList = new ArrayList<Gem>();

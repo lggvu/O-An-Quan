@@ -13,7 +13,6 @@ import sourcecode.screen.controller.IntroScreenController;
 import java.io.IOException;
 
 public class Main extends Application {
-
     private static Board board;
     private static Player player1, player2;
 
@@ -46,4 +45,5 @@ public class Main extends Application {
 
         launch(args);
     }
+
 }

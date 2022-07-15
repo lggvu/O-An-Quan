@@ -2,33 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a570501-3eb8-4d17-8082-b4bd2b7a8d6e" name="Changes" comment="msg: the game procedure correctly follows the rules">
-      <change afterPath="$PROJECT_DIR$/sourcecode/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/board/Board.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gameplay/GamePlayTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gameplay/GamePlayTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/Gem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/Gem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/player/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/player/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/GamePlayScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/GamePlayScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/HelpScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/HelpScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/IntroScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/application/IntroScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/bigGem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/gem/bigGem.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/GamePlayScreenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/HelpScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/HelpScreenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/IntroScreenController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/controller/IntroScreenController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/OOP.DSAI.20212.Team26/sourcecode/screen/images/mute.jfif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/gameplay/GamePlayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/gameplay/GamePlayTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/board/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/board/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/gameplay/GamePlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/test/gameplay/GamePlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/gameplay/GamePlayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/test/gameplay/GamePlayTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sourcecode/gem/Gem.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/gem/Gem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/application/GamePlayScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/application/GamePlayScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/application/HelpScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/application/HelpScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/application/IntroScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/application/IntroScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/GamePlayScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/controller/HelpScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/HelpScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/controller/IntroScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sourcecode/screen/controller/IntroScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sourcecode/screen/images/mute.jfif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sourcecode/test/CellTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,11 +83,11 @@
       </method>
     </configuration>
     <configuration name="GamePlayTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="sourcecode.gameplay.GamePlayTest" />
+      <option name="MAIN_CLASS_NAME" value="sourcecode.test.gameplay.GamePlayTest" />
       <module name="OOP.DSAI.20212.Team26" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="sourcecode.gameplay.*" />
+          <option name="PATTERN" value="sourcecode.test.gameplay.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -155,8 +137,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.GamePlayTest" />
         <item itemvalue="Application.GamePlayScreen" />
+        <item itemvalue="Application.GamePlayTest" />
         <item itemvalue="Application.PlayerTest" />
         <item itemvalue="Application.IntroScreen" />
       </list>
