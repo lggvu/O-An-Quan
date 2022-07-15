@@ -23,4 +23,6 @@ public abstract class Gem {
 	public String toString() {
 		return this.getClass().getSimpleName() + " - position = " + this.position;
 	}
+
+	public abstract int getVALUE();
 }
