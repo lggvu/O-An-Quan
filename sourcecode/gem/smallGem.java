@@ -2,7 +2,7 @@ package sourcecode.gem;
 
 import sourcecode.board.Cell;
 
-public class smallGem extends Gem{
+public class smallGem extends Gem implements getValue{
 	protected int VALUE = 1;
 
     public smallGem(Cell position){

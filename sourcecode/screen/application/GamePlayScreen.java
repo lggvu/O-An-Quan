@@ -5,15 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import sourcecode.board.Board;
 import sourcecode.player.Player;
 import sourcecode.screen.controller.GamePlayScreenController;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 
 public class GamePlayScreen extends Application {
@@ -40,18 +37,6 @@ public class GamePlayScreen extends Application {
         primaryStage.setTitle("O An Quan");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-    }
-    public void music() {
-        Media media = null;
-        try {
-            media = new Media(getClass().getResource("/sourcecode/screen/music/gameMusic.mp3").toURI().toString());
-        } catch (URISyntaxException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        MediaPlayer mediaPlayer;
-        mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.play();
     }
 
 

@@ -1,9 +1,12 @@
 package sourcecode.board;
-
-import sourcecode.board.Cell;
-
-public class Square extends Cell {
+public class Square extends Cell implements Pickable {
     public Square(int position, int numberOfGems) {
         super(position, numberOfGems);
     }
+
+	@Override
+	public boolean mayBePickable() {
+		// TODO Auto-generated method stub
+		return true;
+	}
 }

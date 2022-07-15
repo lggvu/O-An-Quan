@@ -13,7 +13,5 @@ public class BoardTest {
         for(Cell cell:boardVis) {
             System.out.println(cell.seeDetails());
         }
-
-        System.out.println(board.getNumSmallGem());
     }
 }

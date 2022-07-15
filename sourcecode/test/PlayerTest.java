@@ -18,7 +18,7 @@ public class PlayerTest {
         for(int i=1; i < 6; i++) {
             cellOnSide.add(boardList[i]);
         }
-        player.setCellsOnSides(cellOnSide);
+        player.setCellsOnSide(cellOnSide);
 
         System.out.println("cells on side of player: " + player.getCellsOnSide() );
 
@@ -40,32 +40,5 @@ public class PlayerTest {
         for(Cell cell:boardList) {
             System.out.println(cell.seeDetails());
         }
-/*
-        Board board2 = new Board();
-        board2.setGem();
-        Cell[] boardList2 = board2.getBoard();
-
-        ArrayList<Cell> cellOnSide2 = new ArrayList<>();
-
-
-        for(int i=1; i < 6; i++) {
-            cellOnSide2.add(boardList2[i]);
-        }
-        player.setCellsOnSides(cellOnSide2);
-        System.out.println("*******************************");
-        System.out.println("Eat many cells");
-        System.out.println();
-        System.out.println("Test spread");
-        System.out.println(player.getGemsInHand().size());
-        player.pickUpGemFrom(boardList2[10]);
-        player.spreadGem(boardList2[10], 1, board2); // anti-clockwise
-        System.out.println(player.getGemsInHand().size());
-        for(Cell cell:boardList2) {
-            System.out.println(cell.seeDetails());
-        }
-
- */
-    }
-
-
+     }
 }

@@ -3,6 +3,7 @@ package sourcecode.player;
 import sourcecode.board.*;
 import sourcecode.gem.Gem;
 import sourcecode.gem.bigGem;
+import sourcecode.gem.smallGem;
 
 import java.util.ArrayList;
 
@@ -10,13 +11,7 @@ public class Player {
     private boolean inTurn;
     private int score;
     private String name;
-    private int id;
     private ArrayList<Gem> gemsInHand = new ArrayList<Gem>();
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     private ArrayList<Gem> gemsCaptured = new ArrayList<Gem>();
     private ArrayList<Cell> cellsOnSide = new ArrayList<Cell>();
     private Cell handPosition;
@@ -43,21 +38,13 @@ public class Player {
         this.name = name;
     }
 
-    public Player() {
-
-    }
-
     public Player(String name, Cell position) {
         this.name = name;
         this.handPosition = position;
     }
 
     public boolean pickUpGemFrom(Cell cell) {
-        /*
-        Action: Pick up gem from cell `cell`
-         */
-        if(!(cell instanceof HalfCircle) && !(cell.isEmpty())) { // TODO add cells on side
-            System.out.println("Picked up from cell " + cell.getPosition());
+        if((cell instanceof Pickable) && (!(cell.isEmpty()))) { // TODO add cells on side
             this.gemsInHand.addAll(cell.getGemList());
             cell.emptyCell();
             return true;
@@ -68,10 +55,6 @@ public class Player {
     }
 
     public void spreadGem(Cell initPosition, int handDirection, Board board) {
-        /*
-        Suppose already picked up gem from initPosition
-        Actions: move to the cell nearby, drop gem into it, continue moving to the cells nearby
-         */
         this.handPosition = initPosition;
         if (handDirection == 0) {  // clockwise
             ArrayList<Gem> tmpGemsInHand = new ArrayList<>(this.gemsInHand);
@@ -100,7 +83,7 @@ public class Player {
                 handPosition = board.getNextCellCounterClockwise(handPosition);
                 dropGemInto(gem, handPosition);
             }
-            // check turn continuity
+             // check turn continuity
             Cell nextHandPosition = board.getNextCellCounterClockwise(handPosition);
             if(!nextHandPosition.isEmpty()) {
                 if(!(nextHandPosition instanceof HalfCircle)) {  // can continue spreading
@@ -118,57 +101,38 @@ public class Player {
     }
 
     public void dropGemInto(Gem gem, Cell cell) {
-        /*
-        Action: Drop the gem `gem` into cell `cell`
-         */
         if(this.gemsInHand.size() > 0) {
             cell.addGem(gem);
             this.gemsInHand.remove(gem);
-            System.out.println("Dropped gem into cell " + cell.getPosition());
         }
-        // else skip
     }
 
-    public String getName() {
-        return this.name;
-    }
 
     public void earnGemFrom(Cell cell) {
-        /*
-        Action: earn gem from cell `cell`
-         */
         this.gemsCaptured.addAll(cell.getGemList());
         cell.emptyCell();
-        System.out.println("Eat all gems at: " + cell.getPosition());
     }
     public boolean isInTurn() {
         return inTurn;
     }
 
     public int calculateScore() {
-        int score = 0;
+        this.score = 0;
         for(int i = 0; i < this.gemsCaptured.size(); i ++){
             if (gemsCaptured.get(i) instanceof bigGem){
-                score += 5;
-            } else{
-                score += 1;
+                score += ((bigGem) gemsCaptured.get(i)).getVALUE();
+            } else {
+                score += ((smallGem) gemsCaptured.get(i)).getVALUE();
             }
         }
         return score;
     }
-    public void setCellsOnSides(ArrayList<Cell> CellsOnSide){
-        this.cellsOnSide = CellsOnSide;
-    }
-    public int getScore(){
-        return this.score;
-    }
-
     public void setTurn(boolean turn) {
         this.inTurn = turn;
 
     }
     public boolean isCellOnSideEmpty() {
-        int res = board.getNumSquare() / 2;
+        int res = 5;
         for (int i = 0; i < this.cellsOnSide.size(); i ++) {
             if (this.cellsOnSide.get(i).isEmpty()) {
                 res -= 1;
@@ -177,6 +141,10 @@ public class Player {
         return res == 0;
     }
 
+	public String getName() {
+		return this.name;
+	}
+	
 	public int numBigGemsInGemsCaptured() {
 		int res = 0;
 		for (int i = 0; i < gemsCaptured.size(); i++) {
@@ -186,7 +154,6 @@ public class Player {
 		}
 		return res;
 	}
-
 
 
 }

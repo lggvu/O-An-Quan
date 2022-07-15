@@ -452,7 +452,7 @@ public class GamePlayScreenController implements Initializable {
 
 	public boolean isGameOver(Player player1, Player player2, Board board) {
 		boolean res = false;
-		if (board.getNumBigGem() - player1.numBigGemsInGemsCaptured() - player2.numBigGemsInGemsCaptured() == 0) {
+		if (2 - player1.numBigGemsInGemsCaptured() - player2.numBigGemsInGemsCaptured() == 0) {
 			res = true;
 		}else if (player1.isCellOnSideEmpty()) {
 			res = true;
