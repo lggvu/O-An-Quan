@@ -33,7 +33,7 @@ Both (active) members participated in brain-storming and constructing the diagra
 - Team members could not contact with this member, either by direct messages or direct talking on classes as he does not seem to attend any lectures, thus did not receive any response on the decision to contribute to this Project. 
 
 ## Demo link
-https://drive.google.com/file/d/1HPmcRuR1tWA6w5nzYl6A5CuDGM44-Ii6/view
+https://drive.google.com/file/d/1v8G6gZ2c93rFomoLYvm6NvUkUzqDJN7k/view?usp=sharing
 
 ## Starting the program
 Run the `IntroScreen.java` file in the directory `sourcecode/screen/controller` to start game from the Introduction Screen.
