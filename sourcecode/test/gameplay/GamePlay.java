@@ -26,11 +26,11 @@ public class GamePlay {
     }
     public static boolean isGameOver(Player player1, Player player2, Board board) {
     	boolean res = false;
-    	if ( player1.numBigGemsInGemsCaptured() + player2.numBigGemsInGemsCaptured() == 2) {
+    	if (board.getNumBigGem()- player1.numBigGemsInGemsCaptured() + player2.numBigGemsInGemsCaptured() == 0) {
     		res = true;
-    	}else if (player1.isCellOnSideEmpty()) {
+    	}else if (player1.isCellOnSideEmpty() && player1.isInTurn()) {
     		res = true;
-    	}else if (player2.isCellOnSideEmpty()) {
+    	}else if (player2.isCellOnSideEmpty() && player2.isInTurn()) {
     		res = true;
     	}
     	return res;
