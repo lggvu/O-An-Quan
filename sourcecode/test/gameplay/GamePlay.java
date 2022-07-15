@@ -1,10 +1,12 @@
-package sourcecode.gameplay;
+package sourcecode.test.gameplay;
+
 import java.util.Scanner;
 
 import sourcecode.board.Board;
 import sourcecode.board.Cell;
 import sourcecode.player.Player;
 import java.util.ArrayList;
+
 public class GamePlay {
     private static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
@@ -12,7 +14,6 @@ public class GamePlay {
         Player Player1 = new Player("Player 1");
         Player Player2 = new Player("Player 2");
 
-        // TODO Add Introduction and rules here
         System.out.println("Introduction");
         Player1.setTurn((Math.random()) < 0.5);
         if (Player1.isInTurn()){

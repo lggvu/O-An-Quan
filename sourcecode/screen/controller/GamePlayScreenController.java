@@ -25,14 +25,13 @@ import sourcecode.player.Player;
 import javafx.scene.image.ImageView;
 
 public class GamePlayScreenController implements Initializable {
-	private Player player1, player2, currentPlayer;
-	private Board board;
+	private final Player player1, player2;
+	private Player currentPlayer;
+	private final Board board;
 	public static int cell_Num;
 	private boolean playMusic = false;
 	private Media media;
 	private MediaPlayer mediaPlayer = null;
-	private String winnerPlayer;
-	private int winnerScore;
 	private String endGameContent;
 
     public GamePlayScreenController(Board board, Player player1, Player player2) {
@@ -312,6 +311,7 @@ public class GamePlayScreenController implements Initializable {
 	    ArrayList <Cell> Player1CellOnSide = new ArrayList<Cell>();
 	    ArrayList <Cell> Player2CellOnSide = new ArrayList<Cell>();
 	    Cell[] boardList = board.getBoard();
+
 	    for (int i = 1; i < 6; i ++) { 
 	        Player1CellOnSide.add(boardList[i]);
 	     }
@@ -462,14 +462,16 @@ public class GamePlayScreenController implements Initializable {
 
 		if(res) {
 			System.out.println("Game finished");
+			String winnerPlayer;
+			int winnerScore;
 			if(player1.calculateScore() > player2.calculateScore()) {
-				this.winnerPlayer = player1.getName();
-				this.winnerScore = player1.calculateScore();
+				winnerPlayer = player1.getName();
+				winnerScore = player1.calculateScore();
 				this.endGameContent = winnerPlayer + " wins! Score: " + winnerScore;
 			}
 			else if(player1.calculateScore() < player2.calculateScore()){
-				this.winnerPlayer = player2.getName();
-				this.winnerScore = player2.calculateScore();
+				winnerPlayer = player2.getName();
+				winnerScore = player2.calculateScore();
 				this.endGameContent = winnerPlayer + " wins! Score: " + winnerScore;
 			}
 			else {
@@ -506,11 +508,7 @@ public class GamePlayScreenController implements Initializable {
 				pane.setDisable(true);
 			}
 			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
-				if (!(isPaneEmpty(pane))) {
-					pane.setDisable(false);
-				}else {
-					pane.setDisable(true);
-				}
+				pane.setDisable(isPaneEmpty(pane));
 			}
 			player1Badge.setVisible(false);
 			player2Badge.setVisible(true);
@@ -518,11 +516,7 @@ public class GamePlayScreenController implements Initializable {
 			this.player1.setTurn(true);
 			this.player2.setTurn(false);
 			for(Pane pane : Arrays.asList(cell01, cell02, cell03, cell04, cell05)) {
-				if (!(isPaneEmpty(pane))) {
-					pane.setDisable(false);
-				}else {
-					pane.setDisable(true);
-				}
+				pane.setDisable(isPaneEmpty(pane));
 			}
 			for(Pane pane : Arrays.asList(cell07, cell08, cell09, cell10, cell11)) {
 				pane.setDisable(true);

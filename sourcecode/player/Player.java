@@ -3,14 +3,12 @@ package sourcecode.player;
 import sourcecode.board.*;
 import sourcecode.gem.Gem;
 import sourcecode.gem.bigGem;
-import sourcecode.gem.smallGem;
 
 import java.util.ArrayList;
 
 public class Player {
     private boolean inTurn;
-    private int score;
-    private String name;
+    private final String name;
     private ArrayList<Gem> gemsInHand = new ArrayList<Gem>();
     private ArrayList<Gem> gemsCaptured = new ArrayList<Gem>();
     private ArrayList<Cell> cellsOnSide = new ArrayList<Cell>();
@@ -44,7 +42,7 @@ public class Player {
     }
 
     public boolean pickUpGemFrom(Cell cell) {
-        if((cell instanceof Pickable) && (!(cell.isEmpty()))) { // TODO add cells on side
+        if((cell instanceof Pickable) && (!(cell.isEmpty()))) {
             this.gemsInHand.addAll(cell.getGemList());
             cell.emptyCell();
             return true;
@@ -55,6 +53,14 @@ public class Player {
     }
 
     public void spreadGem(Cell initPosition, int handDirection, Board board) {
+        /*
+        Suppose player has ALREADY pickup from the cell initPosition
+        Actions: move to the cell next to initPosition, drop gem into it, continue moving to other cells nearby
+        Directions:
+            0: clockwise
+            1: counter-clockwise
+         */
+
         this.handPosition = initPosition;
         if (handDirection == 0) {  // clockwise
             ArrayList<Gem> tmpGemsInHand = new ArrayList<>(this.gemsInHand);
@@ -107,7 +113,6 @@ public class Player {
         }
     }
 
-
     public void earnGemFrom(Cell cell) {
         this.gemsCaptured.addAll(cell.getGemList());
         cell.emptyCell();
@@ -117,9 +122,9 @@ public class Player {
     }
 
     public int calculateScore() {
-        this.score = 0;
-        for(int i = 0; i < this.gemsCaptured.size(); i ++){
-            score += gemsCaptured.get(i).getVALUE();
+        int score = 0;
+        for (Gem gem : this.gemsCaptured) {
+            score += gem.getVALUE();
         }
         return score;
     }
@@ -128,9 +133,9 @@ public class Player {
 
     }
     public boolean isCellOnSideEmpty() {
-        int res = 5;
-        for (int i = 0; i < this.cellsOnSide.size(); i ++) {
-            if (this.cellsOnSide.get(i).isEmpty()) {
+        int res = board.getNumSquare()/2;
+        for (Cell cell : this.cellsOnSide) {
+            if (cell.isEmpty()) {
                 res -= 1;
             }
         }
@@ -143,11 +148,11 @@ public class Player {
 	
 	public int numBigGemsInGemsCaptured() {
 		int res = 0;
-		for (int i = 0; i < gemsCaptured.size(); i++) {
-			if (gemsCaptured.get(i) instanceof bigGem) {
-				res += 1;
-			}
-		}
+        for (Gem gem : gemsCaptured) {
+            if (gem instanceof bigGem) {
+                res += 1;
+            }
+        }
 		return res;
 	}
 
