@@ -119,11 +119,7 @@ public class Player {
     public int calculateScore() {
         this.score = 0;
         for(int i = 0; i < this.gemsCaptured.size(); i ++){
-            if (gemsCaptured.get(i) instanceof bigGem){
-                score += ((bigGem) gemsCaptured.get(i)).getVALUE();
-            } else {
-                score += ((smallGem) gemsCaptured.get(i)).getVALUE();
-            }
+            score += gemsCaptured.get(i).getVALUE();
         }
         return score;
     }
