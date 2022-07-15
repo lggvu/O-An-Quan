@@ -28,7 +28,7 @@ Both (active) members participated in brain-storming and constructing the diagra
 - Write report.
 
 3. Nguyen Huu Vuong (0%)
-Team members could not contact with this member, either by direct messages or direct talking on classes as he does not seem to attend any lectures, thus did not receive any response on the decision to contribute to this Project. 
+- Team members could not contact with this member, either by direct messages or direct talking on classes as he does not seem to attend any lectures, thus did not receive any response on the decision to contribute to this Project. 
 
 ## Demo link
 https://drive.google.com/file/d/1HPmcRuR1tWA6w5nzYl6A5CuDGM44-Ii6/view
