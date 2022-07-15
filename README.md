@@ -1,6 +1,6 @@
 # OOP.DSAI.20212.26
 OOP Project 20212
-## Teamm members
+## Team members
 1. Hoang Long Vu - 20204897 - vu.hl204897@sis.hust.edu.vn 
 2. Pham Vu Huyen Trang - 20207997 - trang.pvh207997@sis.hust.edu.vn 
 3. Nguyen Huu Vuong - 20204898 - vuong.nh204898@sis.hust.edu.vn 
