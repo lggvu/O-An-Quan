@@ -3,9 +3,10 @@ OOP Project 20212
 
 The final submission (due 15th Jul, 2022) is pushed to the `release/version-1.0` branch.
 Update (19-Jul, 2022):
-`hotifx/class-relationship`: Fix and clarify relationships between classes in the Class Diagram
-`hotfix/report`: Re-generate the class diagrams, replace the old ones in the report.
-`hotfix/slides`: Update images for class diagrams (with clarified relationships).
+- `hotifx/class-relationship`: Fix and clarify relationships between classes in the Class Diagram
+- `hotfix/report`: Re-generate the class diagrams, replace the old ones in the report.
+- `hotfix/slides`: Update images for class diagrams (with clarified relationships).
+- 
 All three `hotfix` branches above are merged into the `main` and `release/version-1.0` branch on 19-Jul, 2022.
 ## Team members
 1. Hoang Long Vu - 20204897 - vu.hl204897@sis.hust.edu.vn 
